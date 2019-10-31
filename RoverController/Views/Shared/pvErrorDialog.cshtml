@@ -1,0 +1,32 @@
+﻿@model RoverController.Web.DTOs.Misc.ErrorDialogDTO
+
+@*
+    Call it like this from any controller:
+    return PartialView("~/Views/Shared/pvErrorDialog.cshtml", new ErrorDialogDTO { });
+*@
+
+<div id="modalDanger" class="modal-block modal-block-danger">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="card-title">Oops!</h2>
+        </header>
+        <div class="card-body">
+            <div class="modal-wrapper">
+                <div class="modal-icon">
+                    <i class="fa fa-times-circle"></i>
+                </div>
+                <div class="modal-text">
+                    <h4>@Model.Title</h4>
+                    <p>@Model.Message</p>
+                </div>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-danger modal-dismiss">OK</button>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>

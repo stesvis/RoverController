@@ -1,0 +1,161 @@
+﻿@using RoverController.Web.Helper
+
+@{
+    var controller = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
+    var action = ViewContext.RouteData.GetRequiredString("action").ToLower();
+    var isLoggedIn = User?.Identity.IsAuthenticated;
+    var userName = isLoggedIn == true ? User.Identity.Name : string.Empty;
+
+    var dropdownAttributes = new Dictionary<string, object>(Html.GetUnobtrusiveValidationAttributes(ViewData.TemplateInfo.HtmlFieldPrefix));
+    dropdownAttributes.Add("class", "form-control populate switchClientDropdown");
+    dropdownAttributes.Add("data-plugin-selectTwo", null);
+    dropdownAttributes.Add("data-plugin-options", "{\"selectOnClose\": false, \"allowClear\": false, \"placeholder\": \"Switch branch\"}");
+}
+
+<header class="header">
+    <div class="logo-container">
+        <a href="@Url.Action(action, controller)" class="logo redirect">
+            <img src="~/Content/levitica-logo.png" width="150" alt="Levitica" />
+        </a>
+        <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+            <i class="icons icon-menu" aria-label="Toggle sidebar"></i>
+        </div>
+    </div>
+
+    <!-- start: search & user box -->
+    <div class="header-right">
+
+        @*---------------------------------- Search box ----------------------------------*@
+        @*<form action="@Url.Action("Index", "WorkOrders")" class="search nav-form">
+                <div class="input-group input-search">
+                    <input type="text" class="form-control" name="query" id="query" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </form>
+
+            <span class="separator"></span>*@
+
+        @*---------------------------------- Notifications ----------------------------------*@
+        <ul class="notifications">
+            @*@if (Request.Browser.IsMobileDevice)
+                {
+                    <li>
+                        <a href="@Url.Action("ShowSearchForm", "Home")" class="notification-icon js-navSearchButton">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </li>
+                }*@
+            @if (ViewHelper.IsUser)
+            {
+                <li>
+                    <a href="#" class="dropdown-toggle notification-icon redirect">
+                        <i class="fa fa-plus-circle"></i>
+                    </a>
+                </li>
+            }
+            <li>
+                <a href="@Url.Action("Contact", "Home")" class="dropdown-toggle notification-icon redirect">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </li>
+            <li class="hidden-desktop">
+                <a href="@Url.Action("SwitchClient", "Home")" class="dropdown-toggle notification-icon js-switchClient">
+                    <i class="fas fa-exchange-alt"></i>
+                </a>
+            </li>
+            @*<li>
+                    <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
+                        <i class="fa fa-plus-circle"></i>
+                    </a>
+
+                    <div class="dropdown-menu notification-menu" style="padding: 0;">
+                        <div class="notification-title">
+                            Add New
+                        </div>
+
+                        <div class="content">
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("Create", "WorkOrders")" class="clearfix">
+                                        <div class="image">
+                                            <i class="fa fa-tasks bg-success text-light"></i>
+                                        </div>
+                                        <span class="title">Delivery Order</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>*@
+        </ul>
+
+        <span class="separator"></span>
+
+        @if (!Request.Browser.IsMobileDevice && ViewHelper.AccessibleClientListItems != null && ViewHelper.CurrentClient != null)
+        {
+            <form action="@Url.Action("SwitchClient", "Home")" method="post" id="switchClientForm" class="search nav-form">
+                @Html.DropDownList("NextClientId", new SelectList(ViewHelper.AccessibleClientListItems, "Value", "Text"), ViewHelper.CurrentClient.FullName, dropdownAttributes)
+            </form>
+        }
+
+        <span class="separator"></span>
+
+        @*---------------------------------- User box ----------------------------------*@
+        <div id="userbox" class="userbox">
+            <a href="#" data-toggle="dropdown">
+                <figure class="profile-picture">
+                    <img src="~/Content/Themes/Porto/img/user.png" alt="@userName" class="rounded-circle" data-lock-picture="@Url.Content("~/Content/Themes/Porto/img/!logged-user.jpg")" />
+                </figure>
+                <div class="profile-info" data-lock-name="@userName" data-lock-email="johndoe@okler.com">
+                    <span class="name">@userName</span>
+                    @if (ViewHelper.CurrentClient != null)
+                    {
+                        <span class="role">@ViewHelper.CurrentClient.DisplayName</span>
+                    }
+                    @*<span class="role">@highestRole</span>*@
+                </div>
+
+                <i class="fa custom-caret"></i>
+            </a>
+
+            <div class="dropdown-menu" role="menu">
+                <ul class="list-unstyled mb-2">
+                    <li class="divider"></li>
+                    <li>
+                        <a role="menuitem" class="redirect" tabindex="-1" href="@Url.Action("Edit", "Users", new { id = ViewHelper.CurrentUserId })"><i class="fas fa-user-edit"></i> My Profile</a>
+                    </li>
+                    <li>
+                        <a role="menuitem" class="js-preferences" tabindex="-1" href="@Url.Action("Preferences", "Users", new { id = ViewHelper.CurrentUserId })"><i class="fas fa-cog"></i> Preferences</a>
+                    </li>
+                    <li>
+                        <a role="menuitem" tabindex="-1" href="@Url.Action("SwitchClient", "Home")" class="js-switchClient"><i class="fas fa-exchange-alt"></i> Switch Branch</a>
+                    </li>
+                    <li class="divider"></li>
+                    @*<li>
+                            <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
+                        </li>
+                        <li class="divider"></li>*@
+                    <li>
+                        <a role="menuitem" class="text-danger redirect" tabindex="-1" href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-power-off"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end: search & user box -->
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+</header>
+
+@*<script>
+        (function ($) {
+            $('.switchClientDropdown').on('select2:select', function (e) {
+                var data = e.params.data;
+                alert(data);
+            });
+        }).apply(this, [jQuery]);
+    </script>*@

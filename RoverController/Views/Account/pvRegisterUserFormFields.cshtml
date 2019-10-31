@@ -1,0 +1,143 @@
+﻿@model RoverController.Web.ViewModels.UserViewModel
+@using RoverController.Web.Helper
+
+@Html.AntiForgeryToken()
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger help-block small" })
+
+@{
+    var action = ViewContext.RouteData.Values["action"].ToString().ToLower();
+
+    var showPasswordFields = false;
+    if (action == "create" || action == "registeruser")
+    {
+        showPasswordFields = true;
+    }
+    else
+    {
+        if (ViewHelper.IsAdmin)
+        {
+            showPasswordFields = true;
+        }
+    }
+}
+
+<div class="form-group mb-3">
+    <div class="row">
+        <div class="col-lg-6 mb-3">
+            @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+            <div class="input-group input-group-icon">
+                <span class="input-group-addon">
+                    <span class="icon"><i class="fa fa-envelope"></i></span>
+                </span>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+            <span class="help-block small">Use your real email, used if you forget your password</span>
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger help-block small" })
+        </div>
+        <div class="col-lg-6 mb-3">
+            @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            <span class="help-block small">Your unique username to log in</span>
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger help-block small" })
+        </div>
+    </div>
+</div>
+
+@*------------- Show this field only on EDIT user -------------*@
+@if (ViewBag.Action != null && (ViewBag.Action as string).ToLower() == "edit")
+{
+    <div class="form-group mb-3">
+        <div class="row">
+            <div class="col-lg-6 mb-3">
+                @Html.LabelFor(m => m.OldPassword, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.OldPassword, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "text-danger help-block small" })
+            </div>
+        </div>
+    </div>
+}
+
+@*Admin users can change the password of other users except Admin*@
+@if (showPasswordFields)
+{
+    <div class="form-group mb-3">
+        <div class="row">
+            <div class="col-lg-6 mb-3">
+                @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                @*@if (ViewBag.Action != null && (ViewBag.Action as string).ToLower() == "edit")
+                    {
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    }
+                    else
+                    {
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", data_val = true })
+
+                    }*@
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                <span class="help-block small">Min. 6 characters</span>
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger help-block small" })
+            </div>
+            <div class="col-lg-6 mb-3">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                <span class="help-block small">Please repeat your pasword</span>
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger help-block small" })
+            </div>
+        </div>
+    </div>
+}
+
+<div class="form-group mb-3">
+    <div class="row">
+        <div class="col-lg-6 mb-3">
+            @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger help-block small" })
+        </div>
+        <div class="col-lg-6 mb-3">
+            @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger help-block small" })
+        </div>
+    </div>
+</div>
+
+<div class="form-group mb-3">
+    <div class="row">
+        <div class="col-lg-6 mb-3">
+            @Html.LabelFor(m => m.PhoneNumber, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+            <span class="help-block small">We will use it for notifications</span>
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger help-block small" })
+        </div>
+        <div class="col-lg-6 mb-3">
+            @{
+                var attributes = new Dictionary<string, object>(Html.GetUnobtrusiveValidationAttributes(ViewData.TemplateInfo.HtmlFieldPrefix));
+                attributes.Add("class", "form-control");
+
+                if (Model.ClientGuid.HasValue)
+                {
+                    attributes.Add("readonly", "readonly");
+                }
+            }
+            @Html.LabelFor(m => m.ClientGuid, new { @class = "control-label" })
+            @Html.EditorFor(m => m.ClientGuid, new { htmlAttributes = attributes })
+            @if (Model.ClientGuid.HasValue)
+            {
+                <span class="help-block small">This is just for internal use</span>
+            }
+            else
+            {
+                <span class="help-block small">Your employer should provide this code</span>
+            }
+            @Html.ValidationMessageFor(model => model.ClientGuid, "", new { @class = "text-danger help-block small" })
+        </div>
+    </div>
+</div>
+
+@*<div class="form-group mb-3">
+        @Html.LabelFor(m => m.RoleName, new { @class = "control-label" })
+        @Html.DropDownListFor(model => model.RoleName, new SelectList(ViewBag.RolesList, "Key", "Value"), "", htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger help-block small" })
+    </div>*@

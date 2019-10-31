@@ -1,0 +1,158 @@
+﻿.btn-primary {
+    border-color: #d3121a;
+    color: #ffffff;
+}
+
+.btn-warning {
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+}
+
+.alert-warning {
+    color: #af4d0c !important;
+}
+
+html.dark .show .dropdown-menu a,
+html.header-dark .show .dropdown-menu a {
+    color: #c4d0dd;
+}
+
+    html.dark .show .dropdown-menu a:hover,
+    html.header-dark .show .dropdown-menu a:hover {
+        background-color: #ec1f28;
+        color: #fafafa !important;
+    }
+
+ul.nav-main li a:hover {
+    color: #ec1f28;
+}
+
+/*--------- Unassigned ---------*/ 
+html .card-featured-unassigned {
+    border-color: #0083c1;
+}
+
+html .background-color-unassigned,
+html .bg-unassigned {
+    background-color: #0083c1 !important;
+}
+
+.badge-unassigned {
+    background-color: #0083c1;
+    color: #ffffff;
+    font-size: 100%;
+    padding: 3px 6px;
+}
+
+.text-unassigned {
+    color: #0083c1;
+}
+
+/*--------- Due ---------*/
+html .card-featured-due {
+    border-color: #eb9326;
+}
+
+html .background-color-due,
+html .bg-due {
+    background-color: #eb9326 !important;
+}
+
+.badge-due {
+    background-color: #eb9326;
+    color: #ffffff;
+    font-size: 100%;
+    padding: 3px 6px;
+}
+
+.text-due {
+    color: #eb9326;
+}
+
+/*--------- Overdue ---------*/
+html .card-featured-overdue {
+    border-color: #d3121a;
+}
+
+html .background-color-overdue,
+html .bg-overdue {
+    background-color: #d3121a !important;
+}
+
+.badge-overdue {
+    background-color: #d3121a;
+    color: #ffffff;
+    font-size: 100%;
+    padding: 3px 6px;
+}
+
+.text-overdue {
+    color: #d3121a;
+}
+
+/*--------- Completed ---------*/
+html .card-featured-completed {
+    border-color: #41b341;
+}
+
+html .background-color-completed,
+html .bg-completed {
+    background-color: #41b341 !important;
+}
+
+/*--------- Mine ---------*/ 
+html .card-featured-mine {
+    border-color: #5d6372;
+}
+
+html .background-color-mine,
+html .bg-mine {
+    background-color: #5d6372 !important;
+}
+
+.badge-mine {
+    background-color: #5d6372;
+    color: #ffffff;
+    font-size: 100%;
+    padding: 3px 6px;
+}
+
+.text-mine {
+    color: #798296;
+}
+
+/*--------- Badge New ---------*/
+.badge-new {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 100%;
+    padding: 3px 6px;
+}
+
+.text-new {
+    color: #dee2e6;
+}
+
+/*--------- Badge In Progress ---------*/
+.badge-in-progress {
+    background-color: #f73def;
+    color: #ffffff;
+    font-size: 100%;
+    padding: 3px 6px;
+}
+
+.text-in-progress {
+    color: #f73def;
+}
+
+/*--------- Badge Completed ---------*/
+.badge-completed {
+    background-color: #ffffff;
+    color: #41b341;
+    font-size: 100%;
+    padding: 3px 6px;
+}
+
+.text-completed {
+    color: #41b341;
+}

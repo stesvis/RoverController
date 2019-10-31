@@ -1,0 +1,152 @@
+html.dark .checkbox-primary label:before,
+.checkbox-primary label:before {
+    background: #d3121a;
+    border-color: #bc1017;
+}
+
+html.dark .checkbox-text-primary input[type="checkbox"]:checked + label:after,
+.checkbox-text-primary input[type="checkbox"]:checked + label:after {
+    color: #d3121a;
+}
+
+html.dark .radio-primary input[type="radio"]:checked + label:after,
+.radio-primary input[type="radio"]:checked + label:after {
+    background: #d3121a;
+    -webkit-box-shadow: 0px 0px 1px #d3121a;
+    box-shadow: 0px 0px 1px #d3121a;
+}
+
+.switch.switch-primary .ios-switch .on-background {
+    background: #d3121a;
+}
+
+.progress-bar {
+    background-color: #d3121a;
+}
+
+.progress .progress-bar-primary {
+    background-color: #d3121a;
+}
+
+.slider-primary .ui-slider-range,
+.slider-primary .ui-slider-handle {
+    background: #d3121a;
+}
+
+.slider-gradient.slider-primary .ui-slider-range,
+.slider-gradient.slider-primary .ui-slider-handle {
+    background-image: -webkit-linear-gradient(left, #ed2b33 0, #d3121a 50%, #a40e14 100%);
+    background-image: linear-gradient(left, #ed2b33 0, #d3121a 50%, #a40e14 100%);
+}
+
+.slider-gradient.ui-slider-vertical.slider-primary .ui-slider-range,
+.slider-gradient.ui-slider-vertical.slider-primary .ui-slider-handle {
+    background-image: -webkit-linear-gradient(to right, #ed2b33 0, #d3121a 50%, #a40e14 100%);
+    background-image: linear-gradient(to right, #ed2b33 0, #d3121a 50%, #a40e14 100%);
+}
+
+.datepicker thead tr:first-child th:hover,
+.datepicker tfoot tr th:hover,
+.datepicker table tr td span:hover {
+    background: #d3121a;
+}
+
+.datepicker .datepicker-switch:hover,
+.datepicker .prev:hover,
+.datepicker .next:hover {
+    background: #d3121a;
+}
+
+.datepicker table tbody tr td.day:hover {
+    background: #d3121a;
+}
+
+.datepicker table tbody tr td.day.active {
+    background: #a40e14;
+}
+
+html:not(.sidebar-light) .datepicker.datepicker-dark {
+    background: transparent;
+}
+
+    html:not(.sidebar-light) .datepicker.datepicker-dark table tbody tr td.day:hover {
+        background: #d3121a;
+    }
+
+    html:not(.sidebar-light) .datepicker.datepicker-dark table tbody tr td.day.active {
+        background: #a40e14;
+    }
+
+.datepicker.datepicker-primary table thead tr:first-child {
+    background-color: #d3121a;
+}
+
+    .datepicker.datepicker-primary table thead tr:first-child th:hover {
+        background-color: #a40e14;
+    }
+
+.datepicker.datepicker-primary table thead tr:last-child {
+    background-color: #ea141d;
+}
+
+    .datepicker.datepicker-primary table thead tr:last-child th:hover {
+        background-color: #d3121a;
+    }
+
+.select2-container-multi .select2-choices .select2-search-choice {
+    background: #d3121a;
+}
+
+.wizard-steps > li.active .badge {
+    background-color: #d3121a;
+}
+
+.wizard-steps > li.active a,
+.wizard-steps > li.active a:hover,
+.wizard-steps > li.active a:focus {
+    border-top-color: #d3121a;
+}
+
+.wizard-tabs ul > li.active .badge {
+    background-color: #d3121a;
+}
+
+html .wizard-progress .steps-progress .progress-indicator,
+html.dark .wizard-progress .steps-progress .progress-indicator {
+    background: #d3121a;
+}
+
+html .wizard-progress .wizard-steps li.completed a span,
+html.dark .wizard-progress .wizard-steps li.completed a span {
+    border-color: #d3121a;
+    background: #d3121a;
+}
+
+html .wizard-progress .wizard-steps li.active a span,
+html.dark .wizard-progress .wizard-steps li.active a span {
+    color: #d3121a;
+    border-color: #d3121a;
+}
+
+.table > thead > tr > td.primary,
+.table > tbody > tr > td.primary,
+.table > tfoot > tr > td.primary,
+.table > thead > tr > th.primary,
+.table > tbody > tr > th.primary,
+.table > tfoot > tr > th.primary,
+.table > thead > tr.primary > td,
+.table > tbody > tr.primary > td,
+.table > tfoot > tr.primary > td,
+.table > thead > tr.primary > th,
+.table > tbody > tr.primary > th,
+.table > tfoot > tr.primary > th {
+    background-color: #d3121a !important;
+}
+
+.dataTables_processing {
+    background-color: #d3121a;
+}
+
+.liquid-meter-wrapper .liquid-meter-selector a.active {
+    color: #d3121a;
+}

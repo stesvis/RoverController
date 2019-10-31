@@ -1,0 +1,100 @@
+﻿@model RoverController.Web.DTOs.ClientDTO
+
+@using RoverController.Lib
+
+@*Country/Province ajax dropdowns*@
+<script>
+
+    $(document).ready(function () {
+
+        if('@ViewBag.Saved' == 'True')
+        {
+            new PNotify({
+                title: 'Success!',
+                text: 'Branch saved.',
+                type: 'success'
+            });
+        }
+
+        var countryDropdown = $('#@Html.IdFor(model => model.Country)');
+        var regionDropdown = $('#@Html.IdFor(model => model.Province)');
+
+        reloadProvinces(countryDropdown.val());
+
+        countryDropdown.change(function () {
+
+            reloadProvinces($(this).val());
+
+        });
+
+        $('.js-datepicker').bootstrapDP({
+            title: "@Html.DisplayNameFor(m=>m.ExpiryDate)",
+            format: 'M d, yyyy',
+            startDate: new Date(),
+            clearBtn: true,
+            autoclose: true,
+            disableTouchKeyboard: true,
+            todayHighlight: true
+        });
+
+        @{
+            var defaultDate = string.Empty;
+            if (Model != null && Model.ExpiryDate.HasValue)
+            {
+                defaultDate = Model.ExpiryDate.Value.Date.ToString("MMM dd, yyyy");
+            }
+
+        }
+        $('.js-datepicker').bootstrapDP("setDate", '@defaultDate');
+
+    });
+
+    function reloadProvinces(country) {
+
+        var regionDropdown = $('#@Html.IdFor(model => model.Province)');
+        var apiUrl = '';
+
+        if (country == '@Country.Canada') {
+            apiUrl = '@Api.Tasks.Provinces';
+        }
+        else if (country == '@Country.USA') {
+            apiUrl = '@Api.Tasks.States';
+        }
+        else {
+            return;
+        }
+
+        $.ajax({
+            url: apiUrl,
+            method: "GET"
+        })
+        .done(function (data) {
+            //console.log(data);
+            regionDropdown.empty();
+
+            var option = new Option('', '');
+            regionDropdown.append($(option));
+
+            $.each(data, function (key, object) {
+                //console.log(object);
+                var selected = false;
+                @if (Model != null)
+                {
+                    <text>
+                        if (object.key == '@Model.Province') {
+                            selected = true;
+                        }
+                    </text>
+                }
+                option = new Option(object.value, object.key, '', selected);
+                regionDropdown.append($(option));
+            });
+        })
+        .always(function () {
+        })
+        .fail(function (error) {
+
+        });
+
+    }
+</script>

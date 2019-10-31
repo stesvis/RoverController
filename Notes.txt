@@ -1,0 +1,16 @@
+[JsonIgnore]
+
+    - ApplicationUser
+    - UserRoleDTO
+    - BaseModel
+    - Client
+    - ClientSettings
+    - ClientUser
+    - UserSettings
+    - AppSettingsDTO
+
+
+[JsonConvert]
+    - ClientSettings
+    - UserSettings
+    - AppSettingsDTO

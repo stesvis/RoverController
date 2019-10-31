@@ -1,0 +1,562 @@
+/* Add here all your CSS customizations */
+
+/*************************** Overlay ***************************/
+#loading {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(100,100,100, 0.3);
+    z-index: 20000;
+}
+
+#loadingcontent {
+    display: table;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#loadingspinner {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    text-align: center;
+    font-size: larger;
+    padding-top: 80px;
+}
+
+/*************************** UI ***************************/
+
+.modal {
+    z-index: 20001;
+}
+
+    html.dark body {
+    color: #c4d0dd;
+}
+
+a {
+    cursor: pointer;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+p {
+    color: #c4d0dd;
+}
+
+.body-sign {
+    max-width: 750px;
+    padding: 0;
+}
+
+.back-link {
+    float: left;
+    width: 100%;
+    margin: 10px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.right-wrapper {
+    padding-right: 15px;
+}
+
+.page-header .breadcrumbs a, .page-header .breadcrumbs span {
+    text-decoration: none;
+}
+
+    .page-header .breadcrumbs a:hover,
+    .page-header .breadcrumbs a span:hover {
+        color: #ec1f28;
+    }
+
+ul.nav-main li a span.badge {
+    margin-right: 15px;
+}
+
+ul.nav-main li a:hover {
+    color: #fafafa;
+}
+
+ul.nav-main li .nav-children li.nav-active > a {
+    color: #ec1f28;
+}
+
+table.clickable tr {
+    cursor: pointer;
+}
+
+.modal-header {
+    display: unset;
+}
+
+.page-errors .validation-message ul {
+    margin: 0;
+}
+
+html.dark .form-wizard .tab-content {
+    background: #2e353e;
+}
+
+html.dark .nav-tabs {
+    border-bottom-color: #282d36;
+}
+
+    html.dark .nav-tabs li .nav-link, html.dark .nav-tabs li .nav-link:hover {
+        background: #282d36;
+        border-left-color: #282d36;
+        border-right-color: #282d36;
+        border-top-color: #282d36;
+    }
+
+    html.dark .nav-tabs li.active .nav-link, html.dark .nav-tabs li.active .nav-link:hover, html.dark .nav-tabs li.active .nav-link:focus {
+        background: #282d36;
+        border-left-color: #282d36;
+        border-right-color: #282d36;
+    }
+
+.custom-dark-color {
+    background-color: #232831 !important;
+    border-color: #282d36 !important;
+}
+
+.content-body > .row:nth-of-type(2) {
+    padding-top: 0 !important;
+}
+
+html.dark .progress.light {
+    background: #282d36;
+}
+
+.bootbox-modal-content {
+    display: none;
+}
+
+.fixed-to-bottom {
+    /*height: 40px;*/
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    /*background-color: #2e353e;*/
+    /*opacity: 1;*/
+    padding-right: 30px;
+}
+
+.mailbox .mailbox-mail .mailbox-close-mail,
+.page-header .sidebar-right-toggle:hover,
+html.sidebar-light:not(.dark) ul.nav-main > li.nav-active > a,
+ul.nav-main li .nav-children li.nav-active > a,
+ul.nav-main > li.nav-active > i {
+    background: #171717;
+}
+
+.select2-selection--multiple {
+    overflow: hidden !important;
+    height: auto !important;
+    padding-bottom: 5px !important;
+}
+
+.mfp-iframe-scaler {
+    padding-top: 76.25%;
+}
+
+.th {
+    font-weight: bold;
+    color: #de9536 !important;
+    white-space: nowrap;
+}
+
+.card-subtitle {
+    color: #c4d0dd;
+}
+
+.alert-danger p {
+    color: #721c24;
+}
+
+.alert-danger h4 {
+    color: #721c24;
+    font-weight: bold;
+}
+
+.alert-warning p {
+    color: #856404;
+}
+
+.alert-warning h4 {
+    color: #856404;
+    font-weight: bold;
+}
+
+/*************************** Blockquotes ***************************/
+html.dark blockquote.primary {
+    border-color: #CCC;
+}
+
+html.dark blockquote.success {
+    border-color: #47a447;
+}
+
+html.dark blockquote.warning {
+    border-color: #ed9c28;
+}
+
+html.dark blockquote.danger {
+    border-color: #d2322d;
+}
+
+html.dark blockquote.info {
+    border-color: #5bc0de;
+}
+
+html.dark blockquote.dark {
+    border-color: #171717;
+}
+
+/*************************** Datepicker ***************************/
+.bootstrap-datetimepicker-widget table th,
+.bootstrap-datetimepicker-widget table th:hover,
+.bootstrap-datetimepicker-widget table td,
+.bootstrap-datetimepicker-widget table td:hover,
+.bootstrap-datetimepicker-widget table th,
+.bootstrap-datetimepicker-widget table th:hover,
+.bootstrap-datetimepicker-widget table td,
+.bootstrap-datetimepicker-widget table td:hover,
+.datepicker table thead tr th.next,
+.datepicker table thead tr th.prev {
+    /*color: #f0f0f0;*/
+    color: #808697;
+}
+
+    .bootstrap-datetimepicker-widget table th.disabled,
+    .bootstrap-datetimepicker-widget table th.disabled:hover,
+    .bootstrap-datetimepicker-widget table td.disabled,
+    .bootstrap-datetimepicker-widget table td.disabled:hover {
+        color: #454545;
+    }
+
+.datepicker table tfoot tr th {
+    cursor: pointer;
+    font-size: .8rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.datepicker table thead tr:first-child th {
+    background-color: #d3121a;
+    border-radius: unset;
+}
+
+
+.datepicker table thead tr:last-child {
+    color: #de9536;
+    font-weight: 600;
+}
+
+    .datepicker table thead tr:last-child th {
+        border-radius: unset;
+    }
+
+.datepicker table tr td {
+    border-radius: 4px;
+}
+
+input[type=checkbox] {
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
+}
+
+/*************************** Forms ***************************/
+input.check-box {
+    width: 25px;
+}
+
+.form-group .control-label {
+    color: #f6a821;
+    font-weight: bold;
+}
+
+.help-block {
+    color: #c8c8c8;
+}
+/*************************** Data Tables ***************************/
+html.dark .table > thead > tr > th,
+html.dark .table > tbody > tr > th,
+html.dark .table > tfoot > tr > th,
+dt {
+    color: #de9536;
+    white-space: nowrap;
+}
+
+html.dark .table > thead > tr > td,
+html.dark .table > tbody > tr > td,
+html.dark .table > tfoot > tr > td {
+    vertical-align: middle;
+}
+
+/*.page-item.disabled .page-link {
+    background-color: #282d36;
+    border-color: #242830;
+}*/
+
+html.dark .pagination > li > a,
+html.dark .pagination > li > span {
+    background-color: #282d36 !important;
+    border-color: #242830 !important;
+}
+
+/*End: Data Tables*/
+
+/*************************** Dropdown Buttons ***************************/
+html.dark .dropdown-menu {
+    padding: 10px;
+}
+
+.table td.actions {
+    width: 55px;
+}
+
+.table a.dropdown-item {
+    display: list-item;
+}
+
+    /*.table .actions a.dropdown-item:hover,
+.table .actions-hover a.dropdown-item:hover {
+    background-color: #d3121a;
+    color: #fafafa;
+}*/
+
+    .table a.dropdown-item i {
+        margin-right: 3px;
+    }
+
+html .btn-primary,
+html .btn-secondary,
+html .btn-tertiary,
+html .btn-quaternary,
+html .btn-default {
+    color: #ffffff !important;
+}
+
+.btn-primary:not([disabled]):not(.disabled):active,
+.btn-primary:not([disabled]):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle,
+.btn-secondary:not([disabled]):not(.disabled):active,
+.btn-secondary:not([disabled]):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle,
+.btn-tertiary:not([disabled]):not(.disabled):active,
+.btn-tertiary:not([disabled]):not(.disabled).active,
+.show > .btn-tertiary.dropdown-toggle,
+.btn-quaternary:not([disabled]):not(.disabled):active,
+.btn-quaternary:not([disabled]):not(.disabled).active,
+.show > .btn-quaternary.dropdown-toggle,
+.modal-footer .btn-primary {
+    box-shadow: none;
+}
+
+html.dark .dropdown-menu .divider,
+html.header-dark .dropdown-menu .divider,
+html.dark .userbox .dropdown-menu .divider-light,
+html.header-dark .userbox .dropdown-menu .divider-light {
+    background: #1d2127;
+}
+
+.show .dropdown-menu a,
+.show .dropdown-menu a:visited {
+    border-radius: 2px;
+    color: #7d7d7d;
+    display: block;
+    line-height: 1.3rem;
+    padding: 2px 10px;
+    font-size: 0.75rem;
+    text-decoration: none;
+}
+
+.dark .dropdown-item {
+    color: #a0a9b2;
+}
+
+    .dark .dropdown-item.active, .dark .dropdown-item:active, .dark .dropdown-item:focus {
+        background-color: #007bff !important;
+        color: #FFF;
+    }
+
+    .dark .dropdown-item:hover {
+        background-color: #2e353e;
+    }
+
+/*End: Dropdown button*/
+
+/*************************** Font Awesome 5 ***************************/
+
+ul.nav-main li.nav-parent > a:after,
+.card-action-toggle:before,
+.validation-message ul label.error:before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+.checkbox-custom input[type="checkbox"]:checked + label:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00c";
+    font-weight: 900;
+}
+
+/*************************** Pace ***************************/
+
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    z-index: 2000;
+    position: fixed;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 5px;
+    width: 200px;
+    background: #fff;
+    overflow: hidden;
+}
+
+    .pace .pace-progress {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        max-width: 200px;
+        z-index: 2000;
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 100%;
+        height: 100%;
+        width: 100%;
+        background: #d3121a;
+    }
+
+    .pace.pace-inactive {
+        display: none;
+    }
+
+.pace-done .content > div {
+    opacity: 1;
+}
+
+.pace-running {
+}
+
+/*************************** Completed ***************************/
+
+.table > thead > tr > td.completed,
+.table > tbody > tr > td.completed,
+.table > tfoot > tr > td.completed,
+.table > thead > tr > th.completed,
+.table > tbody > tr > th.completed,
+.table > tfoot > tr > th.completed,
+.table > thead > tr.completed > td,
+.table > tbody > tr.completed > td,
+.table > tfoot > tr.completed > td,
+.table > thead > tr.completed > th,
+.table > tbody > tr.completed > th,
+.table > tfoot > tr.completed > th,
+.panel-green > .panel-heading {
+    background-color: #41b341 !important;
+    color: #ffffff !important;
+}
+
+/*************************** Due ***************************/
+
+.table > thead > tr > td.due,
+.table > tbody > tr > td.due,
+.table > tfoot > tr > td.due,
+.table > thead > tr > th.due,
+.table > tbody > tr > th.due,
+.table > tfoot > tr > th.due,
+.table > thead > tr.due > td,
+.table > tbody > tr.due > td,
+.table > tfoot > tr.due > td,
+.table > thead > tr.due > th,
+.table > tbody > tr.due > th,
+.table > tfoot > tr.due > th,
+.panel-yellow > .panel-heading {
+    background-color: #ec9421 !important;
+    color: #ffffff !important;
+}
+
+/*************************** Overdue ***************************/
+
+.table > thead > tr > td.overdue,
+.table > tbody > tr > td.overdue,
+.table > tfoot > tr > td.overdue,
+.table > thead > tr > th.overdue,
+.table > tbody > tr > th.overdue,
+.table > tfoot > tr > th.overdue,
+.table > thead > tr.overdue > td,
+.table > tbody > tr.overdue > td,
+.table > tfoot > tr.overdue > td,
+.table > thead > tr.overdue > th,
+.table > tbody > tr.overdue > th,
+.table > tfoot > tr.overdue > th,
+.panel-red > .panel-heading {
+    background-color: #b42533 !important;
+    color: #ffffff !important;
+}
+
+/*************************** Unassigned ***************************/
+
+.table > thead > tr > td.unassigned,
+.table > tbody > tr > td.unassigned,
+.table > tfoot > tr > td.unassigned,
+.table > thead > tr > th.unassigned,
+.table > tbody > tr > th.unassigned,
+.table > tfoot > tr > th.unassigned,
+.table > thead > tr.unassigned > td,
+.table > tbody > tr.unassigned > td,
+.table > tfoot > tr.unassigned > td,
+.table > thead > tr.unassigned > th,
+.table > tbody > tr.unassigned > th,
+.table > tfoot > tr.unassigned > th,
+.panel-blue > .panel-heading {
+    background-color: #279ad1 !important;
+    color: #ffffff !important;
+}
+
+/*************************** External-User ***************************/
+
+.table > thead > tr > td.external-user,
+.table > tbody > tr > td.external-user,
+.table > tfoot > tr > td.external-user,
+.table > thead > tr > th.external-user,
+.table > tbody > tr > th.external-user,
+.table > tfoot > tr > th.external-user,
+.table > thead > tr.external-user > td,
+.table > tbody > tr.external-user > td,
+.table > tfoot > tr.external-user > td,
+.table > thead > tr.external-user > th,
+.table > tbody > tr.external-user > th,
+.table > tfoot > tr.external-user > th {
+    background-color: #7a5b32 !important;
+    /*color: #ffffff !important;*/
+}

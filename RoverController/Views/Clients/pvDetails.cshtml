@@ -1,0 +1,161 @@
+﻿@model RoverController.Web.DTOs.ClientDTO
+@using RoverController.Web.Helper
+
+@{
+}
+
+<div class="zoom-anim-dialog modal-block modal-block-primary modal-block-sm">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="card-title">Branch Details</h2>
+        </header>
+        <div class="card-body">
+            <div class="modal-wrapper">
+                @*<div class="modal-icon">
+                        <i class="fa fa-info-circle"></i>
+                    </div>*@
+                <div class="modal-text">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Guid)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Guid)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DisplayName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DisplayName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Phone)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Phone)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+
+                        <dd>
+                            @if (!Model.Email.IsEmpty())
+                            {
+                                @Html.DisplayTextFor(model => model.Email).ToString().ToLower()
+                            }
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Address1)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Address1)
+                            @if (!Model.Address2.IsEmpty())
+                            {
+                                <br />
+                                @Html.DisplayFor(model => model.Address2)
+                            }
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.City)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.City)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PostalCode)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PostalCode)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Province)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Province)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Country)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Country)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ExpiryDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ExpiryDate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.HasDoneImport)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.HasDoneImport)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.AutoRenew)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.AutoRenew)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.IsDemo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.IsDemo)
+                        </dd>
+
+                        @if (ViewHelper.IsSuperadmin)
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Fee)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Fee)
+                            </dd>
+                        }
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-default modal-dismiss">Close</button>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>

@@ -1,0 +1,157 @@
+﻿@model RoverController.Web.ViewModels.ContactFormViewModel
+
+@using RoverController.Lib;
+
+@{
+    ViewBag.Title = "Contact";
+
+    var isLoggedIn = User?.Identity.IsAuthenticated;
+
+    if (isLoggedIn == false)
+    {
+        Layout = "~/Views/Shared/_LayoutGuest.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+@section Header {
+
+}
+
+@if (isLoggedIn == true)
+{
+    <header class="page-header">
+        <h2>@ViewBag.Title</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="index.html">
+                        <i class="icons icon-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <span>@ViewBag.Title</span>
+                </li>
+            </ol>
+
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"></a>*@
+        </div>
+    </header>
+
+    <h2 class="mt-0 mb-0">Contact</h2>
+    <p>Feel free to contact us .</p>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+
+        @if (Model != null)
+        {
+            if (Model.Success)
+            {
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    @Model.ResultMessage
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    @Model.ResultMessage
+                </div>
+            }
+        }
+
+        @using (Html.BeginForm())
+        {
+            <div class="form-group mb-3">
+                <section class="card">
+                    <div class="card-body">
+
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger help-block small" })
+
+                        <div class="form-group mb-3">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 mb-3">
+                                    @Html.LabelFor(model => model.FromName, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.FromName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FromName, "", new { @class = "text-danger help-block small" })
+                                </div>
+                                <div class="col-lg-6 col-md-6 mb-3">
+                                    @Html.LabelFor(model => model.FromEmail, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.FromEmail, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FromEmail, "", new { @class = "text-danger help-block small" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 mb-3">
+                                    @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger help-block small" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <div class="row">
+                                <div class="col-lg-12 mb-3">
+                                    @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", style = "height: 200px;" } })
+                                    <span class="help-block small">If you are reporting a bug, tell us what you were trying to do</span>
+                                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger help-block small" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div style="margin-bottom: 20px;">&nbsp;</div>
+
+            <div class="form-group mb-0 fixed-to-bottom-mobile fixed-to-bottom">
+                <div class="row">
+                    @if (Request.Browser.IsMobileDevice)
+                    {
+                        <div class="col-md-12">
+                            <div class="btn-group d-flex" role="group">
+                                <button type="submit" class="btn btn-primary btn-block mt-3 js-save">Submit</button>
+                                @*<button type="button" class="btn btn-quaternary btn-block mt-3 js-cancel">Cancel</button>*@
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <button type="submit" class="btn btn-primary btn-block mt-3 js-save">Submit</button>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            @*<button type="button" class="btn btn-quaternary btn-block mt-3 js-cancel">Cancel</button>*@
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
+}

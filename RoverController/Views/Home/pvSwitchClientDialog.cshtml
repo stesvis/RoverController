@@ -1,0 +1,91 @@
+﻿@model RoverController.Web.ViewModels.SwitchClientViewModel
+
+@using RoverController.Web.Helper
+
+@{
+    var dropdownAttributes = new Dictionary<string, object>(Html.GetUnobtrusiveValidationAttributes(ViewData.TemplateInfo.HtmlFieldPrefix));
+    dropdownAttributes.Add("class", "form-control populate switchClientDropdown");
+    dropdownAttributes.Add("data-plugin-selectTwo", null);
+
+    if (Request.Browser.IsMobileDevice)
+    {
+        dropdownAttributes.Add("data-plugin-options", "{\"selectOnClose\": false, \"allowClear\": false, \"placeholder\": \"Switch branch\"}, \"minimumResultsForSearch\": -1}");
+    }
+    else
+    {
+        dropdownAttributes.Add("data-plugin-options", "{\"selectOnClose\": false, \"allowClear\": false, \"placeholder\": \"Switch branch\"}}");
+    }
+}
+<style>
+    .select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field:hover {
+        background: none !important;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    <div class="zoom-anim-dialog modal-block modal-block-primary modal-block-sm">
+        <section class="card">
+            <header class="card-header">
+                <h2 class="card-title">Switch Company or Branch</h2>
+            </header>
+            <div class="card-body">
+                <div class="modal-wrapper">
+                    @*<div class="modal-icon">
+                            <i class="fa fa-question-circle"></i>
+                        </div>*@
+                    <div class="modal-text">
+                        <div class="form-group mb-3">
+                            <div class="row">
+                                <div class="col-lg-12 mb-3">
+                                    @Html.LabelFor(m => m.NextClientId, new { @class = "control-label" })
+                                    @Html.DropDownListFor(m => m.NextClientId, new SelectList(ViewHelper.AccessibleClientListItems, "Value", "Text"), "", dropdownAttributes)
+                                    @Html.ValidationMessageFor(model => model.NextClientId, "", new { @class = "text-danger help-block small" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="card-footer">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button class="btn btn-default modal-dismiss">Cancel</button>
+                        @*<button type="submit" class="btn btn-primary modal-confirm">Confirm</button>*@
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    $(document).ready(function () {
+
+        $('.switchClientDropdown').on('select2:select', function (e) {
+            try {
+                showLoading();
+
+                var data = e.params.data;
+                console.log(data);
+                var clientId = data.id;
+                $(this).closest('form').submit();
+            }
+            finally {
+                hideLoading();
+            }
+
+        });
+
+        $(document).on('change', '.switchClientDropdown', function (e) {
+            showLoading();
+
+            var clientId = $(this).val();
+            $(this).closest('form').submit();
+
+        });
+
+    });
+</script>

@@ -1,0 +1,68 @@
+﻿@media screen and (max-width: 767px) {
+    .hidden-mobile {
+        display: none !important;
+    }
+
+    .body-sign .card-sign .card-body {
+        padding: 5px;
+    }
+
+    .fixed-to-bottom-mobile {
+        /*height: 40px;*/
+        position: fixed;
+        bottom: 10px;
+        width: 100%;
+        /*background-color: #2e353e;*/
+        /*opacity: 1;*/
+        padding-right: 10px;
+    }
+
+    .content-body {
+        padding: 0 5px 15px 5px;
+    }
+
+    .card-body {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .dropdown-menu ul li {
+        /*height: 40px;*/
+    }
+    .dropdown-menu ul li a{
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    /*************************** Font-Size ***************************/
+
+    .small-chart-wrapper .small-chart-info strong,
+    html .wizard-progress .wizard-steps li a span,
+    html.dark .wizard-progress .wizard-steps li a span,
+    body,
+    html.has-tab-navigation .page-header .breadcrumbs a,
+    html.has-tab-navigation .page-header .breadcrumbs span,
+    .small-chart-wrapper .small-chart-info strong,
+    .dd,
+    .dd-item, .dd-empty, .dd-placeholder,
+    .toggle.toggle-simple .toggle > label:before,
+    .inner-toolbar > ul > li,
+    html .wizard-progress .wizard-steps li a span,
+    html.dark .wizard-progress .wizard-steps li a span,
+    .datepicker.dropdown-menu,
+    .dropzone .dz-preview .dz-details,
+    .dropzone .dz-preview .dz-error-message {
+        font-size: 14px;
+    }
+
+}
+
+@media (max-width: 991px) {
+    .tab-navigation nav > ul > li > ul > li a,
+    .header-nav-main nav > ul li a,
+    .header-nav-main nav > ul li.dropdown .dropdown-menu,
+    .header.header-nav-menu .header-nav-main nav > ul li a,
+    .header.header-nav-menu .header-nav-main nav > ul li.dropdown .dropdown-menu {
+        font-size: 14px;
+    }
+}

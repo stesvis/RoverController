@@ -1,0 +1,13 @@
+﻿@model RoverController.Web.DTOs.ClientDTO
+
+@using RoverController.Lib
+
+@using (Html.BeginForm(ViewBag.Action as string, "Clients", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "modalForm" }))
+{
+    Html.RenderPartial("pvForm", Model);
+}
+
+@*Modal form scripts*@
+@Scripts.Render("~/bundles/jqueryval")
+
+@Html.Partial("pvFormScript", Model)

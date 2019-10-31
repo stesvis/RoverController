@@ -1,0 +1,43 @@
+﻿@model RoverController.Web.ViewModels.ActionButtonViewModel
+
+@using RoverController.Lib
+@using RoverController.Web.Helper
+
+@{
+}
+
+<div id="actionButton" class="hidden">
+    <div class="btn-group flex-wrap show">
+        <button type="button"
+                class="mb-1 mt-1 mr-1 btn btn-quaternary dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="true">
+            <i class="icons icon-menu"></i> <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu" role="menu"
+             x-placement="bottom-start"
+             style="position: absolute; transform: translate3d(-8px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <ul class="list-unstyled mb-2">
+                <li>
+                    <a role="menuitem" class="dropdown-item text-1 js-edit redirect"
+                       href="@Url.Action("Edit", new { id = "{primaryKey}" })"
+                       primaryKey="{primaryKey}">
+                        <i class="far fa-edit"></i>
+                        Edit
+                    </a>
+                </li>
+                @if (ViewHelper.IsAdmin)
+                {
+                    <li class="divider"></li>
+                    <li>
+                        <a role="menuitem" class="dropdown-item text-1 text-danger js-delete"
+                           primaryKey="{primaryKey}">
+                            <i class="fas fa-trash-alt"></i>
+                            Delete
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,481 @@
+﻿@model IEnumerable<RoverController.Web.ViewModels.UserViewModel>
+
+@using RoverController.Lib
+@using RoverController.Web.Helper
+
+@{
+    ViewBag.Title = "Users";
+
+    var entityName = "User";
+    var entityNameLowercase = entityName.ToLower();
+    var deleteApiUrl = Api.Users.Delete;
+
+}
+
+@section Header {
+
+    @Styles.Render("~/Porto/vendor/css/pnotify")
+    @Styles.Render("~/Porto/datatables/css")
+
+}
+
+@section Breadcrumbs {
+    <header class="page-header">
+        <h2>@ViewBag.Title</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">
+                        <i class="icons icon-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <span>
+                        <i class="icons icon-people"></i>
+                        <span>@ViewBag.Title</span>
+                    </span>
+                </li>
+            </ol>
+
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"></a>*@
+        </div>
+    </header>
+}
+
+@section PageButtons {
+    <div class="row">
+        <div class="col-lg-2 col-md-6 col-sm-12">
+            @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-primary btn-block redirect" })
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="card">
+            <div class="card-body">
+                <table id="usersTable" class="table table-responsive-md mb-0 table-striped table-hover clickable">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </th>
+                            @*<th>
+                                    @Html.DisplayNameFor(model => model.FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LastName)
+                                </th>*@
+                            <th>
+                                @Html.DisplayNameFor(model => model.FullName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PhoneNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Roles)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PrimaryClientId)
+                            </th>
+                            <th>
+                                Created On
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
+
+@Html.Partial("pvActionButton")
+@Html.Partial("pvActionButtonReadonly")
+
+@section Scripts {
+
+    @Scripts.Render("~/Porto/vendor/pnotify/js")
+    @Scripts.Render("~/Porto/vendor/js/bootstrap-datepicker")
+    @Html.Partial("pvDatatables")
+
+    <script>
+        $(document).ready(function () {
+
+            if('@ViewBag.Saved' == 'True')
+            {
+                new PNotify({
+                    title: 'Success!',
+                    text: 'User saved.',
+                    type: 'success'
+                });
+            }
+            else if('@ViewBag.Saved' == 'False')
+            {
+                new PNotify({
+                    title: 'Oops!',
+                    text: 'An error occurred.',
+                    type: 'error'
+                });
+            }
+
+            //------------------------------- DataTable -------------------------------//
+            var apiUrl = '@Api.Users.Filter';
+            apiUrl = apiUrl.replace('{clientId}', @ViewHelper.CurrentClientId);
+
+            $('.table').DataTable({
+
+                processing: true,
+                serverSide: true,
+                searching: true,
+                //ordering: true,
+                paging: true,
+                pageLength: 25,
+                rowId: 'id',
+                //saveState: true,
+                order: [[@((int)RoverController.Lib.UserColumns.UserName), 'asc']],
+
+                ajax: {
+                    url: apiUrl,
+                    dataSrc: function (data) {
+                        return data.data;
+                    }
+                },
+
+                createdRow: function (row, data, index) {
+                    $(row).addClass(data.rowClass);
+
+                    var url = '@Url.Action("DetailsModal", new { id = "primaryKey" })';
+                    url = url.replace("primaryKey", data.id);
+                    $(row).attr('target', url);
+                },
+
+                columns: [
+                    {
+                        data: "id",
+                        className: "text-right nowrap actions",
+                        orderable: false,
+                        render: function (id, type, user) {
+
+                            //return getActionButton(user.id);
+                            var actionButton = $('#actionButton').html();
+                            var currentUserId = '@ViewHelper.CurrentUserId';
+
+                            if (currentUserId === id) {
+                                actionButton = $('#actionButtonReadonly').html();
+                            }
+
+                            actionButton = actionButton.replace(new RegExp("{primaryKey}", "g"), id);
+                            actionButton = actionButton.replace(new RegExp(encodeURI("{primaryKey}"), "g"), id);
+
+                            return actionButton;
+
+                            @*@{
+                                var guid = Guid.NewGuid().ToString();
+                            }
+                            var button = '@Ajax.UserActionButton(guid, true)';
+                            button = button.replace('@guid', user.id);
+                            console.log(button);
+                            return button;*@
+                        }
+                    },
+                    { data: "userName", name: "Username", autowidth: true },
+                    //{ data: "rate", name: "Rate", autowidth: true },
+                    { data: "fullName", name: "Name", autowidth: true },
+                    { data: "email", name: "Email", autowidth: true },
+                    { data: "phone", name: "Phone", autowidth: true },
+                    { data: "roles", name: "Roles", autowidth: true, orderable: false },
+                    { data: "primaryClient", name: "Branch", autowidth: true, orderable: false },
+                    { data: "createdDate", name: "Created", autowidth: true },
+                ],
+
+                language: {
+                    emptyTable: "There are no users at present.",
+                    zeroRecords: "No matching users were found."
+                },
+
+            });
+
+            //--------------------------- View Details ---------------------------//
+            $('.table').on('click', 'tbody td', function (e) {
+
+                // if you are just doing some text selection it won't trigger the click on the row
+                if (getSelection().toString() != "")
+                    e.stopPropagation();
+
+                if (!$(this).hasClass('actions')) {
+                    e.stopPropagation();
+
+                    //showLoading();
+
+                    $.magnificPopup.open({
+                        type: 'ajax',
+                        modal: true,
+
+                        fixedContentPos: false,
+                        fixedBgPos: true,
+
+                        overflowY: 'auto',
+
+                        preloader: false,
+
+                        midClick: true,
+                        removalDelay: 300,
+                        mainClass: 'my-mfp-zoom-in',
+
+                        closeOnContentClick: false,
+                        closeOnBgClick: true,
+                        items: {
+                            src: $(this).parent().attr('target'),
+                        },
+                        callbacks: {
+                            parseAjax: function (response) {
+                                //hideLoading();
+                            }
+                        }
+                    });
+                    return false;
+                }
+            });
+
+            //--------------------------- Delete ---------------------------//
+            $('.table').on('click', '.js-delete', function (e) {
+
+                if (!$(this).hasClass('disabled')) {
+                    var button = $(this);
+                    var id = button.closest('tr').attr('id');
+                    var row = button.parents('tr');
+
+                    bootbox.confirm('Are you sure you wish to delete this @entityNameLowercase?', function (result) {
+                        if (result) {
+
+                            var url = '@deleteApiUrl';
+                            url = url.replace("{id}", id);
+                            url = url.replace("{clientId}", @ViewHelper.CurrentClientId);
+
+                            $.ajax({
+                                url: url,
+                                method: "DELETE",
+                                contentType: 'application/json; charset=utf-8',
+                            })
+                            .done(function () {
+                                row.remove();
+
+                                // Show success notification
+                                new PNotify({
+                                    title: 'Success!',
+                                    text: '@entityName deleted.',
+                                    type: 'success'
+                                });
+
+                            })
+                            .fail(function (error) {
+                                console.log(error);
+
+                                new PNotify({
+                                    title: 'Oops!',
+                                    text: 'Could not delete the @entityNameLowercase.',
+                                    type: 'error'
+                                });
+                            })
+                            .always(function () {
+                            });
+                        }
+                    });
+                }
+
+                return false;
+            });
+
+            //--------------------------- Preferences ---------------------------//
+            $('#usersTable').on('click', '.js-preferences', function (e) {
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                $.magnificPopup.open({
+                    type: 'ajax',
+                    modal: true,
+
+                    fixedContentPos: false,
+                    fixedBgPos: true,
+
+                    overflowY: 'auto',
+
+                    preloader: false,
+
+                    midClick: true,
+                    removalDelay: 300,
+                    mainClass: 'my-mfp-zoom-in',
+
+                    closeOnContentClick: false,
+                    closeOnBgClick: true,
+                    items: {
+                        src: $(this).attr('href'),
+                    },
+                    callbacks: {
+
+                        ajaxContentAdded: function () {
+
+                            if ($.isFunction($.fn['select2'])) {
+
+                                $(function () {
+                                    $('[data-plugin-selectTwo]').each(function () {
+                                        var $this = $(this),
+                                            opts = {};
+
+                                        var pluginOptions = $this.data('plugin-options');
+                                        if (pluginOptions)
+                                            opts = pluginOptions;
+
+                                        $this.themePluginSelect2(opts);
+                                    });
+                                });
+                            }
+                        }
+                    }
+                });
+                return false;
+            });
+
+            //--------------------------- Assign ---------------------------//
+            $('#usersTable').on('click', '.js-assign-user', function (e) {
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                $.magnificPopup.open({
+                    type: 'ajax',
+                    modal: true,
+
+                    fixedContentPos: false,
+                    fixedBgPos: true,
+
+                    overflowY: 'auto',
+
+                    preloader: false,
+
+                    midClick: true,
+                    removalDelay: 300,
+                    mainClass: 'my-mfp-zoom-in',
+
+                    closeOnContentClick: false,
+                    closeOnBgClick: true,
+                    items: {
+                        src: $(this).attr('href'),
+                    },
+                    callbacks: {
+                        ajaxContentAdded: function () {
+
+                            if ($.isFunction($.fn['select2'])) {
+
+                                $(function () {
+                                    $('[data-plugin-selectTwo]').each(function () {
+                                        var $this = $(this),
+                                            opts = {};
+
+                                        var pluginOptions = $this.data('plugin-options');
+                                        if (pluginOptions)
+                                            opts = pluginOptions;
+
+                                        $this.themePluginSelect2(opts);
+                                    });
+                                });
+                            }
+                        },
+                        parseAjax: function (mfpResponse) {
+                            if (mfpResponse.xhr.status != 200) {
+                                new PNotify({
+                                    title: 'Oops!',
+                                    text: 'An error occurred.',
+                                    type: 'error'
+                                });
+                            }
+                        }
+                    }
+                });
+                return false;
+            });
+
+            //--------------------------- Get Location ---------------------------//
+            $('#usersTable').on('click', '.js-get-location', function (e) {
+
+                if (!$(this).hasClass('disabled')) {
+                    e.stopPropagation();
+
+                    var button = $(this);
+                    var id = button.closest('tr').attr('id');
+                    var row = button.parents('tr');
+
+                    var url = '@Api.Users.GetLastKnownLocation';
+                    url = url.replace("{id}", id);
+                    //console.log(url);
+
+                    $.ajax({
+                        url: url,
+                        method: "GET",
+                        contentType: 'application/json; charset=utf-8',
+                    })
+                        .done(function (result) {
+                            //console.log(result);
+                            if (result == null) {
+                                new PNotify({
+                                    title: 'Oops!',
+                                    text: 'No last known location was stored.',
+                                    type: 'custom'
+                                });
+                            }
+
+                            // Show success notification
+                            var mapUrl = 'https://www.google.com/maps/place/{coordinates}';
+                            mapUrl = mapUrl.replace('{coordinates}', result.coordinates);
+                            window.open(mapUrl, '_blank');
+                        })
+                        .fail(function (error) {
+                            console.log(error);
+
+                            new PNotify({
+                                title: 'Oops!',
+                                text: 'Could not get the location.',
+                                type: 'error'
+                            });
+                        })
+                        .always(function () {
+                        });
+
+                    return false;
+                }
+            });
+
+        });
+
+        function getActionButton(id) {
+            var actionButtonUrl = '@Url.Action("ActionButton", "Users", new { id = "userId" } )';
+            actionButtonUrl = actionButtonUrl.replace("userId", id);
+            //console.log(actionButtonUrl);
+
+            $.ajax({
+                url: actionButtonUrl,
+                method: "GET",
+                //async: false,
+            })
+                .done(function (data) {
+                    console.log(data);
+                    return data;
+                })
+                .fail(function (data) {
+                    console.log('Error');
+                    console.log(data);
+                })
+                .always(function () {
+
+                });
+        }
+    </script>
+}

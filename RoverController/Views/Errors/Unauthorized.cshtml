@@ -1,0 +1,67 @@
+﻿@*@model System.Web.Mvc.HandleErrorInfo*@
+@model System.Exception
+
+@{
+    var isLoggedIn = User?.Identity.IsAuthenticated;
+
+    if (isLoggedIn == false)
+    {
+        Layout = "~/Views/Shared/_LayoutGuest.cshtml";
+    }
+
+    ViewBag.Title = "401 Error";
+}
+
+@if (isLoggedIn == true)
+{
+    @section Breadcrumbs {
+        <header class="page-header">
+            <h2>@ViewBag.Title</h2>
+
+            <div class="right-wrapper text-right">
+                <ol class="breadcrumbs">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">
+                            <i class="icons icon-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="fas fa-exclamation-triangle text-warning"></i>
+                            <span class="text-warning">@ViewBag.Title</span>
+                        </a>
+                    </li>
+                </ol>
+
+                @*<a class="sidebar-right-toggle" data-open="sidebar-right"></a>*@
+            </div>
+        </header>
+    }
+}
+
+<section class="body-error error-inside">
+    <div class="center-error">
+
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="main-error mb-3">
+                    <h2 class="error-code text-dark text-center font-weight-semibold m-0">401</h2>
+                    <p class="error-explanation text-center"><strong>Unauthorized</strong> - It looks like something went wrong.</p>
+                    @if (!string.IsNullOrEmpty(Model?.Message))
+                    {
+                        <blockquote class="warning text-center"><p class="text-warning">@Model.Message</p></blockquote>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <h4 class="text">Here are some useful links</h4>
+                <ul class="nav nav-list flex-column primary">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Home")"><i class="fa fa-caret-right text-dark"></i> Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

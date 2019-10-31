@@ -1,0 +1,131 @@
+﻿using Microsoft.AspNet.Identity;
+using NLog;
+using RoverController.Lib;
+using RoverController.Web.DTOs;
+using RoverController.Web.Services.Base;
+using RoverController.Web.Services.PositionsService;
+using RoverController.Web.Services.Users;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace RoverController.Web.Services
+{
+    public class AppService : BaseService, IAppService
+    {
+        #region Services
+
+        public IPositionsService Positions { get; private set; }
+        public IUserService Users { get; private set; }
+
+        #endregion Services
+
+        #region Properties
+
+        /// <summary>
+        /// Returns the current logged in ApplicationUser
+        /// </summary>
+        public UserDTO CurrentUser
+        {
+            get
+            {
+                var userDTO = (UserDTO)HttpContext.Current.Session["CurrentUser"];
+                if (userDTO == null)
+                {
+                    userDTO = Users.Get(CurrentUserId);
+
+                    HttpContext.Current.Session["CurrentUser"] = userDTO;
+                }
+
+                MappedDiagnosticsContext.Set("currentUserId", userDTO?.Id);
+                return userDTO;
+            }
+
+            set
+            {
+                HttpContext.Current.Session["CurrentUser"] = value;
+                MappedDiagnosticsContext.Set("currentUserId", value?.Id);
+            }
+        }
+
+        public string CurrentUserId
+        {
+            get
+            {
+                //throw new Exception("This is a custom exception");
+                MappedDiagnosticsContext.Set("currentUserId", HttpContext.Current.User.Identity.GetUserId());
+                return HttpContext.Current.User.Identity.GetUserId();
+            }
+        }
+
+        #endregion Properties
+
+        public AppService(
+            IPositionsService positionsService,
+            IUserService userService)
+            : base()
+        {
+            Users = userService;
+            Positions = positionsService;
+        }
+
+        #region Dropdowns
+
+        /// <summary>
+        /// Returns the list of available user roles
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, string> GetRoles()
+        {
+            var dictionary = new Dictionary<string, string>();
+
+            using (var roleManager = RoleManager)
+            {
+                foreach (var role in roleManager.Roles.OrderBy(r => r.Order))
+                {
+                    if (role.Name != UserRoles.SuperAdmin ||
+                        CurrentUser.Roles.Contains(UserRoles.SuperAdmin))
+                    {
+                        dictionary.Add(role.Name, role.Name);
+                    }
+                }
+            }
+
+            return dictionary;
+        }
+
+        /// <summary>
+        /// Returns a keypair list users (Id, ShortName) by role
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        //public Dictionary<string, string> GetUsers(int clientId, string role)
+        //{
+        //    var dictionary = new Dictionary<string, string>();
+
+        // var users = Users.Filter(clientId, true, UserIsAtLeast(CurrentUserId,
+        // UserRoles.SuperAdmin), out int recordsTotal) .Where(u => u.Roles.Contains(role));
+
+        // foreach (var user in users) { dictionary.Add(user.Id, user.FullName); }
+
+        //    return dictionary;
+        //}
+
+        #endregion Dropdowns
+
+        /// <summary>
+        /// Returns the user Id of the Superadmin user
+        /// </summary>
+        /// <returns></returns>
+        public string GetSuperadminUserId()
+        {
+            using (var userManager = UserManager)
+            {
+                var superadmin = userManager.FindByName("superadmin");
+
+                return superadmin?.Id;
+            }
+        }
+    }
+}

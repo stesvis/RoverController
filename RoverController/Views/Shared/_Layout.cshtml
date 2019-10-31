@@ -1,0 +1,240 @@
+﻿@using RoverController.Web.Helper
+
+@{
+    var isLoggedIn = User?.Identity.IsAuthenticated;
+    if (isLoggedIn == false)
+    {
+        Response.Redirect(Url.Action("Login", "Account"));
+    }
+}
+<!DOCTYPE html>
+<html class="fixed dark no-overflowscrolling">
+<head>
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <meta name="keywords" content="HTML5 Admin Template" />
+    <meta name="description" content="Delivery Orders CMS">
+    <meta name="author" content="okler.net">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Page title -->
+    <title>RoverController | App</title>
+
+    <!-- Vendor styles -->
+    @Styles.Render("~/Porto/vendor/css/bootstrap")
+    @Styles.Render("~/Porto/vendor/css/animate")
+    @Styles.Render("~/Porto/vendor/css/magnific-popup")
+    @Styles.Render("~/Porto/vendor/css/select2")
+    @Styles.Render("~/Porto/vendor/css/select2-bootstrap-theme")
+
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Porto/vendor/css/simple-line-icons")
+    @Styles.Render("~/Porto/vendor/css/font-awesome")
+    @*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">*@
+
+    @RenderSection("Header", required: false)
+
+    <!-- App styles -->
+    @Styles.Render("~/Porto/theme/css")
+    @Styles.Render("~/Porto/theme/css/skin")
+    @Styles.Render("~/Porto/theme/css/custom")
+    @Styles.Render("~/Porto/theme/css/skin/custom")
+
+    @*@Scripts.Render("~/Porto/vendor/js/font-awesome")*@
+    @Scripts.Render("~/Porto/js/modernizr")
+</head>
+<body>
+
+    <section class="body">
+
+        <!-- start: header -->
+        @Html.Partial("pvNavbarMenu")
+        <!-- end: header -->
+
+        <div class="inner-wrapper">
+            <!-- start: sidebar -->
+            @Html.Partial("pvSidebarMenu")
+            <!-- end: sidebar -->
+
+            <section role="main" class="content-body">
+
+                @RenderSection("Breadcrumbs", required: false)
+
+                @{
+                    var errors = false;
+
+                    if (ViewBag.Errors != null)
+                    {
+                        if (ViewBag.Errors is List<string>)
+                        {
+                            if ((ViewBag.Errors as List<string>).Count() > 0)
+                            {
+                                errors = true;
+                            }
+                        }
+                    }
+                }
+
+                <div class="row page-errors">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10">
+                        <div class="validation-message">
+                            @{
+                                var style = string.Empty;
+                                if (errors)
+                                {
+                                    style = "display: block;";
+                                    <ul style="@style">
+
+                                        @foreach (var error in ViewBag.Errors)
+                                        {
+                                            <li>
+                                                <label class="error" style="">@error</label>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @if (errors)
+                {
+                    <div style="margin-bottom: 40px;"></div>
+                }
+
+                @RenderSection("PageButtons", required: false)
+
+                @*Expiry warning and alerts*@
+                @*@if (ViewHelper.ShowExpirationAlert && ViewHelper.IsAdmin)
+                    {
+                        <div class="row">
+                            <div class="col-lg-8 col-md-12">
+                                <div class="alert alert-danger nomargin">
+                                    <h4>Alert!</h4>
+                                    <p>Your license expired on <strong>@ViewHelper.CurrentClient.ExpiryDate.Value.ToString("MMM dd, yyyy")</strong>.</p>
+                                    <p>
+                                        You have been granted a grace period until <strong>@ViewHelper.CurrentClient.ExpiryDate.Value.AddDays(7).ToString("MMM dd, yyyy")</strong>. If you already submitted a payment please contact us to remove this alert.
+                                    </p>
+                                    <p>
+                                        <a class="mb-1 mt-1 mr-1 btn btn-primary btn-block btn-lg redirect" href="@Url.Action("Contact")">Contact</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @if (ViewHelper.ShowExpirationWarning && ViewHelper.IsAdmin)
+                    {
+                        <div class="row">
+                            <div class="col-lg-8 col-md-12">
+                                <div class="alert alert-warning nomargin">
+                                    <h4>Warning!</h4>
+                                    <p>Your license expires on <strong>@ViewHelper.CurrentClient.ExpiryDate.Value.ToString("MMM dd, yyyy")</strong>.</p>
+                                    <p>
+                                        Please make a payment to continue using the service without interruption. If you already submitted a payment please contact us to remove this alert.
+                                    </p>
+                                    <p>
+                                        <a class="mb-1 mt-1 mr-1 btn btn-primary btn-block btn-lg redirect" href="@Url.Action("Contact")">Contact</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }*@
+                <!-- start: page -->
+                @RenderBody()
+                <!-- end: page -->
+            </section>
+        </div>
+
+        <aside id="sidebar-right" class="sidebar-right">
+            <div class="nano">
+                <div class="nano-content">
+                    <a href="#" class="mobile-close d-md-none">
+                        Collapse <i class="fa fa-chevron-right"></i>
+                    </a>
+
+                    <div class="sidebar-right-wrapper">
+
+                        @RenderSection("RightSidebar", required: false)
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <div id="loading">
+        <div id="loadingcontent">
+            <p id="loadingspinner">
+            </p>
+        </div>
+    </div>
+
+    <!-- Vendor scripts -->
+    @*@Scripts.Render("~/Porto/vendor/js/pace")*@ @*Automatic page load progress bar*@
+    @Scripts.Render("~/Porto/vendor/js/jquery")
+    @Scripts.Render("~/Porto/vendor/js/jquery-browser-mobile") @*Detects mobile browser info*@
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Porto/vendor/js/popper") @*Placing poppers (enhanced tooltips) around elements is just that easy!*@
+    @Scripts.Render("~/Porto/vendor/js/bootstrap")
+    @Scripts.Render("~/Porto/vendor/js/nanoscroller") @*Mac OS X Lion-styled scrollbars for your website*@
+    @Scripts.Render("~/Porto/vendor/js/magnific-popup") @*Fast, light and responsive lightbox plugin*@
+    @Scripts.Render("~/Porto/vendor/js/jquery-placeholder") @*A jQuery plugin that enables HTML5 placeholder behavior for browsers that aren’t trying hard enough yet*@
+    @Scripts.Render("~/Porto/vendor/js/select2")
+
+    @RenderSection("scripts", required: false)
+
+    @Scripts.Render("~/Porto/vendor/bootbox/js")
+    @Scripts.Render("~/Porto/vendor/js/common")
+    @*<script src="~/Content/Themes/Porto/vendor/common/common.js"></script>*@
+
+    <!-- App scripts -->
+    @Scripts.Render("~/Porto/app/js")
+
+    <script>
+
+        $(document).ready(function () {
+            $(document).on('click', '.js-switchClient', function (e) {
+                e.preventDefault();
+
+                //(function ($) {
+                $.magnificPopup.open({
+                    type: 'ajax',
+                    modal: true,
+                    closeOnContentClick: false,
+                    closeOnBgClick: true,
+                    items: {
+                        src: $(this).attr('href'),
+                    },
+                    callbacks: {
+                        ajaxContentAdded: function () {
+
+                            if ($.isFunction($.fn['select2'])) {
+
+                                $(function () {
+                                    $('[data-plugin-selectTwo]').each(function () {
+                                        var $this = $(this),
+                                            opts = {};
+
+                                        var pluginOptions = $this.data('plugin-options');
+                                        if (pluginOptions)
+                                            opts = pluginOptions;
+
+                                        $this.themePluginSelect2(opts);
+                                    });
+                                });
+                            }
+                        }
+                    }
+                });
+                //}).apply(this, [jQuery]);
+            });
+        });
+    </script>
+</body>
+</html>

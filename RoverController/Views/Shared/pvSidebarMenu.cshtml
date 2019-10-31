@@ -1,0 +1,155 @@
+﻿@using RoverController.Web.Helper
+@using RoverController.Lib
+
+@{
+    var controller = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+    var action = ViewContext.RouteData.Values["action"].ToString().ToLower();
+    int id = 0;
+    if (ViewContext.RouteData.Values["id"] != null)
+    {
+        int.TryParse(ViewContext.RouteData.Values["id"].ToString(), out id);
+    }
+    int selectedClientId = 0;
+    if (Request.Params["clientId"] != null)
+    {
+        int.TryParse(Request.Params["clientId"].ToString(), out selectedClientId);
+    }
+    var statusId = Request.Params["statusId"] == null ? string.Empty : Request.Params["statusId"].ToString();
+    var isLoggedIn = User.Identity.IsAuthenticated;
+    var userName = User.Identity.Name;
+}
+
+<aside id="sidebar-left" class="sidebar-left">
+
+    <div class="sidebar-header">
+        <div class="sidebar-title">
+            Navigation
+        </div>
+        <div class="sidebar-toggle hidden-xs hidden-mobile" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+            <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+        </div>
+    </div>
+
+    <div class="nano">
+        <div class="nano-content">
+            <nav id="menu" class="nav-main" role="navigation">
+
+                <ul class="nav nav-main">
+                    @*---------------------------------- Dashboard ----------------------------------*@
+                    <li class="@(controller == "home" ? "nav-active" : "")">
+                        <a class="nav-link" href="@Url.Action("Index", "Home")">
+                            <i class="icons icon-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+                    @*---------------------------------- Admin ----------------------------------*@
+                    @if (ViewHelper.IsAdmin)
+                    {
+                        <li class="nav-parent @(controller == "admin" || controller == "users" || (controller == "clients" && action == "settings" && id == ViewHelper.CurrentClientId) || (controller == "clients" && action == "modules" && id == ViewHelper.CurrentClientId) || (controller == "clients" && action == "edit" && id == ViewHelper.CurrentClientId) ? "nav-active nav-expanded" : "")">
+                            <a class="" href="#">
+                                <i class="icons icon-shield"></i>
+                                <span>Admin</span>
+                            </a>
+                            <ul class="nav nav-children">
+                                <li class="nav-parent @(controller == "users" ? "nav-active nav-expanded" : "")">
+                                    <a class="" href="#">
+                                        <i class="icons icon-people"></i>
+                                        Users <span class="mega-sub-nav-toggle toggled float-right" data-toggle="collapse" data-target=".mega-sub-nav-sub-menu-1"></span>
+                                    </a>
+                                    <ul class="nav nav-children">
+                                        <li class="@(controller == "users" && (action == "index" || string.IsNullOrEmpty(action)) ? "nav-active" : "")">
+                                            <a class="nav-link" href="@Url.Action("Index", "Users")">
+                                                All Users
+                                            </a>
+                                        </li>
+                                        <li class="@((controller == "users" && action == "create") ? "nav-active" : "")">
+                                            <a class="nav-link" href="@Url.Action("Create", "Users")">
+                                                Add New
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="@(controller == "clients" && action == "edit" && id == ViewHelper.CurrentClientId ? "nav-active" : "")">
+                                    <a class="nav-link" href="@Url.Action("Edit", "Clients", new { id = ViewHelper.CurrentClientId })">
+                                        Company Info
+                                    </a>
+                                </li>
+                                <li class="@(controller == "clients" && action == "settings" && id == ViewHelper.CurrentClientId ? "nav-active" : "")">
+                                    <a class="nav-link" href="@Url.Action("Settings", "Clients", new { id = ViewHelper.CurrentClientId })">
+                                        Settings
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (ViewHelper.IsSuperadmin)
+                    {
+                        @*---------------------------------- Clients ----------------------------------*@
+                        <li class="nav-parent @((controller == "clients" && action == "index" || controller == "clients" && action == "create") ? "nav-active nav-expanded" : "")">
+                            <a class="" href="#">
+                                <i class="icons icon-badge"></i>
+                                <span>Branches</span>
+                            </a>
+                            <ul class="nav nav-children">
+                                <li class="@(controller == "clients" && (action == "index" || string.IsNullOrEmpty(action)) ? "nav-active" : "")">
+                                    <a class="nav-link" href="@Url.Action("Index", "Clients")">
+                                        All Branches
+                                    </a>
+                                </li>
+                                <li class="@((controller == "clients" && action == "create") ? "nav-active" : "")">
+                                    <a class="nav-link" href="@Url.Action("Create", "Clients")">
+                                        Add New
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (ViewHelper.IsSuperadmin)
+                    {
+
+                        @*---------------------------------- Billing ----------------------------------*@
+                        <li class="nav-parent @(controller == "billing" ? "nav-active nav-expanded" : "")">
+                            <a class="" href="#">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                <span>Billing</span>
+                            </a>
+                            <ul class="nav nav-children">
+                                @if (ViewHelper.IsSuperadmin)
+                                {
+                                    <li class="@(controller == "billing" && (action == "index" || string.IsNullOrEmpty(action)) ? "nav-active" : "")">
+                                        <a class="nav-link" href="@Url.Action("Index", "Billing")">
+                                            All Billing Info
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="@(controller == "billing" && (action == "mybilling" || action=="details" && selectedClientId == ViewHelper.CurrentClientId) ? "nav-active" : "")">
+                                        <a class="nav-link" href="@Url.Action("MyBilling", "Billing")">
+                                            My Current Billing
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+
+        <script>
+            // Maintain Scroll Position
+            if (typeof localStorage !== 'undefined') {
+                if (localStorage.getItem('sidebar-left-position') !== null) {
+                    var initialPosition = localStorage.getItem('sidebar-left-position'),
+                        sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+
+                    sidebarLeft.scrollTop = initialPosition;
+                }
+            }
+        </script>
+    </div>
+</aside>

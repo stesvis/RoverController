@@ -1,0 +1,115 @@
+﻿@model RoverController.Web.DTOs.UserDTO
+
+@using RoverController.Lib
+@using RoverController.Web.Helper
+
+@{
+}
+
+<div class="zoom-anim-dialog modal-block modal-block-primary modal-block-sm">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="card-title">User Details</h2>
+        </header>
+        <div class="card-body">
+            <div class="modal-wrapper">
+                @*<div class="modal-icon">
+                        <i class="fa fa-info-circle"></i>
+                    </div>*@
+                <div class="modal-text">
+                    <dl class="dl-horizontal">
+                        @if (ViewHelper.IsSuperadmin)
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Id)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Id)
+                            </dd>
+                        }
+                        @*------------- UserName -------------*@
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UserName)
+                        </dd>
+                        @*------------- Email -------------*@
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+
+                        <dd>
+                            @Model.Email.ToLower()
+                            @*@Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @style = "text-transform:lowercase" } })*@
+                        </dd>
+                        @*------------- FirstName -------------*@
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FirstName)
+                        </dd>
+                        @*------------- LastName -------------*@
+                        <dt>
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.LastName)
+                        </dd>
+                        @*------------- Phone Number -------------*@
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </dd>
+                        @*------------- Role -------------*@
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Roles)
+                        </dt>
+
+                        <dd>
+                            @{
+                                var roleNames = string.Join(", ", Model.Roles);
+                            }
+                            <span>@roleNames</span>
+                            @*@foreach (var role in Model.UserRoles)
+                                {
+                                    <div>@role.Name</div>
+                                }*@
+                        </dd>
+                        @*------------- Main Branch -------------*@
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PrimaryClientId)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PrimaryClient.DisplayName)
+                        </dd>
+                        @*------------- Status -------------*@
+                        @*<dt>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Status)
+                            </dd>*@
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-default modal-dismiss">Close</button>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>
