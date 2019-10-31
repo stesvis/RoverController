@@ -1,8 +1,8 @@
-﻿using System;
+﻿using RoverController.Lib;
+using RoverController.Logger;
+using System;
 using System.Net.Http;
 using System.Web;
-using RoverController.Lib;
-using RoverController.Logger;
 
 namespace RoverController.Web
 {
@@ -62,32 +62,12 @@ namespace RoverController.Web
 
                 switch (minimumRole)
                 {
-                    case UserRoles.SuperAdmin:
-                        if (currentUser.IsInRole(UserRoles.SuperAdmin))
-                        {
-                            retval = true;
-                        }
-
-                        break;
-
                     case UserRoles.Admin:
-                        if (
-                            currentUser.IsInRole(UserRoles.SuperAdmin) ||
-                            currentUser.IsInRole(UserRoles.Admin))
+                        if (currentUser.IsInRole(UserRoles.Admin))
                         {
                             retval = true;
                         }
 
-                        break;
-
-                    case UserRoles.User:
-                        if (
-                            currentUser.IsInRole(UserRoles.SuperAdmin) ||
-                            currentUser.IsInRole(UserRoles.Admin) ||
-                            currentUser.IsInRole(UserRoles.User))
-                        {
-                            retval = true;
-                        }
                         break;
                 }
             }

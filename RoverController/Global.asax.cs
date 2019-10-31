@@ -1,12 +1,12 @@
-﻿using System;
+﻿using RoverController.Logger;
+using RoverController.Web.Mapper;
+using System;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using RoverController.Logger;
-using RoverController.Web.Mapper;
 
 namespace RoverController
 {
@@ -50,7 +50,7 @@ namespace RoverController
 
             var ex = Server.GetLastError();
 
-            AppLogger.FatalLogger.Fatal(ex);
+            AppLogger.Logger.Fatal(ex);
 
             var controller = "Errors";
             var action = "Index";

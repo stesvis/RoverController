@@ -136,7 +136,7 @@ namespace RoverController.Web.API.Controllers
                 //return BadRequest(ModelState);
                 var errorList = GetErrors(ModelState);
                 var errors = string.Join($"{Environment.NewLine} - ", errorList.ToArray());
-                AppLogger.DebugLogger.Debug(errors);
+                AppLogger.Logger.Debug(errors);
 
                 return BadRequest(errors);
             }
@@ -148,7 +148,7 @@ namespace RoverController.Web.API.Controllers
             {
                 var errorList = result.Errors;
                 var errors = string.Join($"{Environment.NewLine} - ", errorList.ToArray());
-                AppLogger.DebugLogger.Debug(errors);
+                AppLogger.Logger.Debug(errors);
 
                 return BadRequest(errors);
                 //return GetErrorResult(result);
@@ -418,7 +418,7 @@ namespace RoverController.Web.API.Controllers
                 return GetErrorResult(result);
             }
 
-            UserManager.AddToRole(applicationUser.Id, UserRoles.User);
+            UserManager.AddToRole(applicationUser.Id, UserRoles.Admin);
 
             //AppService.CurrentUser = AppService.Mapper.MapUser(applicationUser);
             AppService.CurrentUser = AutoMapper.Mapper.Map<UserDTO>(applicationUser);

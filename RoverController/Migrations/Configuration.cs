@@ -38,16 +38,13 @@ namespace RoverController.Migrations
             //--------------------------------------------//
             SeedRoles(context);
             //--------------------------------------------//
-            SeedSuperAdmin(context);
+            SeedUsers(context);
 
             var superadminId = string.Empty;
             using (var userManager = UserManager)
             {
                 superadminId = userManager.FindByName("superadmin").Id;
             }
-            //--------------------------------------------//
-            //var client = SeedClient(context, "Levitica", "Magrath", superadminId);
-            //SeedClientUsers(context, client, superadminId, superadminId);
         }
 
         private void SeedRoles(ApplicationDbContext context)
@@ -56,18 +53,6 @@ namespace RoverController.Migrations
             {
                 using (var roleManager = RoleManager)
                 {
-                    if (!roleManager.RoleExists(UserRoles.SuperAdmin))
-                    {
-                        roleManager.Create(new ApplicationRole(UserRoles.SuperAdmin, (int)UserRolesOrder.SuperAdmin));
-                    }
-                    else
-                    {
-                        var role = roleManager.FindByName(UserRoles.SuperAdmin);
-                        role.Order = (int)UserRolesOrder.SuperAdmin;
-                        context.Set<ApplicationRole>().AddOrUpdate(role);
-                        //context.Set<ApplicationRole>().AddOrUpdate(new ApplicationRole(UserRoles.SuperAdmin, (int)UserRolesOrder.SuperAdmin));
-                    }
-
                     if (!roleManager.RoleExists(UserRoles.Admin))
                     {
                         roleManager.Create(new ApplicationRole(UserRoles.Admin, (int)UserRolesOrder.Admin));
@@ -77,19 +62,6 @@ namespace RoverController.Migrations
                         var role = roleManager.FindByName(UserRoles.Admin);
                         role.Order = (int)UserRolesOrder.Admin;
                         context.Set<ApplicationRole>().AddOrUpdate(role);
-                        //context.Set<ApplicationRole>().AddOrUpdate(new ApplicationRole(UserRoles.Admin, (int)UserRolesOrder.Admin));
-                    }
-
-                    if (!roleManager.RoleExists(UserRoles.User))
-                    {
-                        roleManager.Create(new ApplicationRole(UserRoles.User, (int)UserRolesOrder.User));
-                    }
-                    else
-                    {
-                        var role = roleManager.FindByName(UserRoles.User);
-                        role.Order = (int)UserRolesOrder.User;
-                        context.Set<ApplicationRole>().AddOrUpdate(role);
-                        //context.Set<ApplicationRole>().AddOrUpdate(new ApplicationRole(UserRoles.Driver, (int)UserRolesOrder.Driver));
                     }
                 }
             }
@@ -100,7 +72,7 @@ namespace RoverController.Migrations
             }
         }
 
-        private void SeedSuperAdmin(ApplicationDbContext context)
+        private void SeedUsers(ApplicationDbContext context)
         {
             try
             {
@@ -108,14 +80,14 @@ namespace RoverController.Migrations
                 {
                     string password = "Abc123!!!";
                     //----------------- Superadmin -----------------//
-                    var user = userManager.FindByName("superadmin");
+                    var user = userManager.FindByName("admin");
 
                     if (user == null)
                     {
                         user = new ApplicationUser()
                         {
-                            UserName = "superadmin",
-                            Email = "stesvis@gmail.com",
+                            UserName = "admin",
+                            Email = "admin@test.com",
                             EmailConfirmed = true,
                             FirstName = "Cristian",
                             LastName = "Merli",
@@ -126,7 +98,7 @@ namespace RoverController.Migrations
 
                         if (userResult.Succeeded)
                         {
-                            var result = userManager.AddToRole(user.Id, UserRoles.SuperAdmin);
+                            var result = userManager.AddToRole(user.Id, UserRoles.Admin);
                         }
                     }
                 }
@@ -134,7 +106,7 @@ namespace RoverController.Migrations
             catch (Exception ex)
             {
                 AppLogger.Logger.Error(ex);
-                throw new Exception("Error in SeedSuperAdmin", ex);
+                throw new Exception("Error in SeedUsers", ex);
             }
         }
     }

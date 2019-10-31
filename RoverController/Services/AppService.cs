@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
 using NLog;
-using RoverController.Lib;
 using RoverController.Web.DTOs;
 using RoverController.Web.Services.Base;
 using RoverController.Web.Services.PositionsService;
@@ -83,11 +82,7 @@ namespace RoverController.Web.Services
             {
                 foreach (var role in roleManager.Roles.OrderBy(r => r.Order))
                 {
-                    if (role.Name != UserRoles.SuperAdmin ||
-                        CurrentUser.Roles.Contains(UserRoles.SuperAdmin))
-                    {
-                        dictionary.Add(role.Name, role.Name);
-                    }
+                    dictionary.Add(role.Name, role.Name);
                 }
             }
 
@@ -118,11 +113,11 @@ namespace RoverController.Web.Services
         /// Returns the user Id of the Superadmin user
         /// </summary>
         /// <returns></returns>
-        public string GetSuperadminUserId()
+        public string GetAdminUserId()
         {
             using (var userManager = UserManager)
             {
-                var superadmin = userManager.FindByName("superadmin");
+                var superadmin = userManager.FindByName("admin");
 
                 return superadmin?.Id;
             }

@@ -123,16 +123,14 @@ namespace RoverController.Web.Controllers
                             requestLog += $" | Username: unknown";
                         }
 
-                        ViewHelper.IsSuperadmin = UserIsAtLeast(currentUserId, UserRoles.SuperAdmin);
                         ViewHelper.IsAdmin = UserIsAtLeast(currentUserId, UserRoles.Admin);
-                        ViewHelper.IsUser = UserIsAtLeast(currentUserId, UserRoles.User);
 
                         ViewHelper.CurrentUserId = currentUserId;
                     }
                     else
                     {
                         requestLog += $" | UserId: unknown";
-                        AppLogger.DebugLogger.Debug($"Resetting ViewHelper");
+                        AppLogger.Logger.Debug($"Resetting ViewHelper");
 
                         ViewHelper.IsSuperadmin = false;
                         ViewHelper.IsAdmin = false;
@@ -142,7 +140,7 @@ namespace RoverController.Web.Controllers
                     }
                 }
 
-                AppLogger.RouteLogger.Trace(requestLog);
+                AppLogger.Logger.Trace(requestLog);
             }
             catch (Exception ex)
             {
@@ -189,24 +187,8 @@ namespace RoverController.Web.Controllers
             {
                 switch (minimumRole)
                 {
-                    case UserRoles.SuperAdmin:
-                        retval = UserIsInRoles(userId,
-                            UserRoles.SuperAdmin);
-
-                        break;
-
                     case UserRoles.Admin:
-                        retval = UserIsInRoles(userId,
-                            UserRoles.SuperAdmin,
-                            UserRoles.Admin);
-
-                        break;
-
-                    case UserRoles.User:
-                        retval = UserIsInRoles(userId,
-                            UserRoles.SuperAdmin,
-                            UserRoles.Admin,
-                            UserRoles.User);
+                        retval = UserIsInRoles(userId, UserRoles.Admin);
 
                         break;
                 }

@@ -19,7 +19,7 @@ namespace RoverController.Web.Services
         UserDTO CurrentUser { get; set; }
         string CurrentUserId { get; }
 
-        string GetSuperadminUserId();
+        string GetAdminUserId();
 
         #region Dropdowns
 
@@ -28,11 +28,5 @@ namespace RoverController.Web.Services
         //Dictionary<string, string> GetUsers(int clientId, string role);
 
         #endregion Dropdowns
-
-        //string FormatProductsListForHtml(WorkOrderDTO workOrderDTO);
-
-        //List<string> GetFormattedProductsList(WorkOrderDTO workOrderDTO);
-
-        //string GetWorkOrderRowClass(WorkOrderDTO workOrderDTO);
     }
 }

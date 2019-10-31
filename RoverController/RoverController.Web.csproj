@@ -249,6 +249,7 @@
   <ItemGroup>
     <Compile Include="API\Controllers\AccountController.cs" />
     <Compile Include="API\Controllers\BaseApiController.cs" />
+    <Compile Include="API\Controllers\PositionsController.cs" />
     <Compile Include="API\DataTable\SearchDetail.cs" />
     <Compile Include="API\DataTable\SearchRequest.cs" />
     <Compile Include="API\DataTable\SearchResponse.cs" />

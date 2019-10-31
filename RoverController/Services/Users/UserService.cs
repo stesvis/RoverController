@@ -197,7 +197,7 @@ namespace RoverController.Web.Services.Users
 
                     try
                     {
-                        if (await userManager.IsInRoleAsync(currentUserId, UserRoles.SuperAdmin) || await userManager.IsInRoleAsync(currentUserId, UserRoles.Admin))
+                        if (await userManager.IsInRoleAsync(currentUserId, UserRoles.Admin))
                         {
                             // To reset the password for others we need a token
                             var token = await userManager.GeneratePasswordResetTokenAsync(model.Id);
@@ -240,9 +240,7 @@ namespace RoverController.Web.Services.Users
                 var roles = roleManager.Roles.OrderBy(r => r.Order);
                 if (includeSuperAdmin == false)
                 {
-                    roles = roles.Where(r =>
-                        r.Name != UserRoles.SuperAdmin)
-                        .OrderBy(r => r.Order);
+                    roles = roles.OrderBy(r => r.Order);
                 }
 
                 var roleDTOs = AutoMapper.Mapper.Map<IEnumerable<RoleDTO>>(roles);

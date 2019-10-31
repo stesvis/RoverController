@@ -90,24 +90,8 @@ namespace RoverController.Web.Services.Base
                 {
                     switch (minimumRole)
                     {
-                        case UserRoles.SuperAdmin:
-                            retval = UserIsInRoles(userId,
-                                UserRoles.SuperAdmin);
-
-                            break;
-
                         case UserRoles.Admin:
-                            retval = UserIsInRoles(userId,
-                                UserRoles.SuperAdmin,
-                                UserRoles.Admin);
-
-                            break;
-
-                        case UserRoles.User:
-                            retval = UserIsInRoles(userId,
-                                UserRoles.SuperAdmin,
-                                UserRoles.Admin,
-                                UserRoles.User);
+                            retval = UserIsInRoles(userId, UserRoles.Admin);
 
                             break;
                     }
