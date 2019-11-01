@@ -233,16 +233,11 @@ namespace RoverController.Web.Services.Users
             return userResult;
         }
 
-        public IEnumerable<RoleDTO> GetAllRoles(bool includeSuperAdmin = false)
+        public IEnumerable<RoleDTO> GetAllRoles()
         {
             using (var roleManager = RoleManager)
             {
                 var roles = roleManager.Roles.OrderBy(r => r.Order);
-                if (includeSuperAdmin == false)
-                {
-                    roles = roles.OrderBy(r => r.Order);
-                }
-
                 var roleDTOs = AutoMapper.Mapper.Map<IEnumerable<RoleDTO>>(roles);
 
                 return roleDTOs;

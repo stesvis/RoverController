@@ -132,9 +132,7 @@ namespace RoverController.Web.Controllers
                         requestLog += $" | UserId: unknown";
                         AppLogger.Logger.Debug($"Resetting ViewHelper");
 
-                        ViewHelper.IsSuperadmin = false;
                         ViewHelper.IsAdmin = false;
-                        ViewHelper.IsUser = false;
 
                         ViewHelper.CurrentUserId = string.Empty;
                     }

@@ -16,7 +16,7 @@ namespace RoverController.Web.Services.Users
 
         UserDTO Get(string userId);
 
-        IEnumerable<RoleDTO> GetAllRoles(bool includeSuperAdmin = false);
+        IEnumerable<RoleDTO> GetAllRoles();
 
         Task<IdentityResult> RemoveAllRoles(string userId);
 

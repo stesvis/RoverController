@@ -121,9 +121,9 @@ namespace RoverController.Web.Services
         {
             using (var userManager = UserManager)
             {
-                var superadmin = userManager.FindByName("admin");
+                var admin = userManager.FindByName("admin");
 
-                return superadmin?.Id;
+                return admin?.Id;
             }
         }
     }

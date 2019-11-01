@@ -40,10 +40,10 @@ namespace RoverController.Migrations
             //--------------------------------------------//
             SeedUsers(context);
 
-            var superadminId = string.Empty;
+            var adminId = string.Empty;
             using (var userManager = UserManager)
             {
-                superadminId = userManager.FindByName("superadmin").Id;
+                adminId = userManager.FindByName("admin").Id;
             }
         }
 
@@ -79,7 +79,7 @@ namespace RoverController.Migrations
                 using (var userManager = UserManager)
                 {
                     string password = "Abc123!!!";
-                    //----------------- Superadmin -----------------//
+                    //----------------- Admin -----------------//
                     var user = userManager.FindByName("admin");
 
                     if (user == null)
