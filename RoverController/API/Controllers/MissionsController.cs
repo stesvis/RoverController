@@ -4,7 +4,13 @@ using RoverController.Web.DTOs;
 using RoverController.Web.Helper;
 using RoverController.Web.Services;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.WebPages;
 
@@ -117,6 +123,85 @@ namespace RoverController.Web.API.Controllers
                 AppLogger.Logger.Error(ex);
                 return InternalServerError(ex);
             }
+        }
+
+        [HttpPost]
+        [Route("{id}/upload")]
+        public async Task<IHttpActionResult> Upload(int id)
+        {
+            // Check if the request contains multipart/form-data.
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            var provider = new CustomMultipartFormDataStreamProvider(root);
+            var files = new List<string>();
+
+            try
+            {
+#if false
+                HttpResponseMessage result = null;
+                var httpRequest = HttpContext.Current.Request;
+                if (httpRequest.Files.Count > 0)
+                {
+                    var docfiles = new List<string>();
+                    foreach (string file in httpRequest.Files)
+                    {
+                        var postedFile = httpRequest.Files[file];
+                        var filePath = HttpContext.Current.Server.MapPath("~/" + postedFile.FileName);
+                        postedFile.SaveAs(filePath);
+                        docfiles.Add(filePath);
+                    }
+                    result = Request.CreateResponse(HttpStatusCode.Created, docfiles);
+                }
+                else
+                {
+                    result = Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
+                return result;
+#endif
+                // Read the form data.
+                await Request.Content.ReadAsMultipartAsync(provider);
+
+                // This illustrates how to get the file names.
+                foreach (MultipartFileData file in provider.FileData)
+                {
+                    files.Add(System.IO.Path.GetFileName(file.LocalFileName));
+                    System.Diagnostics.Debug.WriteLine(file.Headers.ContentDisposition.FileName);
+                    System.Diagnostics.Debug.WriteLine("Server file path: " + file.LocalFileName);
+
+                    var attachmentDTO = new MissionAttachmentDTO
+                    {
+                        MissionId = id,
+                        OriginalFilename = Path.GetFileName(file.LocalFileName),
+                        FileName = Path.Combine(root, file.LocalFileName),
+                    };
+                }
+                return Ok(files);
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Logger.Error(ex);
+                return InternalServerError(ex);
+            }
+        }
+    }
+
+    // We implement MultipartFormDataStreamProvider to override the filename of File which will be
+    // stored on server, or else the default name will be of the format like Body- Part_{GUID}. In
+    // the following implementation we simply get the FileName from ContentDisposition Header of the
+    // Request Body.
+    public class CustomMultipartFormDataStreamProvider : MultipartFormDataStreamProvider
+    {
+        public CustomMultipartFormDataStreamProvider(string path) : base(path)
+        {
+        }
+
+        public override string GetLocalFileName(System.Net.Http.Headers.HttpContentHeaders headers)
+        {
+            return $"{Guid.NewGuid()}-{headers.ContentDisposition.FileName.Replace("\"", string.Empty)}";
         }
     }
 }
