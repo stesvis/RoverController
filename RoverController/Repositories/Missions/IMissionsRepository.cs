@@ -1,4 +1,4 @@
-﻿using RoverController.Models;
+﻿using RoverController.Web.Models;
 using RoverController.Repositories;
 
 namespace RoverController.Web.Repositories.Missions

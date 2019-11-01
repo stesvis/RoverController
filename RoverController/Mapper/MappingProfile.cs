@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using RoverController.Models;
+using RoverController.Web.Models;
 using RoverController.Web.DTOs;
 using RoverController.Web.Mapper.Users;
 using RoverController.Web.Models;

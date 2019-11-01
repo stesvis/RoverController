@@ -1,21 +1,29 @@
-﻿namespace RoverController.Web.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RoverController.Web.DTOs
 {
     public class MissionDTO : BaseDTO
     {
+        [Required]
         public int MaxX { get; set; }
 
+        [Required]
         public int MaxY { get; set; }
 
         /// <example>1</example>
+        [Required]
         public int InitialX { get; set; }
 
         /// <example>2</example>
+        [Required]
         public int InitialY { get; set; }
 
         /// <example>N</example>
+        [Required]
         public string InitialDirection { get; set; }
 
         /// <example>LMLMLMLMM</example>
+        [Required]
         public string Instructions { get; set; }
 
         /// <example>1</example>

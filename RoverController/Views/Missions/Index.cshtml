@@ -45,6 +45,9 @@
                                     @Html.DisplayNameFor(model => model.Input)
                                 </th>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.Instructions)
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.Output)
                                 </th>
                                 <th>
@@ -61,6 +64,7 @@
                                 <tr>
                                     <td>@missionDTO.Id</td>
                                     <td>@missionDTO.Input</td>
+                                    <td>@missionDTO.Instructions</td>
                                     <td>@missionDTO.Output</td>
                                     <td>@missionDTO.CreatedByName</td>
                                     <td>@missionDTO.CreatedDate</td>

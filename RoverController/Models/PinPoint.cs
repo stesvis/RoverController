@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using RoverController.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

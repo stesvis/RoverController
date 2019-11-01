@@ -1,9 +1,8 @@
 ﻿using Newtonsoft.Json;
-using RoverController.Web.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace RoverController.Models
+namespace RoverController.Web.Models
 {
     public class Mission : BaseModel
     {
@@ -43,5 +42,10 @@ namespace RoverController.Models
 
         [JsonIgnore]
         public virtual ICollection<PinPoint> PinPoints { get; set; }
+
+        public Mission()
+        {
+            PinPoints = new HashSet<PinPoint>();
+        }
     }
 }
