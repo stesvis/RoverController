@@ -54,9 +54,9 @@ namespace RoverController.Repositories
             return _dbSet.Find(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IQueryable<TEntity> GetAll()
         {
-            return _dbSet.ToList();
+            return _dbSet.AsQueryable();
         }
 
         public virtual TEntity GetFull(object id)

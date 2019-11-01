@@ -37,68 +37,8 @@
 
             <span class="separator"></span>*@
 
-        @*---------------------------------- Notifications ----------------------------------*@
-        <ul class="notifications">
-            @*@if (Request.Browser.IsMobileDevice)
-                {
-                    <li>
-                        <a href="@Url.Action("ShowSearchForm", "Home")" class="notification-icon js-navSearchButton">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </li>
-                }*@
-            @if (ViewHelper.IsUser)
-            {
-                <li>
-                    <a href="#" class="dropdown-toggle notification-icon redirect">
-                        <i class="fa fa-plus-circle"></i>
-                    </a>
-                </li>
-            }
-            <li>
-                <a href="@Url.Action("Contact", "Home")" class="dropdown-toggle notification-icon redirect">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </li>
-            <li class="hidden-desktop">
-                <a href="@Url.Action("SwitchClient", "Home")" class="dropdown-toggle notification-icon js-switchClient">
-                    <i class="fas fa-exchange-alt"></i>
-                </a>
-            </li>
-            @*<li>
-                    <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
-                        <i class="fa fa-plus-circle"></i>
-                    </a>
-
-                    <div class="dropdown-menu notification-menu" style="padding: 0;">
-                        <div class="notification-title">
-                            Add New
-                        </div>
-
-                        <div class="content">
-                            <ul>
-                                <li>
-                                    <a href="@Url.Action("Create", "WorkOrders")" class="clearfix">
-                                        <div class="image">
-                                            <i class="fa fa-tasks bg-success text-light"></i>
-                                        </div>
-                                        <span class="title">Delivery Order</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>*@
-        </ul>
 
         <span class="separator"></span>
-
-        @if (!Request.Browser.IsMobileDevice && ViewHelper.AccessibleClientListItems != null && ViewHelper.CurrentClient != null)
-        {
-            <form action="@Url.Action("SwitchClient", "Home")" method="post" id="switchClientForm" class="search nav-form">
-                @Html.DropDownList("NextClientId", new SelectList(ViewHelper.AccessibleClientListItems, "Value", "Text"), ViewHelper.CurrentClient.FullName, dropdownAttributes)
-            </form>
-        }
 
         <span class="separator"></span>
 
@@ -110,11 +50,6 @@
                 </figure>
                 <div class="profile-info" data-lock-name="@userName" data-lock-email="johndoe@okler.com">
                     <span class="name">@userName</span>
-                    @if (ViewHelper.CurrentClient != null)
-                    {
-                        <span class="role">@ViewHelper.CurrentClient.DisplayName</span>
-                    }
-                    @*<span class="role">@highestRole</span>*@
                 </div>
 
                 <i class="fa custom-caret"></i>
@@ -123,20 +58,6 @@
             <div class="dropdown-menu" role="menu">
                 <ul class="list-unstyled mb-2">
                     <li class="divider"></li>
-                    <li>
-                        <a role="menuitem" class="redirect" tabindex="-1" href="@Url.Action("Edit", "Users", new { id = ViewHelper.CurrentUserId })"><i class="fas fa-user-edit"></i> My Profile</a>
-                    </li>
-                    <li>
-                        <a role="menuitem" class="js-preferences" tabindex="-1" href="@Url.Action("Preferences", "Users", new { id = ViewHelper.CurrentUserId })"><i class="fas fa-cog"></i> Preferences</a>
-                    </li>
-                    <li>
-                        <a role="menuitem" tabindex="-1" href="@Url.Action("SwitchClient", "Home")" class="js-switchClient"><i class="fas fa-exchange-alt"></i> Switch Branch</a>
-                    </li>
-                    <li class="divider"></li>
-                    @*<li>
-                            <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
-                        </li>
-                        <li class="divider"></li>*@
                     <li>
                         <a role="menuitem" class="text-danger redirect" tabindex="-1" href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-power-off"></i> Logout</a>
                     </li>

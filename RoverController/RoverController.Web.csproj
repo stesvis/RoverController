@@ -251,9 +251,6 @@
     <Compile Include="API\Controllers\BaseApiController.cs" />
     <Compile Include="API\Controllers\PinPointsController.cs" />
     <Compile Include="API\Controllers\MissionsController.cs" />
-    <Compile Include="API\DataTable\SearchDetail.cs" />
-    <Compile Include="API\DataTable\SearchRequest.cs" />
-    <Compile Include="API\DataTable\SearchResponse.cs" />
     <Compile Include="API\Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="API\Results\ChallengeResult.cs" />
     <Compile Include="API\ViewModels\AccountViewModels.cs" />
@@ -268,6 +265,7 @@
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MissionsController.cs" />
     <Compile Include="DependencyResolvers\ApiDependencyResolver.cs" />
     <Compile Include="DependencyResolvers\ControllerFactory.cs" />
     <Compile Include="DependencyResolvers\MvcUnityContainer.cs" />
@@ -282,6 +280,7 @@
     </Compile>
     <Compile Include="Helper\MyHelper.cs" />
     <Compile Include="Helper\ViewHelper.cs" />
+    <Compile Include="Helper\WebExtensions.cs" />
     <Compile Include="HtmlHelperExtensions\HtmlHelperExtensions.cs" />
     <Compile Include="Logger\AppLogger.cs" />
     <Compile Include="Mapper\AppMapper.cs" />
@@ -345,15 +344,7 @@
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\ActionButtonViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\ClientViewModel.cs" />
-    <Compile Include="ViewModels\ContactFormViewModel.cs" />
-    <Compile Include="ViewModels\EditUserViewModel.cs" />
-    <Compile Include="ViewModels\EmailFormModel.cs" />
-    <Compile Include="ViewModels\SwitchClientViewModel.cs" />
     <Compile Include="ViewModels\UserAndRoleViewModel.cs" />
-    <Compile Include="ViewModels\UserCreateViewModel.cs" />
-    <Compile Include="ViewModels\UserSettingsViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -2749,32 +2740,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Clients\Create.cshtml" />
-    <Content Include="Views\Clients\Edit.cshtml" />
-    <Content Include="Views\Clients\Index.cshtml" />
-    <Content Include="Views\Clients\pvActionButton.cshtml" />
-    <Content Include="Views\Clients\pvDetails.cshtml" />
-    <Content Include="Views\Clients\pvForm.cshtml" />
-    <Content Include="Views\Clients\pvFormModal.cshtml" />
-    <Content Include="Views\Clients\pvFormScript.cshtml" />
-    <Content Include="Views\Clients\Settings.cshtml" />
     <Content Include="Views\Errors\Index.cshtml" />
     <Content Include="Views\Errors\NotFound.cshtml" />
     <Content Include="Views\Errors\Oops.cshtml" />
     <Content Include="Views\Errors\Unauthorized.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Users\pvActionButton.cshtml" />
-    <Content Include="Views\Users\pvActionButtonReadonly.cshtml" />
-    <Content Include="Views\Users\pvAssign.cshtml" />
-    <Content Include="Views\Users\pvDetails.cshtml" />
-    <Content Include="Views\Users\pvFormModal.cshtml" />
-    <Content Include="Views\Users\pvPreferences.cshtml" />
     <Content Include="Views\Home\pvSwitchClientDialog.cshtml" />
-    <Content Include="Views\Billing\Details.cshtml" />
-    <Content Include="Views\Billing\Index.cshtml" />
-    <Content Include="Views\Billing\pvBillingRow.cshtml" />
+    <Content Include="Views\Missions\Index.cshtml" />
     <None Include="Web.AWS.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

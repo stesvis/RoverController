@@ -1,6 +1,4 @@
-﻿using RoverController.Web.DTOs;
-
-namespace RoverController.DTOs
+﻿namespace RoverController.Web.DTOs
 {
     public class MissionDTO : BaseDTO
     {

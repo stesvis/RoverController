@@ -11,7 +11,7 @@ namespace RoverController.Repositories
 
         TEntity Get(object id);
 
-        IEnumerable<TEntity> GetAll();
+        IQueryable<TEntity> GetAll();
 
         TEntity GetFull(object id);
 

@@ -18,7 +18,7 @@ namespace RoverController.Web.Mapper
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.InnerException.Message);
+                    System.Diagnostics.Debug.WriteLine(ex.InnerException.Message);
                 }
             });
             return config;

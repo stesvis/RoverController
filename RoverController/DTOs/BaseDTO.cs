@@ -1,10 +1,9 @@
-﻿using RoverController.Web.API.DataTable;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace RoverController.Web.DTOs
 {
-    public abstract class BaseDTO : SearchDetail
+    public abstract class BaseDTO
     {
         [Display(Name = "Id", ShortName = "#")]
         public int Id { get; set; }
@@ -19,9 +18,9 @@ namespace RoverController.Web.DTOs
         public string CreatedDateFormatted { get; set; }
 
         [MaxLength(128)]
-        [Display(Name = "Entered By")]
         public string CreatedByUserId { get; set; }
 
+        [Display(Name = "Entered By")]
         public string CreatedByName { get; set; }
 
         #endregion Date-User-Notes-Status

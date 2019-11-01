@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNet.Identity;
 using RoverController.Logger;
+using RoverController.Web.DTOs;
+using RoverController.Web.Helper;
 using RoverController.Web.Services;
 using System;
+using System.Linq;
 using System.Web.Http;
 using System.Web.WebPages;
 
@@ -17,11 +20,10 @@ namespace RoverController.Web.API.Controllers
 
         /// <summary>
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("")]
-        public IHttpActionResult All(int? clientId)
+        public IHttpActionResult All()
         {
             try
             {
@@ -33,9 +35,9 @@ namespace RoverController.Web.API.Controllers
                     return Unauthorized();
                 }
 
-                var productDTOs = AppService.Missions.All();
+                var missionDTOs = AppService.Missions.All();
 
-                return Ok(productDTOs);
+                return Ok(missionDTOs);
             }
             catch (Exception ex)
             {
@@ -72,6 +74,43 @@ namespace RoverController.Web.API.Controllers
                 }
 
                 return Ok(missionDTO);
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Logger.Error(ex);
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpPost]
+        [Route("")]
+        public IHttpActionResult Create([FromBody]MissionDTO missionDTO)
+        {
+            try
+            {
+                var identity = RequestContext.Principal.Identity;
+                var userId = identity.GetUserId();
+
+                // invalid user
+                if (userId.IsEmpty())
+                {
+                    return Unauthorized();
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    var errors = string.Join($"{Environment.NewLine} - ", ModelState.GetErrors().ToArray());
+                    AppLogger.Logger.Debug($"Create: Validation Error on new Mission by User {userId}{Environment.NewLine}{errors}");
+
+                    return BadRequest(errors);
+                }
+
+                missionDTO.CreatedByUserId = userId;
+                missionDTO.CreatedDate = DateTime.Now;
+
+                missionDTO = AppService.Missions.Create(missionDTO, userId);
+
+                return Created(new Uri($"{Request.RequestUri}/{missionDTO.Id}"), missionDTO);
             }
             catch (Exception ex)
             {

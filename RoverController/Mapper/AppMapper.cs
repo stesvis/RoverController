@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using RoverController.Lib;
 using RoverController.Web.DTOs;
 using RoverController.Web.Models;
-using RoverController.Web.ViewModels;
+using System.Collections.Generic;
 
 namespace RoverController.Web.Mapper
 {
@@ -65,51 +62,6 @@ namespace RoverController.Web.Mapper
                     }
                 }
                 return rolesList;
-            }
-        }
-
-        public ApplicationUser MapUser(EditUserViewModel source, ref ApplicationUser dest)
-        {
-            if (!source.Id.IsEmpty())
-            {
-                dest.Id = source.Id;
-            }
-
-            dest.FirstName = source.FirstName;
-            dest.LastName = source.LastName;
-            dest.Email = source.Email;
-            dest.PhoneNumber = source.PhoneNumber;
-            dest.UserName = source.UserName;
-
-            return dest;
-        }
-
-        public EditUserViewModel MapUser(ApplicationUser source, ref EditUserViewModel dest)
-        {
-            using (var roleManager = RoleManager)
-            {
-                if (!source.Id.IsEmpty())
-                {
-                    dest.Id = source.Id;
-                }
-
-                dest.Email = source.Email;
-                dest.FirstName = source.FirstName;
-                dest.LastName = source.LastName;
-                dest.PhoneNumber = source.PhoneNumber;
-                dest.UserName = source.UserName;
-
-                dest.Roles = new List<string>();
-
-                foreach (var role in source.Roles)
-                {
-                    var roleName = roleManager.FindById(role.RoleId).Name;
-                    dest.Roles.Add(roleName);
-                }
-
-                dest.RoleName = dest.Roles.FirstOrDefault();
-
-                return dest;
             }
         }
 

@@ -17,11 +17,10 @@ namespace RoverController.Web.API.Controllers
 
         /// <summary>
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("")]
-        public IHttpActionResult All(int? clientId)
+        public IHttpActionResult All()
         {
             try
             {

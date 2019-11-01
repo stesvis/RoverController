@@ -1,6 +1,6 @@
-﻿using RoverController.DTOs;
-using RoverController.Models;
+﻿using RoverController.Models;
 using RoverController.Repositories.UnitOfWork;
+using RoverController.Web.DTOs;
 using RoverController.Web.Services.Base;
 using System;
 using System.Collections.Generic;
@@ -63,6 +63,7 @@ namespace RoverController.Web.Services.Missions
             {
                 unitOfWork.Missions.Add(mission);
                 unitOfWork.SaveChanges();
+                mission = unitOfWork.Missions.GetFull(mission.Id);
                 missionDTO = AutoMapper.Mapper.Map<MissionDTO>(mission);
             }
 
