@@ -271,6 +271,7 @@
     <Compile Include="DependencyResolvers\MvcUnityContainer.cs" />
     <Compile Include="DependencyResolvers\WebDependencyResolver.cs" />
     <Compile Include="DTOs\BaseDTO.cs" />
+    <Compile Include="DTOs\MissionAttachmentDTO.cs" />
     <Compile Include="DTOs\MissionDTO.cs" />
     <Compile Include="DTOs\PinPointDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
@@ -293,6 +294,10 @@
     <Compile Include="Migrations\201911010258204_InitialMigration.Designer.cs">
       <DependentUpon>201911010258204_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911011744436_v1.cs" />
+    <Compile Include="Migrations\201911011744436_v1.Designer.cs">
+      <DependentUpon>201911011744436_v1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -300,11 +305,14 @@
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Helpers\Result.cs" />
     <Compile Include="Models\Helpers\UserResult.cs" />
+    <Compile Include="Models\MissionAttachment.cs" />
     <Compile Include="Models\PinPoint.cs" />
     <Compile Include="Models\Mission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\IGenericRepository.cs" />
+    <Compile Include="Repositories\MissionAttachments\IMissionAttachmentsRepository.cs" />
+    <Compile Include="Repositories\MissionAttachments\MissionAttachmentsRepository.cs" />
     <Compile Include="Repositories\PinPoints\IPinPointsRepository.cs" />
     <Compile Include="Repositories\PinPoints\PinPointsRepository.cs" />
     <Compile Include="Repositories\Missions\IMissionsRepository.cs" />
@@ -2773,6 +2781,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201911010258204_InitialMigration.resx">
       <DependentUpon>201911010258204_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911011744436_v1.resx">
+      <DependentUpon>201911011744436_v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,5 +1,6 @@
 ﻿using RoverController.Logger;
 using RoverController.Web.Models;
+using RoverController.Web.Repositories.MissionAttachments;
 using RoverController.Web.Repositories.Missions;
 using RoverController.Web.Repositories.PinPoints;
 using System;
@@ -28,6 +29,7 @@ namespace RoverController.Repositories.UnitOfWork
         #region Public Properties
 
         public IMissionsRepository Missions { get; private set; }
+        public IMissionAttachmentsRepository MissionAttachments { get; private set; }
 
         public IPinPointsRepository PinPoints { get; private set; }
 
@@ -134,6 +136,7 @@ namespace RoverController.Repositories.UnitOfWork
         private void Initialize()
         {
             Missions = new MissionsRepository(_context);
+            MissionAttachments = new MissionAttachmentsRepository(_context);
             PinPoints = new PinPointsRepository(_context);
         }
     }

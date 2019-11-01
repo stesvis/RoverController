@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RoverController.Web.Models
 {
-    public class PinPoint : BaseModel
+    public class MissionAttachment : BaseModel
     {
         /// <summary>
         /// The parent mission
@@ -16,22 +16,18 @@ namespace RoverController.Web.Models
         [ForeignKey("MissionId")]
         public virtual Mission Mission { get; set; }
 
-        /// <summary>
-        /// The X postion
-        /// </summary>
         [Required]
-        public int X { get; set; }
+        public string OriginalFilename { get; set; }
 
-        /// <summary>
-        /// The Y position
-        /// </summary>
         [Required]
-        public int Y { get; set; }
+        public string FileType { get; set; }
 
-        /// <summary>
-        /// The facing direction
-        /// </summary>
+        public int FileSize { get; set; }
+
         [Required]
-        public string Direction { get; set; }
+        public string FileName { get; set; }
+
+        [Required]
+        public string AWSPublicUrl { get; set; }
     }
 }

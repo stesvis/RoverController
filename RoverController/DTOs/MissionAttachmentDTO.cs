@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RoverController.Web.DTOs
 {
-    public class PinPointDTO : BaseDTO
+    public class MissionAttachmentDTO : BaseDTO
     {
         /// <summary>
         /// The parent mission
@@ -14,16 +14,14 @@ namespace RoverController.Web.DTOs
         [JsonIgnore]
         public MissionDTO Mission { get; set; }
 
-        /// <summary>
-        /// The X postion
-        /// </summary>
-        public int X { get; set; }
+        public string OriginalFilename { get; set; }
 
-        /// <summary>
-        /// The Y position
-        /// </summary>
-        public int Y { get; set; }
+        public string FileType { get; set; }
 
-        public string Direction { get; set; }
+        public int FileSize { get; set; }
+
+        public string FileName { get; set; }
+
+        public string AWSPublicUrl { get; set; }
     }
 }

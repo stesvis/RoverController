@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RoverController.Web.DTOs
 {
@@ -49,6 +51,14 @@ namespace RoverController.Web.DTOs
             get { return $"{FinalX} {FinalY} {FinalDirection}"; }
         }
 
+        [JsonIgnore]
+        public virtual ICollection<PinPointDTO> PinPoints { get; set; }
+
         #endregion Custom Properties
+
+        public MissionDTO()
+        {
+            PinPoints = new HashSet<PinPointDTO>();
+        }
     }
 }

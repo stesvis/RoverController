@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using RoverController.Logger;
-using RoverController.Web.Models;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -10,6 +9,8 @@ namespace RoverController.Web.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Mission> Missions { get; set; }
+
+        public DbSet<MissionAttachment> MissionAttachments { get; set; }
 
         public DbSet<PinPoint> PinPoints { get; set; }
 
