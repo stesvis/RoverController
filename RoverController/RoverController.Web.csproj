@@ -249,7 +249,8 @@
   <ItemGroup>
     <Compile Include="API\Controllers\AccountController.cs" />
     <Compile Include="API\Controllers\BaseApiController.cs" />
-    <Compile Include="API\Controllers\PositionsController.cs" />
+    <Compile Include="API\Controllers\PinPointsController.cs" />
+    <Compile Include="API\Controllers\MissionsController.cs" />
     <Compile Include="API\DataTable\SearchDetail.cs" />
     <Compile Include="API\DataTable\SearchRequest.cs" />
     <Compile Include="API\DataTable\SearchResponse.cs" />
@@ -272,7 +273,8 @@
     <Compile Include="DependencyResolvers\MvcUnityContainer.cs" />
     <Compile Include="DependencyResolvers\WebDependencyResolver.cs" />
     <Compile Include="DTOs\BaseDTO.cs" />
-    <Compile Include="DTOs\PositionDTO.cs" />
+    <Compile Include="DTOs\MissionDTO.cs" />
+    <Compile Include="DTOs\PinPointDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="DTOs\UserRolesDTO.cs" />
     <Compile Include="Global.asax.cs">
@@ -288,10 +290,6 @@
     <Compile Include="Mapper\MappingProfile.cs" />
     <Compile Include="Mapper\Users\CustomRoleNameResolver.cs" />
     <Compile Include="Mapper\Users\CustomRolesResolver.cs" />
-    <Compile Include="Migrations\201910312327382_InitialMigration.cs" />
-    <Compile Include="Migrations\201910312327382_InitialMigration.Designer.cs">
-      <DependentUpon>201910312327382_InitialMigration.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -299,20 +297,25 @@
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Helpers\Result.cs" />
     <Compile Include="Models\Helpers\UserResult.cs" />
-    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\PinPoint.cs" />
+    <Compile Include="Models\Mission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\IGenericRepository.cs" />
-    <Compile Include="Repositories\Positions\IPositionsRepository.cs" />
-    <Compile Include="Repositories\Positions\PositionsRepository.cs" />
+    <Compile Include="Repositories\PinPoints\IPinPointsRepository.cs" />
+    <Compile Include="Repositories\PinPoints\PinPointsRepository.cs" />
+    <Compile Include="Repositories\Missions\IMissionsRepository.cs" />
+    <Compile Include="Repositories\Missions\MissionsRepository.cs" />
     <Compile Include="Repositories\UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Repositories\UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Services\AppService.cs" />
     <Compile Include="Services\Base\BaseService.cs" />
     <Compile Include="Services\Base\IBaseService.cs" />
     <Compile Include="Services\IAppService.cs" />
-    <Compile Include="Services\PositionsService\IPositionsService.cs" />
-    <Compile Include="Services\PositionsService\PositionsService.cs" />
+    <Compile Include="Services\PinPoints\IPinPointsService.cs" />
+    <Compile Include="Services\PinPoints\PinPointsService.cs" />
+    <Compile Include="Services\Missions\IMissionsService.cs" />
+    <Compile Include="Services\Missions\MissionsService.cs" />
     <Compile Include="Services\Users\IUserService.cs" />
     <Compile Include="Services\Users\UserService.cs" />
     <Compile Include="Startup.cs" />
@@ -2791,11 +2794,6 @@
       <Project>{dd02305a-c853-4ab2-999f-4a7957429601}</Project>
       <Name>RoverController.Lib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910312327382_InitialMigration.resx">
-      <DependentUpon>201910312327382_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

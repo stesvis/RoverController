@@ -1,6 +1,7 @@
 ﻿using RoverController.Logger;
 using RoverController.Web.Models;
-using RoverController.Web.Repositories.Positions;
+using RoverController.Web.Repositories.Missions;
+using RoverController.Web.Repositories.PinPoints;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -26,7 +27,9 @@ namespace RoverController.Repositories.UnitOfWork
 
         #region Public Properties
 
-        public IPositionsRepository Positions { get; private set; }
+        public IMissionsRepository Missions { get; private set; }
+
+        public IPinPointsRepository PinPoints { get; private set; }
 
         #endregion Public Properties
 
@@ -130,7 +133,8 @@ namespace RoverController.Repositories.UnitOfWork
 
         private void Initialize()
         {
-            Positions = new PositionsRepository(_context);
+            Missions = new MissionsRepository(_context);
+            PinPoints = new PinPointsRepository(_context);
         }
     }
 }

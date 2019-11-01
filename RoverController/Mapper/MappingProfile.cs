@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using RoverController.DTOs;
 using RoverController.Lib;
+using RoverController.Models;
 using RoverController.Web.DTOs;
 using RoverController.Web.Mapper.Users;
 using RoverController.Web.Models;
@@ -13,6 +15,7 @@ namespace RoverController.Web.Mapper
         {
             AutoMapper.Mapper.Initialize(cfg =>
             {
+                //----------------------- Users
                 cfg.CreateMap<ApplicationUser, UserDTO>().MaxDepth(1)
                     .ForMember(
                         dest => dest.Roles,
@@ -69,6 +72,24 @@ namespace RoverController.Web.Mapper
                     .Ignore(m => m.RoleCheckboxes)
                     .Ignore(m => m.Errors)
                     .Ignore(m => m.UserHighestRole);
+
+                //----------------------- Missions
+                cfg.CreateMap<Mission, MissionDTO>().MaxDepth(1)
+                    .Ignore(m => m.Input)
+                    .Ignore(m => m.Output);
+                cfg.CreateMap<MissionDTO, Mission>().MaxDepth(1)
+                    .Ignore(m => m.Id)
+                    .Ignore(m => m.CreatedByUser)
+                    .Ignore(m => m.CreatedByUserId)
+                    .Ignore(m => m.PinPoints);
+
+                //----------------------- PinPoints
+                cfg.CreateMap<PinPoint, PinPointDTO>().MaxDepth(1);
+                cfg.CreateMap<PinPointDTO, PinPoint>().MaxDepth(1)
+                    .Ignore(m => m.Id)
+                    .Ignore(m => m.CreatedByUser)
+                    .Ignore(m => m.CreatedByUserId)
+                    .Ignore(m => m.Mission);
             });
 
             // Configuration validation must be done outside initialization

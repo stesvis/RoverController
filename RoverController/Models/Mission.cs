@@ -1,8 +1,10 @@
-﻿using RoverController.Web.Models;
+﻿using Newtonsoft.Json;
+using RoverController.Web.Models;
+using System.Collections.Generic;
 
 namespace RoverController.Models
 {
-    public class Position : BaseModel
+    public class Mission : BaseModel
     {
         public int MaxX { get; set; }
 
@@ -28,5 +30,8 @@ namespace RoverController.Models
 
         /// <example>N</example>
         public string FinalDirection { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<PinPoint> PinPoints { get; set; }
     }
 }

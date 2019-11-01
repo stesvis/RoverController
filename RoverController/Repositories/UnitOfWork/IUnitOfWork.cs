@@ -1,11 +1,14 @@
-﻿using RoverController.Web.Repositories.Positions;
+﻿using RoverController.Web.Repositories.Missions;
+using RoverController.Web.Repositories.PinPoints;
 using System;
 
 namespace RoverController.Repositories.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        IPositionsRepository Positions { get; }
+        IMissionsRepository Missions { get; }
+
+        IPinPointsRepository PinPoints { get; }
 
         int SaveChanges();
     }

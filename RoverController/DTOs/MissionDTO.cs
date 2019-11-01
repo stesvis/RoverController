@@ -2,7 +2,7 @@
 
 namespace RoverController.DTOs
 {
-    public class PositionDTO : BaseDTO
+    public class MissionDTO : BaseDTO
     {
         public int MaxX { get; set; }
 

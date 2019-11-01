@@ -5,7 +5,8 @@ using RoverController.Web.API.Controllers;
 using RoverController.Web.Mapper;
 using RoverController.Web.Models;
 using RoverController.Web.Services;
-using RoverController.Web.Services.PositionsService;
+using RoverController.Web.Services.Missions;
+using RoverController.Web.Services.PinPoints;
 using RoverController.Web.Services.Users;
 using System.Data.Entity;
 using System.Web.Http;
@@ -30,12 +31,6 @@ namespace RoverController
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApi",
-            //    routeTemplate: "api/{controller}/{id}",
-            //    defaults: new { id = RouteParameter.Optional }
-            //);
-
             config.Routes.MapHttpRoute(
                name: "DefaultApi",
                routeTemplate: WebApiConfig.UrlPrefix + "/{controller}/{id}",
@@ -57,8 +52,9 @@ namespace RoverController
             // Services
             unityContainer.RegisterType<IAppMapper, AppMapper>(new HierarchicalLifetimeManager());
             unityContainer.RegisterType<IAppService, AppService>(new HierarchicalLifetimeManager());
-            unityContainer.RegisterType<IPositionsService, PositionsService>(new HierarchicalLifetimeManager());
             unityContainer.RegisterType<IUserService, UserService>(new HierarchicalLifetimeManager());
+            unityContainer.RegisterType<IMissionsService, MissionsService>(new HierarchicalLifetimeManager());
+            unityContainer.RegisterType<IPinPointsService, PinPointsService>(new HierarchicalLifetimeManager());
 
             unityContainer.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
             unityContainer.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());

@@ -2,7 +2,8 @@
 using NLog;
 using RoverController.Web.DTOs;
 using RoverController.Web.Services.Base;
-using RoverController.Web.Services.PositionsService;
+using RoverController.Web.Services.Missions;
+using RoverController.Web.Services.PinPoints;
 using RoverController.Web.Services.Users;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,8 @@ namespace RoverController.Web.Services
     {
         #region Services
 
-        public IPositionsService Positions { get; private set; }
+        public IMissionsService Missions { get; private set; }
+        public IPinPointsService PinPoints { get; private set; }
         public IUserService Users { get; private set; }
 
         #endregion Services
@@ -60,12 +62,14 @@ namespace RoverController.Web.Services
         #endregion Properties
 
         public AppService(
-            IPositionsService positionsService,
+            IMissionsService positionsService,
+            IPinPointsService pinPointsService,
             IUserService userService)
             : base()
         {
             Users = userService;
-            Positions = positionsService;
+            Missions = positionsService;
+            PinPoints = pinPointsService;
         }
 
         #region Dropdowns

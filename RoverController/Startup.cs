@@ -5,9 +5,11 @@ using Microsoft.Owin;
 using Owin;
 using RoverController.Web.Controllers;
 using RoverController.Web.DependencyResolvers;
+using RoverController.Web.Mapper;
 using RoverController.Web.Models;
 using RoverController.Web.Services;
-using RoverController.Web.Services.PositionsService;
+using RoverController.Web.Services.Missions;
+using RoverController.Web.Services.PinPoints;
 using RoverController.Web.Services.Users;
 using System.Data.Entity;
 using System.Web.Mvc;
@@ -37,9 +39,11 @@ namespace RoverController.Web
         private void ConfigureServices(IServiceCollection services, IUnityContainer unityContainer)
         {
             // Services
+            unityContainer.RegisterType<IAppMapper, AppMapper>(new HierarchicalLifetimeManager());
             unityContainer.RegisterType<IAppService, AppService>(new HierarchicalLifetimeManager());
-            unityContainer.RegisterType<IPositionsService, PositionsService>(new HierarchicalLifetimeManager());
             unityContainer.RegisterType<IUserService, UserService>(new HierarchicalLifetimeManager());
+            unityContainer.RegisterType<IMissionsService, MissionsService>(new HierarchicalLifetimeManager());
+            unityContainer.RegisterType<IPinPointsService, PinPointsService>(new HierarchicalLifetimeManager());
 
             unityContainer.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
             unityContainer.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());

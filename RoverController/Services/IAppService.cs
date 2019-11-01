@@ -1,6 +1,7 @@
 ﻿using RoverController.Web.DTOs;
 using RoverController.Web.Services.Base;
-using RoverController.Web.Services.PositionsService;
+using RoverController.Web.Services.Missions;
+using RoverController.Web.Services.PinPoints;
 using RoverController.Web.Services.Users;
 using System.Collections.Generic;
 
@@ -10,7 +11,8 @@ namespace RoverController.Web.Services
     {
         #region Services
 
-        IPositionsService Positions { get; }
+        IMissionsService Missions { get; }
+        IPinPointsService PinPoints { get; }
 
         IUserService Users { get; }
 

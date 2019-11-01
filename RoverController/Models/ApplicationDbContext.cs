@@ -9,7 +9,9 @@ namespace RoverController.Web.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Position> Positions { get; set; }
+        public DbSet<Mission> Missions { get; set; }
+
+        public DbSet<PinPoint> PinPoints { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
