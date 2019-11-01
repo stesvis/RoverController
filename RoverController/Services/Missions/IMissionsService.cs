@@ -8,5 +8,7 @@ namespace RoverController.Web.Services.Missions
         IEnumerable<MissionDTO> All();
 
         MissionDTO Get(int id);
+
+        MissionDTO Create(MissionDTO missionDTO, string currentUserId);
     }
 }

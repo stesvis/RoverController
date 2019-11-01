@@ -290,6 +290,10 @@
     <Compile Include="Mapper\MappingProfile.cs" />
     <Compile Include="Mapper\Users\CustomRoleNameResolver.cs" />
     <Compile Include="Mapper\Users\CustomRolesResolver.cs" />
+    <Compile Include="Migrations\201911010258204_InitialMigration.cs" />
+    <Compile Include="Migrations\201911010258204_InitialMigration.Designer.cs">
+      <DependentUpon>201911010258204_InitialMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -2794,6 +2798,11 @@
       <Project>{dd02305a-c853-4ab2-999f-4a7957429601}</Project>
       <Name>RoverController.Lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201911010258204_InitialMigration.resx">
+      <DependentUpon>201911010258204_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

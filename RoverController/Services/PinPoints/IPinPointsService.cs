@@ -8,5 +8,7 @@ namespace RoverController.Web.Services.PinPoints
         IEnumerable<PinPointDTO> All();
 
         PinPointDTO Get(int id);
+
+        PinPointDTO Create(PinPointDTO pinPointDTO, string currentUserId);
     }
 }
