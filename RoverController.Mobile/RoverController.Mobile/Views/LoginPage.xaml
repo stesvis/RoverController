@@ -13,7 +13,7 @@
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout VerticalOptions="FillAndExpand" Padding="{StaticResource pagePadding}">
 
-                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="20">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="20" Spacing="20">
                     <StackLayout>
                         <Label Text="Username" Style="{StaticResource label-header}"></Label>
                         <Entry Text="{Binding Username, Mode=TwoWay}" Keyboard="Text" Placeholder="Enter your username" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
@@ -27,8 +27,8 @@
                     <Button Text="SIGN IN" Command="{Binding SignInCommand}" Style="{StaticResource btn-primary}" HorizontalOptions="Center"></Button>
 
                     <StackLayout HorizontalOptions="Center">
-                        <Label Text="{Binding AppName}" FontSize="Micro"></Label>
-                        <Label Text="{Binding AppVersion}" FontSize="Micro"></Label>
+                        <Label Text="{Binding AppName}" FontSize="Micro" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding AppVersion}" FontSize="Micro" HorizontalOptions="Center"></Label>
                     </StackLayout>
 
                 </StackLayout>

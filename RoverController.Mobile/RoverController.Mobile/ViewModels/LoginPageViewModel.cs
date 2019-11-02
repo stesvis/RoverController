@@ -50,6 +50,8 @@ namespace RoverController.Mobile.ViewModels
         {
             AppName = AppInfo.Name;
             AppVersion = $"v{AppInfo.VersionString}.{AppInfo.BuildString}";
+            Username = "admin@levitica.ca";
+            Password = "Abc123!!!";
         }
     }
 }
