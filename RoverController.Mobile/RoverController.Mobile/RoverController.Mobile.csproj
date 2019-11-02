@@ -6,14 +6,21 @@
 
   <ItemGroup>
     <None Remove="Resources\levitica.png" />
+    <None Remove="Resources\logo.svg" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\levitica.png" />
+    <EmbeddedResource Include="Resources\logo.svg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1367" />
   </ItemGroup>

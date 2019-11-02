@@ -7,11 +7,18 @@
              Title="Log In"
              NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="False"
-             Padding="{StaticResource contentPagePadding}">
+             Padding="{StaticResource contentPagePadding}"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
 
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout VerticalOptions="FillAndExpand" Padding="{StaticResource pagePadding}">
+
+                <StackLayout HorizontalOptions="Center" Spacing="20">
+                    <ffimageloadingsvg:SvgCachedImage Source="resource://RoverController.Mobile.Resources.logo.svg" WidthRequest="110" HeightRequest="110" HorizontalOptions="Center" VerticalOptions="Start" />
+                    <Label Text="Rover Remote Controller" Style="{StaticResource label-title}" HorizontalOptions="Center"></Label>
+                </StackLayout>
 
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="20" Spacing="20">
                     <StackLayout>
@@ -33,9 +40,8 @@
 
                 </StackLayout>
 
-
-                <!--<ffimageloading:CachedImage Source="resource://RoverController.Mobile.Resources.levitica.png" WidthRequest="125" HeightRequest="41"
-                                            HorizontalOptions="Center" VerticalOptions="End"></ffimageloading:CachedImage>-->
+                <ffimageloading:CachedImage Source="resource://RoverController.Mobile.Resources.levitica.png" WidthRequest="125" HeightRequest="41"
+                                            HorizontalOptions="Center" VerticalOptions="End"></ffimageloading:CachedImage>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

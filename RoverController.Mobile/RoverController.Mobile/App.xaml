@@ -46,6 +46,12 @@
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
 
+            <Style TargetType="Label" x:Key="label-title">
+                <Setter Property="TextColor" Value="{StaticResource primaryColor}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="25" />
+            </Style>
+
             <Style TargetType="Label" x:Key="label-header">
                 <Setter Property="TextColor" Value="{StaticResource primaryColor}" />
                 <Setter Property="FontAttributes" Value="Bold" />
