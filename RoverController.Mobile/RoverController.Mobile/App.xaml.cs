@@ -1,5 +1,7 @@
 ﻿using Prism;
 using Prism.Ioc;
+using RoverController.Mobile.Services;
+using RoverController.Mobile.Services.APIs;
 using RoverController.Mobile.ViewModels;
 using RoverController.Mobile.Views;
 using Xamarin.Forms;
@@ -36,6 +38,10 @@ namespace RoverController.Mobile
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // Services Api
+            containerRegistry.RegisterSingleton<IAppService, AppService>();
+            containerRegistry.RegisterSingleton<IApiService, ApiService>();
+
             containerRegistry.RegisterForNavigation<NavigationPage>("Navigation");
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>("Main");
             containerRegistry.RegisterForNavigation<MainMasterDetailPage, MainMasterDetailPageViewModel>("MasterDetail");

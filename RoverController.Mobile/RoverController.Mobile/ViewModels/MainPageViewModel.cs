@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
+using RoverController.Mobile.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace RoverController.Mobile.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        public MainPageViewModel(INavigationService navigationService, IPageDialogService dialogService) : base(navigationService, dialogService)
+        public MainPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAppService appService)
+            : base(navigationService, dialogService, appService)
         {
         }
     }
