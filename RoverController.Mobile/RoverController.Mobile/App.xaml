@@ -1,11 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
-             x:Class="RoverController.Mobile.App">
-	<Application.Resources>
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+                        x:Class="RoverController.Mobile.App"
+                        xmlns:misc="clr-namespace:RoverController.Mobile.Misc">
+    
+    <Application.Resources>
 
-		<!-- Application resource dictionary -->
+        <!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <!--Colors-->
+            <Color x:Key="primaryColor">#143876</Color>
+            <Color x:Key="textColor">#333333</Color>
+            <Color x:Key="placeholderColor">LightGray</Color>
 
-	</Application.Resources>
+
+            <OnPlatform x:Key="contentPagePadding" x:TypeArguments="Thickness" 
+                        Android="0,0,0,0" 
+                        iOS="{x:Static misc:Properties.iOSPagePadding}">
+            </OnPlatform>
+
+            <Thickness x:Key="pagePadding">
+                <Thickness.Left>8</Thickness.Left>
+                <Thickness.Top>8</Thickness.Top>
+                <Thickness.Right>8</Thickness.Right>
+                <Thickness.Bottom>8</Thickness.Bottom>
+            </Thickness>
+
+
+            <x:Double x:Key="entryHeightRequest">40</x:Double>
+            <x:Double x:Key="defaultFontSize">14</x:Double>
+
+            <!--Primary Buttons-->
+            <Style TargetType="Button" x:Key="btn-primary">
+                <Setter Property="BackgroundColor" Value="{StaticResource primaryColor}" />
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="BorderColor" Value="#a40e14"></Setter>
+                <Setter Property="WidthRequest" Value="200"></Setter>
+            </Style>
+
+            <!--Labels-->
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource textColor}" />
+                <Setter Property="FontSize" Value="{StaticResource defaultFontSize}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="label-header">
+                <Setter Property="TextColor" Value="{StaticResource primaryColor}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <!--Text Boxes-->
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource textColor}" />
+                <Setter Property="FontSize" Value="{StaticResource defaultFontSize}" />
+                <Setter Property="HeightRequest" Value="{StaticResource entryHeightRequest}" />
+                <!--<Setter Property="BackgroundColor" Value="{StaticResource entryBackgroundColor}" />-->
+                <Setter Property="PlaceholderColor" Value="{StaticResource placeholderColor}" />
+            </Style>
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+    
 </prism:PrismApplication>
