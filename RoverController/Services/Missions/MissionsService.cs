@@ -200,10 +200,10 @@ namespace RoverController.Web.Services.Missions
             if (mission.MaxY == 0)
                 throw new ArgumentNullException(nameof(mission.MaxY));
 
-            if (mission.InitialX == 0)
+            if (mission.InitialX < 0 || mission.InitialX > mission.MaxX)
                 throw new ArgumentNullException(nameof(mission.InitialX));
 
-            if (mission.InitialY == 0)
+            if (mission.InitialY < 0 || mission.InitialY > mission.MaxY)
                 throw new ArgumentNullException(nameof(mission.InitialY));
 
             if (mission.InitialDirection.IsEmpty())

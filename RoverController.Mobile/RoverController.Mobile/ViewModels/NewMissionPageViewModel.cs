@@ -8,6 +8,7 @@ using RoverController.Mobile.Services;
 using RoverController.Mobile.Services.Navigation;
 using System;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace RoverController.Mobile.ViewModels
 {
@@ -136,6 +137,7 @@ namespace RoverController.Mobile.ViewModels
 
                     if (apiResponse.Item1 != null)
                     {
+                        MessagingCenter.Send(this, MessagingCenterMessages.NewMission, apiResponse.Item1);
                         Helper.Toast("Success!", ToastType.Success);
                         await NavigationService.GoBackAsync();
                     }

@@ -15,7 +15,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="5,10,5,10">
+                            <StackLayout Padding="5,10,5,10" BackgroundColor="White">
                                 <Label Text="{Binding Id, StringFormat='Mission #{0}'}" FontAttributes="Bold"></Label>
                                 <Label Text="{Binding CreatedDateFormatted}" Style="{StaticResource label-details}"></Label>
                                 <StackLayout Orientation="Horizontal">

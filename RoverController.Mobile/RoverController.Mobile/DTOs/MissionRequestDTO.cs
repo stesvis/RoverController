@@ -42,5 +42,11 @@ namespace RoverController.Mobile.DTOs
             get { return _instructions; }
             set { SetProperty(ref _instructions, value); }
         }
+
+        public MissionRequestDTO()
+        {
+            InitialX = 0;
+            InitialY = 0;
+        }
     }
 }
