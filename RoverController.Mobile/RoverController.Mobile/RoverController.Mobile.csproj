@@ -5,13 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\ic_user.svg" />
     <None Remove="Resources\levitica.png" />
-    <None Remove="Resources\logo.svg" />
+    <None Remove="Resources\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\ic_user.svg" />
     <EmbeddedResource Include="Resources\levitica.png" />
-    <EmbeddedResource Include="Resources\logo.svg" />
+    <EmbeddedResource Include="Resources\logo.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,13 +1,13 @@
 ﻿html .heading.heading-primary h1, html .heading.heading-primary h2, html .heading.heading-primary h3, html .heading.heading-primary h4, html .heading.heading-primary h5, html .heading.heading-primary h6, html .heading.heading-secondary h1, html .heading.heading-secondary h2, html .heading.heading-secondary h3, html .heading.heading-secondary h4, html .heading.heading-secondary h5, html .heading.heading-secondary h6 {
-    border-color: #d3121a
+    border-color: #215ec7
 }
 
 .notifications .notification-icon:before, .notifications .notification-menu:before, .page-header h2, html body .tabs-primary.tabs-bottom .nav-tabs li .nav-link:hover, html body .tabs-primary.tabs-bottom .nav-tabs li.active .nav-link, html body .tabs-primary.tabs-bottom .nav-tabs li.active .nav-link:focus, html body .tabs-primary.tabs-bottom .nav-tabs li.active .nav-link:hover, html body .tabs-primary.tabs-bottom .nav-tabs.nav-justified li .nav-link:hover, html body .tabs-primary.tabs-bottom .nav-tabs.nav-justified li.active .nav-link, html body .tabs-primary.tabs-bottom .nav-tabs.nav-justified li.active .nav-link:focus, html body .tabs-primary.tabs-bottom .nav-tabs.nav-justified li.active .nav-link:hover, html body .tabs-secondary.tabs-bottom .nav-tabs li .nav-link:hover, html body .tabs-secondary.tabs-bottom .nav-tabs li.active .nav-link, html body .tabs-secondary.tabs-bottom .nav-tabs li.active .nav-link:focus, html body .tabs-secondary.tabs-bottom .nav-tabs li.active .nav-link:hover, html body .tabs-secondary.tabs-bottom .nav-tabs.nav-justified li .nav-link:hover, html body .tabs-secondary.tabs-bottom .nav-tabs.nav-justified li.active .nav-link, html body .tabs-secondary.tabs-bottom .nav-tabs.nav-justified li.active .nav-link:focus, html body .tabs-secondary.tabs-bottom .nav-tabs.nav-justified li.active .nav-link:hover, html body .tabs.tabs-bottom .nav-tabs li .nav-link:hover, html body .tabs.tabs-bottom .nav-tabs li.active .nav-link, html body .tabs.tabs-bottom .nav-tabs li.active .nav-link:focus, html body .tabs.tabs-bottom .nav-tabs li.active .nav-link:hover, html.dark body .tabs-primary.tabs-bottom .nav-tabs li .nav-link:hover, html.dark body .tabs-primary.tabs-bottom .nav-tabs li.active .nav-link, html.dark body .tabs-primary.tabs-bottom .nav-tabs li.active .nav-link:focus, html.dark body .tabs-primary.tabs-bottom .nav-tabs li.active .nav-link:hover, html.dark body .tabs-primary.tabs-bottom .nav-tabs.nav-justified li .nav-link:hover, html.dark body .tabs-primary.tabs-bottom .nav-tabs.nav-justified li.active .nav-link, html.dark body .tabs-primary.tabs-bottom .nav-tabs.nav-justified li.active .nav-link:focus, html.dark body .tabs-primary.tabs-bottom .nav-tabs.nav-justified li.active .nav-link:hover, html.dark body .tabs-secondary.tabs-bottom .nav-tabs li .nav-link:hover, html.dark body .tabs-secondary.tabs-bottom .nav-tabs li.active .nav-link, html.dark body .tabs-secondary.tabs-bottom .nav-tabs li.active .nav-link:focus, html.dark body .tabs-secondary.tabs-bottom .nav-tabs li.active .nav-link:hover, html.dark body .tabs-secondary.tabs-bottom .nav-tabs.nav-justified li .nav-link:hover, html.dark body .tabs-secondary.tabs-bottom .nav-tabs.nav-justified li.active .nav-link, html.dark body .tabs-secondary.tabs-bottom .nav-tabs.nav-justified li.active .nav-link:focus, html.dark body .tabs-secondary.tabs-bottom .nav-tabs.nav-justified li.active .nav-link:hover, html.dark body .tabs.tabs-bottom .nav-tabs li .nav-link:hover, html.dark body .tabs.tabs-bottom .nav-tabs li.active .nav-link, html.dark body .tabs.tabs-bottom .nav-tabs li.active .nav-link:focus, html.dark body .tabs.tabs-bottom .nav-tabs li.active .nav-link:hover {
-    border-bottom-color: #d3121a
+    border-bottom-color: #215ec7
 }
 
 a {
-    color: #d3121a
+    color: #215ec7
 }
 
     a:focus, a:hover {
@@ -19,7 +19,7 @@ a {
     }
 
 html .heading-primary, html .heading-secondary, html .lnk-primary, html .lnk-secondary, html .text-color-primary, html .text-color-secondary, html .text-primary, html .text-secondary {
-    color: #d3121a !important
+    color: #215ec7 !important
 }
 
 html .heading-tertiary, html .lnk-tertiary, html .text-color-tertiary, html .text-tertiary {
@@ -27,7 +27,7 @@ html .heading-tertiary, html .lnk-tertiary, html .text-color-tertiary, html .tex
 }
 
 html .heading.heading-tertiary h1, html .heading.heading-tertiary h2, html .heading.heading-tertiary h3, html .heading.heading-tertiary h4, html .heading.heading-tertiary h5, html .heading.heading-tertiary h6 {
-    border-color: #d3121a
+    border-color: #215ec7
 }
 
 html .heading-quaternary, html .lnk-quaternary, html .text-color-quaternary, html .text-quaternary {
@@ -55,7 +55,7 @@ html .heading.heading-light h1, html .heading.heading-light h2, html .heading.he
 }
 
 html .background-color-primary, html .background-color-secondary, html .bg-primary, html .bg-secondary {
-    background-color: #d3121a !important
+    background-color: #215ec7 !important
 }
 
 html .background-color-tertiary, html .bg-tertiary {
@@ -75,28 +75,28 @@ html .background-color-light, html .bg-light {
 }
 
 .mailbox .mailbox-mail-list li.active, .userbox.show .dropdown-menu a:hover, html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
-    background: #d3121a
+    background: #215ec7
 }
 
 .body-sign .card-sign .card-title-sign .title, .media-gallery .mg-files .thumbnail .thumb-preview .mg-thumb-options .mg-toolbar, .media-gallery .mg-files .thumbnail .thumb-preview .mg-thumb-options .mg-zoom, .media-gallery ul.mg-tags > li a:hover, .nav-pills > .active a, .nav-pills > .active a:focus, .nav-pills > .active a:hover {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
 .sidebar-left .sidebar-header .sidebar-toggle:hover i {
-    color: #d3121a
+    color: #215ec7
 }
 
 @media (min-width:992px) {
     .header.header-nav-menu .header-nav-main nav > ul > li > a.dropdown-toggle:after {
-        border-color: #d3121a transparent transparent
+        border-color: #215ec7 transparent transparent
     }
 
     .header.header-nav-menu .header-nav-main nav > ul > li > a:focus {
-        color: #d3121a
+        color: #215ec7
     }
 
     .header.header-nav-menu .header-nav-main nav > ul > li.active > a, .header.header-nav-menu .header-nav-main nav > ul > li.open > a, .header.header-nav-menu .header-nav-main nav > ul > li:hover > a {
-        background: #d3121a;
+        background: #215ec7;
         color: #FFF
     }
 
@@ -105,11 +105,11 @@ html .background-color-light, html .bg-light {
         }
 
     .header.header-nav-menu .header-nav-main nav > ul > li.dropdown .dropdown-menu {
-        border-top: 3px solid #d3121a
+        border-top: 3px solid #215ec7
     }
 
         .header.header-nav-menu .header-nav-main nav > ul > li.dropdown .dropdown-menu li.dropdown-submenu > a:after {
-            border-color: transparent transparent transparent #d3121a
+            border-color: transparent transparent transparent #215ec7
         }
 
     .header.header-nav-menu.header-nav-stripe .header-nav-main nav > ul > li > a.dropdown-toggle:after {
@@ -137,68 +137,68 @@ html .background-color-light, html .bg-light {
     }
 
     .header.header-nav-menu.header-nav-top-line .header-nav-main nav > ul > li.active > a, .header.header-nav-menu.header-nav-top-line .header-nav-main nav > ul > li.open > a, .header.header-nav-menu.header-nav-top-line .header-nav-main nav > ul > li:hover > a {
-        color: #d3121a
+        color: #215ec7
     }
 
         .header.header-nav-menu.header-nav-top-line .header-nav-main nav > ul > li.active > a:before, .header.header-nav-menu.header-nav-top-line .header-nav-main nav > ul > li.open > a:before, .header.header-nav-menu.header-nav-top-line .header-nav-main nav > ul > li:hover > a:before {
-            background-color: #d3121a
+            background-color: #215ec7
         }
 
         .header.header-nav-menu.header-nav-top-line .header-nav-main nav > ul > li.active > a.dropdown-toggle:after, .header.header-nav-menu.header-nav-top-line .header-nav-main nav > ul > li.open > a.dropdown-toggle:after, .header.header-nav-menu.header-nav-top-line .header-nav-main nav > ul > li:hover > a.dropdown-toggle:after {
-            border-color: #d3121a transparent transparent
+            border-color: #215ec7 transparent transparent
         }
 
     .header.header-nav-menu.header-nav-top-line .header-nav-main nav > ul > li.dropdown .dropdown-menu {
-        border-top: 3px solid #d3121a
+        border-top: 3px solid #215ec7
     }
 
         .header.header-nav-menu.header-nav-top-line .header-nav-main nav > ul > li.dropdown .dropdown-menu li.dropdown-submenu > a:after {
-            border-color: transparent transparent transparent #d3121a
+            border-color: transparent transparent transparent #215ec7
         }
 }
 
 @media (max-width:991px) {
     .header.header-nav-menu .header-nav-main nav > ul.nav-pills > li.active > a, .header.header-nav-menu .header-nav-main nav > ul.nav-pills > li.active > a:focus, .header.header-nav-menu .header-nav-main nav > ul.nav-pills > li.active > a:hover {
-        background-color: #d3121a
+        background-color: #215ec7
     }
 
     .header-btn-collapse-nav {
-        background: #d3121a;
+        background: #215ec7;
         color: #fff
     }
 }
 
 .mailbox .mailbox-mail .mailbox-close-mail, .page-header .sidebar-right-toggle:hover, html.sidebar-light:not(.dark) ul.nav-main > li.nav-active > a, ul.nav-main li .nav-children li.nav-active > a, ul.nav-main > li.nav-active > i {
-    color: #d3121a
+    color: #215ec7
 }
 
 ul.nav-main > li.nav-active > a {
-    box-shadow: 2px 0 0 #d3121a inset
+    box-shadow: 2px 0 0 #215ec7 inset
 }
 
 @media only screen and (min-width:768px) {
     html.sidebar-left-collapsed.boxed .sidebar-left .nav-main li.nav-active a:hover, html.sidebar-left-collapsed.scroll .sidebar-left .nav-main li.nav-active a:hover {
-        color: #d3121a
+        color: #215ec7
     }
 
     html.sidebar-left-collapsed.boxed .sidebar-left .nav-main > li:hover > a span.badge, html.sidebar-left-collapsed.scroll .sidebar-left .nav-main > li:hover > a span.badge {
-        background-color: #d3121a
+        background-color: #215ec7
     }
 }
 
 @media only screen and (max-width:1199px) {
     html.boxed .header {
-        border-top-color: #d3121a
+        border-top-color: #215ec7
     }
 }
 
 @media only screen and (min-width:1200px) {
     html.boxed .header {
-        border-top-color: #d3121a
+        border-top-color: #215ec7
     }
 
     html.boxed .sidebar-right {
-        border-top-color: #d3121a;
+        border-top-color: #215ec7;
         min-height: 0
     }
 }
@@ -208,32 +208,32 @@ ul.nav-main > li.nav-active > a {
 }
 
 .btn-link, .mailbox .mailbox-mail .card .card-header .card-actions a:hover {
-    color: #d3121a
+    color: #215ec7
 }
 
 .media-gallery .mg-files .thumbnail.thumbnail-selected {
-    box-shadow: 0 0 8px -1px #d3121a
+    box-shadow: 0 0 8px -1px #215ec7
 }
 
 .body-sign .card-sign .card-body {
-    border-top-color: #d3121a
+    border-top-color: #215ec7
 }
 
 .body-locked .current-user .user-image, blockquote.primary {
-    border-color: #d3121a
+    border-color: #215ec7
 }
 
 .nav-pills-primary > li a:focus, .nav-pills-primary > li a:hover {
-    color: #d3121a;
+    color: #215ec7;
     background-color: #fefcfa
 }
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:focus, .dropdown-menu > .active > a:hover, .nav-pills-primary > li.active > a, .nav-pills-primary > li.active > a:active, .nav-pills-primary > li.active > a:focus, .nav-pills-primary > li.active > a:hover, .select2-container--bootstrap .select2-results__option--highlighted[aria-selected], html .btn-primary {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
 .open > .dropdown-toggle.btn-primary {
-    background: #d3121a;
+    background: #215ec7;
     border-color: #c85e17
 }
 
@@ -259,13 +259,13 @@ body .btn-primary.dropdown-toggle {
 }
 
 html .btn-primary {
-    border-color: #d3121a #d3121a #b15315;
+    border-color: #215ec7 #215ec7 #b15315;
     color: #FFF
 }
 
     html .btn-primary.hover, html .btn-primary:hover {
         background-color: #e87e38;
-        border-color: #e98643 #e98643 #d3121a;
+        border-color: #e98643 #e98643 #215ec7;
         color: #FFF
     }
 
@@ -274,8 +274,8 @@ html .btn-primary {
     }
 
     html .btn-primary.disabled, html .btn-primary:disabled {
-        background-color: #d3121a;
-        border-color: #d3121a #d3121a #b15315
+        background-color: #215ec7;
+        border-color: #215ec7 #215ec7 #b15315
     }
 
     .show > html .btn-primary.dropdown-toggle, html .btn-primary.active, html .btn-primary:active {
@@ -320,14 +320,14 @@ html .show > .btn-primary.dropdown-toggle {
 }
 
 html .btn-secondary {
-    background-color: #d3121a;
-    border-color: #d3121a #d3121a #b15315;
+    background-color: #215ec7;
+    border-color: #215ec7 #215ec7 #b15315;
     color: #FFF
 }
 
     html .btn-secondary.hover, html .btn-secondary:hover {
         background-color: #e87e38;
-        border-color: #e98643 #e98643 #d3121a;
+        border-color: #e98643 #e98643 #215ec7;
         color: #FFF
     }
 
@@ -336,8 +336,8 @@ html .btn-secondary {
     }
 
     html .btn-secondary.disabled, html .btn-secondary:disabled {
-        background-color: #d3121a;
-        border-color: #d3121a #d3121a #b15315
+        background-color: #215ec7;
+        border-color: #215ec7 #215ec7 #b15315
     }
 
     .show > html .btn-secondary.dropdown-toggle, html .btn-secondary.active, html .btn-secondary:active {
@@ -608,7 +608,7 @@ html .btn-light-scale-2 {
     }
 
 .pagination > li > a, .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span, .pagination > li > span:focus, .pagination > li > span:hover, body.dark .pagination > li > a, body.dark .pagination > li > a:focus, body.dark .pagination > li > a:hover, body.dark .pagination > li > span, body.dark .pagination > li > span:focus, body.dark .pagination > li > span:hover {
-    color: #d3121a
+    color: #215ec7
 }
 
 html .btn-light-scale-2.focus, html .btn-light-scale-2:focus {
@@ -634,29 +634,29 @@ html .show > .btn-light.dropdown-toggle {
 }
 
 .pagination .page-item.active .page-link, .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
-    background-color: #d3121a !important;
-    border-color: #d3121a
+    background-color: #215ec7 !important;
+    border-color: #215ec7
 }
 
 body.dark .pagination > .active > a, body.dark .pagination > .active > a:focus, body.dark .pagination > .active > a:hover, body.dark .pagination > .active > span, body.dark .pagination > .active > span:focus, body.dark .pagination > .active > span:hover {
-    background-color: #d3121a;
-    border-color: #d3121a
+    background-color: #215ec7;
+    border-color: #215ec7
 }
 
 .pagination > .active > a, body.dark .pagination > .active > a {
-    background-color: #d3121a;
-    border-color: #d3121a #d3121a #b15315;
+    background-color: #215ec7;
+    border-color: #215ec7 #215ec7 #b15315;
     color: #fff
 }
 
     .pagination > .active > a.hover, .pagination > .active > a:hover, body.dark .pagination > .active > a.hover, body.dark .pagination > .active > a:hover {
         background-color: #e87e38;
-        border-color: #e98643 #e98643 #d3121a;
+        border-color: #e98643 #e98643 #215ec7;
         color: #fff
     }
 
 .accordion .card-header a, .alternative-font, .fc .fc-toolbar h2:before, .timeline .tm-items > li .tm-datetime .tm-datetime-time, p.drop-caps:first-letter {
-    color: #d3121a
+    color: #215ec7
 }
 
 .pagination > .active > a.focus, .pagination > .active > a:focus, body.dark .pagination > .active > a.focus, body.dark .pagination > .active > a:focus {
@@ -664,8 +664,8 @@ body.dark .pagination > .active > a, body.dark .pagination > .active > a:focus, 
 }
 
 .pagination > .active > a.disabled, .pagination > .active > a:disabled, body.dark .pagination > .active > a.disabled, body.dark .pagination > .active > a:disabled {
-    background-color: #d3121a;
-    border-color: #d3121a #d3121a #b15315
+    background-color: #215ec7;
+    border-color: #215ec7 #215ec7 #b15315
 }
 
 .pagination > .active > a.active, .pagination > .active > a:active, .show > .pagination > .active > a.dropdown-toggle, .show > body.dark .pagination > .active > a.dropdown-toggle, body.dark .pagination > .active > a.active, body.dark .pagination > .active > a:active {
@@ -676,11 +676,11 @@ body.dark .pagination > .active > a, body.dark .pagination > .active > a:focus, 
 }
 
 .fc .fc-toolbar .fc-button.fc-state-active, .highlight, .pricing-table .most-popular h3, .pricing-table.princig-table-flat .plan h3, p.drop-caps.drop-caps-style-2:first-letter {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
     .badge-primary, .fc-event, .fc-event.fc-event-primary, .header .toggle-sidebar-left, .jqvmap-zoomin, .jqvmap-zoomout, .pricing-table.princig-table-flat .plan h3 span, .timeline.timeline-simple .tm-body .tm-items > li:before {
-        background: #d3121a
+        background: #215ec7
     }
 
 .form-control:focus {
@@ -693,29 +693,29 @@ body.dark .pagination > .active > a, body.dark .pagination > .active > a:focus, 
 }
 
 .fc-event, .fc-event.fc-event-primary {
-    border-color: #d3121a
+    border-color: #215ec7
 }
 
 .timeline .tm-items > li .tm-icon {
-    border-color: #d3121a;
-    color: #d3121a
+    border-color: #215ec7;
+    color: #215ec7
 }
 
 .timeline.timeline-simple .tm-body .tm-items > li:before {
-    box-shadow: 0 0 0 3px #FFF,0 0 0 6px #d3121a
+    box-shadow: 0 0 0 3px #FFF,0 0 0 6px #215ec7
 }
 
 html.dark .timeline.timeline-simple .tm-body .tm-items > li:before {
-    background: #d3121a;
-    box-shadow: 0 0 0 3px #2e353e,0 0 0 6px #d3121a
+    background: #215ec7;
+    box-shadow: 0 0 0 3px #2e353e,0 0 0 6px #215ec7
 }
 
 .pricing-table .most-popular {
-    border-color: #d3121a
+    border-color: #215ec7
 }
 
 html .accordion.accordion-primary .card-header, html .accordion.accordion-secondary .card-header {
-    background-color: #d3121a !important
+    background-color: #215ec7 !important
 }
 
     html .accordion.accordion-dark .card-header a, html .accordion.accordion-primary .card-header a, html .accordion.accordion-quaternary .card-header a, html .accordion.accordion-secondary .card-header a, html .accordion.accordion-tertiary .card-header a {
@@ -743,35 +743,35 @@ html .accordion.accordion-light .card-header {
     }
 
 html .toggle-primary .toggle label {
-    color: #d3121a;
-    border-left-color: #d3121a;
-    border-right-color: #d3121a
+    color: #215ec7;
+    border-left-color: #215ec7;
+    border-right-color: #215ec7
 }
 
 html .toggle-primary .toggle.active > label {
-    background-color: #d3121a !important;
-    border-color: #d3121a;
+    background-color: #215ec7 !important;
+    border-color: #215ec7;
     color: #FFF
 }
 
 html .toggle-primary.toggle-simple .toggle > label:after {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
 html .toggle-secondary .toggle label {
-    color: #d3121a;
-    border-left-color: #d3121a;
-    border-right-color: #d3121a
+    color: #215ec7;
+    border-left-color: #215ec7;
+    border-right-color: #215ec7
 }
 
 html .toggle-secondary .toggle.active > label {
-    background-color: #d3121a !important;
-    border-color: #d3121a;
+    background-color: #215ec7 !important;
+    border-color: #215ec7;
     color: #FFF
 }
 
 html .toggle-secondary.toggle-simple .toggle > label:after {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
 html .toggle-tertiary .toggle label {
@@ -829,11 +829,11 @@ html .toggle-light .toggle label {
 }
 
 .toggle label, html body .tabs-primary.tabs-vertical.tabs-left li .nav-link:hover, html body .tabs-primary.tabs-vertical.tabs-left li.active .nav-link, html body .tabs-primary.tabs-vertical.tabs-left li.active .nav-link:focus, html body .tabs-primary.tabs-vertical.tabs-left li.active .nav-link:hover, html body .tabs-secondary.tabs-vertical.tabs-left li .nav-link:hover, html body .tabs-secondary.tabs-vertical.tabs-left li.active .nav-link, html body .tabs-secondary.tabs-vertical.tabs-left li.active .nav-link:focus, html body .tabs-secondary.tabs-vertical.tabs-left li.active .nav-link:hover, html body .tabs.tabs-vertical.tabs-left .nav-tabs li .nav-link:hover, html body .tabs.tabs-vertical.tabs-left .nav-tabs li.active .nav-link, html body .tabs.tabs-vertical.tabs-left .nav-tabs li.active .nav-link:focus, html body .tabs.tabs-vertical.tabs-left .nav-tabs li.active .nav-link:hover, html.dark body .tabs-primary.tabs-vertical.tabs-left li .nav-link:hover, html.dark body .tabs-primary.tabs-vertical.tabs-left li.active .nav-link, html.dark body .tabs-primary.tabs-vertical.tabs-left li.active .nav-link:focus, html.dark body .tabs-primary.tabs-vertical.tabs-left li.active .nav-link:hover, html.dark body .tabs-secondary.tabs-vertical.tabs-left li .nav-link:hover, html.dark body .tabs-secondary.tabs-vertical.tabs-left li.active .nav-link, html.dark body .tabs-secondary.tabs-vertical.tabs-left li.active .nav-link:focus, html.dark body .tabs-secondary.tabs-vertical.tabs-left li.active .nav-link:hover, html.dark body .tabs.tabs-vertical.tabs-left .nav-tabs li .nav-link:hover, html.dark body .tabs.tabs-vertical.tabs-left .nav-tabs li.active .nav-link, html.dark body .tabs.tabs-vertical.tabs-left .nav-tabs li.active .nav-link:focus, html.dark body .tabs.tabs-vertical.tabs-left .nav-tabs li.active .nav-link:hover {
-    border-left-color: #d3121a
+    border-left-color: #215ec7
 }
 
 html body .tabs-primary.tabs-vertical.tabs-right li .nav-link:hover, html body .tabs-primary.tabs-vertical.tabs-right li.active .nav-link, html body .tabs-primary.tabs-vertical.tabs-right li.active .nav-link:focus, html body .tabs-primary.tabs-vertical.tabs-right li.active .nav-link:hover, html body .tabs-secondary.tabs-vertical.tabs-right li .nav-link:hover, html body .tabs-secondary.tabs-vertical.tabs-right li.active .nav-link, html body .tabs-secondary.tabs-vertical.tabs-right li.active .nav-link:focus, html body .tabs-secondary.tabs-vertical.tabs-right li.active .nav-link:hover, html body .tabs.tabs-vertical.tabs-right .nav-tabs li .nav-link:hover, html body .tabs.tabs-vertical.tabs-right .nav-tabs li.active .nav-link, html body .tabs.tabs-vertical.tabs-right .nav-tabs li.active .nav-link:focus, html body .tabs.tabs-vertical.tabs-right .nav-tabs li.active .nav-link:hover, html.dark body .tabs-primary.tabs-vertical.tabs-right li .nav-link:hover, html.dark body .tabs-primary.tabs-vertical.tabs-right li.active .nav-link, html.dark body .tabs-primary.tabs-vertical.tabs-right li.active .nav-link:focus, html.dark body .tabs-primary.tabs-vertical.tabs-right li.active .nav-link:hover, html.dark body .tabs-secondary.tabs-vertical.tabs-right li .nav-link:hover, html.dark body .tabs-secondary.tabs-vertical.tabs-right li.active .nav-link, html.dark body .tabs-secondary.tabs-vertical.tabs-right li.active .nav-link:focus, html.dark body .tabs-secondary.tabs-vertical.tabs-right li.active .nav-link:hover, html.dark body .tabs.tabs-vertical.tabs-right .nav-tabs li .nav-link:hover, html.dark body .tabs.tabs-vertical.tabs-right .nav-tabs li.active .nav-link, html.dark body .tabs.tabs-vertical.tabs-right .nav-tabs li.active .nav-link:focus, html.dark body .tabs.tabs-vertical.tabs-right .nav-tabs li.active .nav-link:hover {
-    border-right-color: #d3121a
+    border-right-color: #215ec7
 }
 
 html .toggle-light .toggle.active > label {
@@ -847,12 +847,12 @@ html .toggle-light.toggle-simple .toggle > label:after {
 }
 
 .alert-primary {
-    background-color: #d3121a;
+    background-color: #215ec7;
     border-color: #d16318
 }
 
 .card-highlight .card-header, .dd-placeholder, html .card-featured-primary, html .card-featured-secondary, html .card-primary .card-header {
-    border-color: #d3121a
+    border-color: #215ec7
 }
 
 .alert-primary .alert-link {
@@ -860,11 +860,11 @@ html .toggle-light.toggle-simple .toggle > label:after {
 }
 
 .dd-handle:hover {
-    color: #d3121a !important
+    color: #215ec7 !important
 }
 
 html .card-featured-primary .card-title, html .card-featured-secondary .card-title {
-    color: #d3121a
+    color: #215ec7
 }
 
 .dd-placeholder {
@@ -872,16 +872,16 @@ html .card-featured-primary .card-title, html .card-featured-secondary .card-tit
 }
 
 html .card-group .card-accordion-primary, html .card-group .card-accordion-secondary, html .card-primary .card-header {
-    background: #d3121a
+    background: #215ec7
 }
 
 .card-highlight .card-body, .card-highlight .card-header {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
 html .card-secondary .card-header {
-    background: #d3121a;
-    border-color: #d3121a
+    background: #215ec7;
+    border-color: #215ec7
 }
 
 html .card-tertiary .card-header {
@@ -945,7 +945,7 @@ html .card-featured-light {
 }
 
 .sidebar-widget.widget-tasks ul li:before, .toggle.active > label, ul.simple-bullet-list li:before {
-    border-color: #d3121a
+    border-color: #215ec7
 }
 
 html .card-featured-light .card-title {
@@ -957,11 +957,11 @@ html .card-group .card-accordion-light {
 }
 
 .toggle label {
-    color: #d3121a
+    color: #215ec7
 }
 
 .toggle.active > label {
-    background: #d3121a !important
+    background: #215ec7 !important
 }
 
 .jstree-default .jstree-hovered {
@@ -973,11 +973,11 @@ html .card-group .card-accordion-light {
 }
 
 .jstree-default .colored, .jstree-default .colored .jstree-icon, .jstree-default .colored-icon .jstree-icon {
-    color: #d3121a !important
+    color: #215ec7 !important
 }
 
 .widget-twitter-profile {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
     .widget-twitter-profile .profile-quote {
@@ -989,11 +989,11 @@ html .card-group .card-accordion-light {
         }
 
 .thumb-info .thumb-info-type {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
 .notifications .notification-menu .notification-title, .social-icons-list a {
-    background: #d3121a
+    background: #215ec7
 }
 
     .notifications .notification-menu .notification-title .badge-default {
@@ -1005,7 +1005,7 @@ html .card-group .card-accordion-light {
 }
 
 .ui-pnotify.stack-bar-bottom .notification-primary, .ui-pnotify.stack-bar-top .notification-primary {
-    background: #d3121a
+    background: #215ec7
 }
 
 .ui-pnotify.notification-primary .notification, .ui-pnotify.notification-primary .notification-primary {
@@ -1013,15 +1013,15 @@ html .card-group .card-accordion-light {
 }
 
 .ui-pnotify.notification-primary.stack-bar-bottom .notification, .ui-pnotify.notification-primary.stack-bar-bottom .notification-primary, .ui-pnotify.notification-primary.stack-bar-top .notification, .ui-pnotify.notification-primary.stack-bar-top .notification-primary {
-    background: #d3121a
+    background: #215ec7
 }
 
 .modal-block-primary .fa {
-    color: #d3121a
+    color: #215ec7
 }
 
 .modal-block-primary.modal-header-color .card-header {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
 .modal-block-primary.modal-full-color .card {
@@ -1029,7 +1029,7 @@ html .card-group .card-accordion-light {
 }
 
 .modal-block-primary.modal-full-color .card-header {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
 .modal-block-primary.modal-full-color .card-footer {
@@ -1037,55 +1037,55 @@ html .card-group .card-accordion-light {
 }
 
 #nprogress .bar, .img-thumbnail .zoom, .scrollable.colored-slider .scrollable-slider, .search-results-list .result-thumb .fa, .tab-navigation nav > ul > li:hover:not(.nav-expanded) > a, html.has-tab-navigation .toggle-menu {
-    background: #d3121a
+    background: #215ec7
 }
 
 .modal-block-primary .modal-icon .fa, html body .tabs .nav-tabs .nav-link, html body .tabs .nav-tabs .nav-link:hover, html.dark body .tabs .nav-tabs .nav-link, html.dark body .tabs .nav-tabs .nav-link:hover {
-    color: #d3121a
+    color: #215ec7
 }
 
     html body .tabs .nav-tabs .nav-link:focus, html body .tabs .nav-tabs .nav-link:hover, html.dark body .tabs .nav-tabs .nav-link:focus, html.dark body .tabs .nav-tabs .nav-link:hover {
-        border-top-color: #d3121a
+        border-top-color: #215ec7
     }
 
 html body .tabs .nav-tabs li.active .nav-link, html.dark body .tabs .nav-tabs li.active .nav-link {
-    border-top-color: #d3121a;
-    color: #d3121a
+    border-top-color: #215ec7;
+    color: #215ec7
 }
 
 html body .tabs .nav-tabs.nav-justified .nav-link:focus, html body .tabs .nav-tabs.nav-justified .nav-link:hover, html.dark body .tabs .nav-tabs.nav-justified .nav-link:focus, html.dark body .tabs .nav-tabs.nav-justified .nav-link:hover {
-    border-top-color: #d3121a
+    border-top-color: #215ec7
 }
 
 html body .tabs.tabs-simple .nav-tabs > li .nav-link:hover, html body .tabs.tabs-simple .nav-tabs > li.active .nav-link, html body .tabs.tabs-simple .nav-tabs > li.active .nav-link:focus, html body .tabs.tabs-simple .nav-tabs > li.active .nav-link:hover, html.dark body .tabs.tabs-simple .nav-tabs > li .nav-link:hover, html.dark body .tabs.tabs-simple .nav-tabs > li.active .nav-link, html.dark body .tabs.tabs-simple .nav-tabs > li.active .nav-link:focus, html.dark body .tabs.tabs-simple .nav-tabs > li.active .nav-link:hover {
-    border-top-color: #d3121a;
-    color: #d3121a
+    border-top-color: #215ec7;
+    color: #215ec7
 }
 
 html body .tabs-primary .nav-tabs li .nav-link, html body .tabs-primary .nav-tabs li .nav-link:hover, html body .tabs-primary .nav-tabs.nav-justified li .nav-link, html body .tabs-primary .nav-tabs.nav-justified li .nav-link:hover, html.dark body .tabs-primary .nav-tabs li .nav-link, html.dark body .tabs-primary .nav-tabs li .nav-link:hover, html.dark body .tabs-primary .nav-tabs.nav-justified li .nav-link, html.dark body .tabs-primary .nav-tabs.nav-justified li .nav-link:hover {
-    color: #d3121a
+    color: #215ec7
 }
 
     html body .tabs-primary .nav-tabs li .nav-link:hover, html body .tabs-primary .nav-tabs.nav-justified li .nav-link:hover, html.dark body .tabs-primary .nav-tabs li .nav-link:hover, html.dark body .tabs-primary .nav-tabs.nav-justified li .nav-link:hover {
-        border-top-color: #d3121a
+        border-top-color: #215ec7
     }
 
 html body .tabs-primary .nav-tabs li.active .nav-link, html body .tabs-primary .nav-tabs li.active .nav-link:focus, html body .tabs-primary .nav-tabs li.active .nav-link:hover, html body .tabs-primary .nav-tabs.nav-justified li.active .nav-link, html body .tabs-primary .nav-tabs.nav-justified li.active .nav-link:focus, html body .tabs-primary .nav-tabs.nav-justified li.active .nav-link:hover, html.dark body .tabs-primary .nav-tabs li.active .nav-link, html.dark body .tabs-primary .nav-tabs li.active .nav-link:focus, html.dark body .tabs-primary .nav-tabs li.active .nav-link:hover, html.dark body .tabs-primary .nav-tabs.nav-justified li.active .nav-link, html.dark body .tabs-primary .nav-tabs.nav-justified li.active .nav-link:focus, html.dark body .tabs-primary .nav-tabs.nav-justified li.active .nav-link:hover {
-    border-top-color: #d3121a;
-    color: #d3121a
+    border-top-color: #215ec7;
+    color: #215ec7
 }
 
 html body .tabs-secondary .nav-tabs li .nav-link, html body .tabs-secondary .nav-tabs li .nav-link:hover, html body .tabs-secondary .nav-tabs.nav-justified li .nav-link, html body .tabs-secondary .nav-tabs.nav-justified li .nav-link:hover, html.dark body .tabs-secondary .nav-tabs li .nav-link, html.dark body .tabs-secondary .nav-tabs li .nav-link:hover, html.dark body .tabs-secondary .nav-tabs.nav-justified li .nav-link, html.dark body .tabs-secondary .nav-tabs.nav-justified li .nav-link:hover {
-    color: #d3121a
+    color: #215ec7
 }
 
     html body .tabs-secondary .nav-tabs li .nav-link:hover, html body .tabs-secondary .nav-tabs.nav-justified li .nav-link:hover, html.dark body .tabs-secondary .nav-tabs li .nav-link:hover, html.dark body .tabs-secondary .nav-tabs.nav-justified li .nav-link:hover {
-        border-top-color: #d3121a
+        border-top-color: #215ec7
     }
 
 html body .tabs-secondary .nav-tabs li.active .nav-link, html body .tabs-secondary .nav-tabs li.active .nav-link:focus, html body .tabs-secondary .nav-tabs li.active .nav-link:hover, html body .tabs-secondary .nav-tabs.nav-justified li.active .nav-link, html body .tabs-secondary .nav-tabs.nav-justified li.active .nav-link:focus, html body .tabs-secondary .nav-tabs.nav-justified li.active .nav-link:hover, html.dark body .tabs-secondary .nav-tabs li.active .nav-link, html.dark body .tabs-secondary .nav-tabs li.active .nav-link:focus, html.dark body .tabs-secondary .nav-tabs li.active .nav-link:hover, html.dark body .tabs-secondary .nav-tabs.nav-justified li.active .nav-link, html.dark body .tabs-secondary .nav-tabs.nav-justified li.active .nav-link:focus, html.dark body .tabs-secondary .nav-tabs.nav-justified li.active .nav-link:hover {
-    border-top-color: #d3121a;
-    color: #d3121a
+    border-top-color: #215ec7;
+    color: #215ec7
 }
 
 html body .tabs-tertiary .nav-tabs li .nav-link, html body .tabs-tertiary .nav-tabs li .nav-link:hover, html body .tabs-tertiary .nav-tabs.nav-justified li .nav-link, html body .tabs-tertiary .nav-tabs.nav-justified li .nav-link:hover, html.dark body .tabs-tertiary .nav-tabs li .nav-link, html.dark body .tabs-tertiary .nav-tabs li .nav-link:hover, html.dark body .tabs-tertiary .nav-tabs.nav-justified li .nav-link, html.dark body .tabs-tertiary .nav-tabs.nav-justified li .nav-link:hover {
@@ -1177,7 +1177,7 @@ html body .tabs-light .nav-tabs li.active .nav-link, html body .tabs-light .nav-
 }
 
 .ct-chart .tooltip:after, .wizard-steps > li.active a, .wizard-steps > li.active a:focus, .wizard-steps > li.active a:hover {
-    border-top-color: #d3121a
+    border-top-color: #215ec7
 }
 
 html body .tabs-light.tabs-bottom .nav-tabs li .nav-link:hover, html body .tabs-light.tabs-bottom .nav-tabs li.active .nav-link, html body .tabs-light.tabs-bottom .nav-tabs li.active .nav-link:focus, html body .tabs-light.tabs-bottom .nav-tabs li.active .nav-link:hover, html body .tabs-light.tabs-bottom .nav-tabs.nav-justified li .nav-link:hover, html body .tabs-light.tabs-bottom .nav-tabs.nav-justified li.active .nav-link, html body .tabs-light.tabs-bottom .nav-tabs.nav-justified li.active .nav-link:focus, html body .tabs-light.tabs-bottom .nav-tabs.nav-justified li.active .nav-link:hover, html.dark body .tabs-light.tabs-bottom .nav-tabs li .nav-link:hover, html.dark body .tabs-light.tabs-bottom .nav-tabs li.active .nav-link, html.dark body .tabs-light.tabs-bottom .nav-tabs li.active .nav-link:focus, html.dark body .tabs-light.tabs-bottom .nav-tabs li.active .nav-link:hover, html.dark body .tabs-light.tabs-bottom .nav-tabs.nav-justified li .nav-link:hover, html.dark body .tabs-light.tabs-bottom .nav-tabs.nav-justified li.active .nav-link, html.dark body .tabs-light.tabs-bottom .nav-tabs.nav-justified li.active .nav-link:focus, html.dark body .tabs-light.tabs-bottom .nav-tabs.nav-justified li.active .nav-link:hover {
@@ -1193,25 +1193,25 @@ html body .tabs-light.tabs-vertical.tabs-right li .nav-link:hover, html body .ta
 }
 
 .tab-navigation nav > ul > li > ul > li .dropdown-menu li.nav-active > a, .tab-navigation nav > ul > li > ul > li.nav-active > a {
-    color: #d3121a !important
+    color: #215ec7 !important
 }
 
 .search-content .search-toolbar .nav-pills li.active a {
-    color: #d3121a;
-    border-bottom-color: #d3121a
+    color: #215ec7;
+    border-bottom-color: #215ec7
 }
 
 html.dark .search-content .search-toolbar .nav-pills li.active a, html.dark .search-content .search-toolbar .nav-pills li.active a:focus, html.dark .search-content .search-toolbar .nav-pills li.active a:hover {
-    color: #d3121a;
-    border-bottom-color: #d3121a
+    color: #215ec7;
+    border-bottom-color: #215ec7
 }
 
 .bootstrap-timepicker-widget table td a:hover {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
 #nprogress .peg {
-    box-shadow: 0 0 10px 1px #d3121a,0 0 5px #d3121a
+    box-shadow: 0 0 10px 1px #215ec7,0 0 5px #215ec7
 }
 
 .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
@@ -1219,7 +1219,7 @@ html.dark .search-content .search-toolbar .nav-pills li.active a, html.dark .sea
 }
 
 .owl-theme .owl-nav [class*=owl-] {
-    background: #d3121a
+    background: #215ec7
 }
 
     .owl-theme .owl-nav [class*=owl-]:focus, .owl-theme .owl-nav [class*=owl-]:hover {
@@ -1227,15 +1227,15 @@ html.dark .search-content .search-toolbar .nav-pills li.active a, html.dark .sea
     }
 
 .call-to-action.call-to-action-primary, .progress .progress-bar-primary, .progress-bar {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
 .bootstrap-tagsinput .badge, .checkbox-primary label:before, .ct-chart .tooltip, .simple-card-list li.primary, .slider-primary .ui-slider-handle, .slider-primary .ui-slider-range, .switch.switch-primary .ios-switch .on-background, html.dark .checkbox-primary label:before {
-    background: #d3121a
+    background: #215ec7
 }
 
 .ct-chart .ct-series.ct-series-a .ct-bar, .ct-chart .ct-series.ct-series-a .ct-line, .ct-chart .ct-series.ct-series-a .ct-point, .ct-chart .ct-series.ct-series-a .ct-slice.ct-donut {
-    stroke: #d3121a
+    stroke: #215ec7
 }
 
 .ct-chart .ct-series.ct-series-b .ct-bar, .ct-chart .ct-series.ct-series-b .ct-line, .ct-chart .ct-series.ct-series-b .ct-point, .ct-chart .ct-series.ct-series-b .ct-slice.ct-donut, .ct-chart .ct-series.ct-series-i .ct-bar, .ct-chart .ct-series.ct-series-i .ct-line, .ct-chart .ct-series.ct-series-i .ct-point, .ct-chart .ct-series.ct-series-i .ct-slice.ct-donut {
@@ -1243,7 +1243,7 @@ html.dark .search-content .search-toolbar .nav-pills li.active a, html.dark .sea
 }
 
 .ct-chart .ct-series.ct-series-a .ct-area, .ct-chart .ct-series.ct-series-a .ct-slice:not(.ct-donut) {
-    fill: #d3121a
+    fill: #215ec7
 }
 
 .ct-chart .ct-series.ct-series-b .ct-area, .ct-chart .ct-series.ct-series-b .ct-slice:not(.ct-donut), .ct-chart .ct-series.ct-series-i .ct-area, .ct-chart .ct-series.ct-series-i .ct-slice:not(.ct-donut) {
@@ -1275,7 +1275,7 @@ html.dark .search-content .search-toolbar .nav-pills li.active a, html.dark .sea
 }
 
 .simple-todo-list li.completed:before {
-    color: #d3121a
+    color: #215ec7
 }
 
 .checkbox-primary label:before, html.dark .checkbox-primary label:before {
@@ -1283,27 +1283,27 @@ html.dark .search-content .search-toolbar .nav-pills li.active a, html.dark .sea
 }
 
 .checkbox-text-primary input[type=checkbox]:checked + label:after, html.dark .checkbox-text-primary input[type=checkbox]:checked + label:after {
-    color: #d3121a
+    color: #215ec7
 }
 
 .radio-primary input[type=radio]:checked + label:after, html.dark .radio-primary input[type=radio]:checked + label:after {
-    background: #d3121a;
-    -webkit-box-shadow: 0 0 1px #d3121a;
-    box-shadow: 0 0 1px #d3121a
+    background: #215ec7;
+    -webkit-box-shadow: 0 0 1px #215ec7;
+    box-shadow: 0 0 1px #215ec7
 }
 
 .slider-gradient.slider-primary .ui-slider-handle, .slider-gradient.slider-primary .ui-slider-range {
-    background-image: -webkit-linear-gradient(left,#e98643 0,#d3121a 50%,#b15315 100%);
-    background-image: linear-gradient(left,#e98643 0,#d3121a 50%,#b15315 100%)
+    background-image: -webkit-linear-gradient(left,#e98643 0,#215ec7 50%,#b15315 100%);
+    background-image: linear-gradient(left,#e98643 0,#215ec7 50%,#b15315 100%)
 }
 
 .slider-gradient.ui-slider-vertical.slider-primary .ui-slider-handle, .slider-gradient.ui-slider-vertical.slider-primary .ui-slider-range {
-    background-image: -webkit-linear-gradient(to right,#e98643 0,#d3121a 50%,#b15315 100%);
-    background-image: linear-gradient(to right,#e98643 0,#d3121a 50%,#b15315 100%)
+    background-image: -webkit-linear-gradient(to right,#e98643 0,#215ec7 50%,#b15315 100%);
+    background-image: linear-gradient(to right,#e98643 0,#215ec7 50%,#b15315 100%)
 }
 
 .datepicker .datepicker-switch:hover, .datepicker .next:hover, .datepicker .prev:hover, .datepicker table tbody tr td.day:hover, .datepicker table tr td span:hover, .datepicker tfoot tr th:hover, .datepicker thead tr:first-child th:hover {
-    background: #d3121a
+    background: #215ec7
 }
 
 .datepicker table tbody tr td.day.active {
@@ -1315,7 +1315,7 @@ html:not(.sidebar-light) .datepicker.datepicker-dark {
 }
 
     html:not(.sidebar-light) .datepicker.datepicker-dark table tbody tr td.day:hover {
-        background: #d3121a
+        background: #215ec7
     }
 
     html:not(.sidebar-light) .datepicker.datepicker-dark table tbody tr td.day.active {
@@ -1323,7 +1323,7 @@ html:not(.sidebar-light) .datepicker.datepicker-dark {
     }
 
 .datepicker.datepicker-primary table thead tr:first-child {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
     .datepicker.datepicker-primary table thead tr:first-child th:hover {
@@ -1335,31 +1335,31 @@ html:not(.sidebar-light) .datepicker.datepicker-dark {
 }
 
     .datepicker.datepicker-primary table thead tr:last-child th:hover, .wizard-steps > li.active .badge, .wizard-tabs ul > li.active .badge {
-        background-color: #d3121a
+        background-color: #215ec7
     }
 
 .select2-container-multi .select2-choices .select2-search-choice, html .wizard-progress .steps-progress .progress-indicator, html.dark .wizard-progress .steps-progress .progress-indicator {
-    background: #d3121a
+    background: #215ec7
 }
 
 html .wizard-progress .wizard-steps li.completed a span, html.dark .wizard-progress .wizard-steps li.completed a span {
-    border-color: #d3121a;
-    background: #d3121a
+    border-color: #215ec7;
+    background: #215ec7
 }
 
 html .wizard-progress .wizard-steps li.active a span, html.dark .wizard-progress .wizard-steps li.active a span {
-    color: #d3121a;
-    border-color: #d3121a
+    color: #215ec7;
+    border-color: #215ec7
 }
 
 .table > tbody > tr.primary > td, .table > tbody > tr.primary > th, .table > tbody > tr > td.primary, .table > tbody > tr > th.primary, .table > tfoot > tr.primary > td, .table > tfoot > tr.primary > th, .table > tfoot > tr > td.primary, .table > tfoot > tr > th.primary, .table > thead > tr.primary > td, .table > thead > tr.primary > th, .table > thead > tr > td.primary, .table > thead > tr > th.primary {
-    background-color: #d3121a !important
+    background-color: #215ec7 !important
 }
 
 .dataTables_processing {
-    background-color: #d3121a
+    background-color: #215ec7
 }
 
 .liquid-meter-wrapper .liquid-meter-selector a.active {
-    color: #d3121a
+    color: #215ec7
 }

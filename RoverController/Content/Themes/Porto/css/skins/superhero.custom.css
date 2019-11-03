@@ -1,5 +1,5 @@
 ﻿.btn-primary {
-    border-color: #d3121a;
+    border-color: #215ec7;
     color: #ffffff;
 }
 
@@ -19,12 +19,12 @@ html.header-dark .show .dropdown-menu a {
 
     html.dark .show .dropdown-menu a:hover,
     html.header-dark .show .dropdown-menu a:hover {
-        background-color: #ec1f28;
+        background-color: #2980ee;
         color: #fafafa !important;
     }
 
 ul.nav-main li a:hover {
-    color: #ec1f28;
+    color: #2980ee;
 }
 
 /*--------- Unassigned ---------*/ 
@@ -71,23 +71,23 @@ html .bg-due {
 
 /*--------- Overdue ---------*/
 html .card-featured-overdue {
-    border-color: #d3121a;
+    border-color: #215ec7;
 }
 
 html .background-color-overdue,
 html .bg-overdue {
-    background-color: #d3121a !important;
+    background-color: #215ec7 !important;
 }
 
 .badge-overdue {
-    background-color: #d3121a;
+    background-color: #215ec7;
     color: #ffffff;
     font-size: 100%;
     padding: 3px 6px;
 }
 
 .text-overdue {
-    color: #d3121a;
+    color: #215ec7;
 }
 
 /*--------- Completed ---------*/

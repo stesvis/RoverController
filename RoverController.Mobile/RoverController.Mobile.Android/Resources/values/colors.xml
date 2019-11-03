@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <color name="primary">#143876</color>
+  <color name="primaryDark">#0f2b5c</color>
+  <color name="accent">#143876</color>
+  <color name="window_background">#1d2127</color>
+  <color name="splash_background">#0f2b5c</color>
+  <color name="tabIndicatorColor">#143876</color>
+</resources>

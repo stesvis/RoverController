@@ -12,6 +12,7 @@
     {
         public const string IsLoggedIn = "is_logged_in";
         public const string AccessTokenExpiryDate = "access_token_expiry_date";
+        public const string CurrentUserJSON = "CurrentUserJSON";
     }
 
     public static class SecureStorageProperties

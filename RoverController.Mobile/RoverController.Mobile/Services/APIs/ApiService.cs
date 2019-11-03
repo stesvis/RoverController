@@ -9,6 +9,12 @@ namespace RoverController.Mobile.Services.APIs
 {
     public class ApiService : IApiService
     {
+        /// <summary>
+        /// Authenticates the user
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<Tuple<UserDTO, string>> SignIn(string username, string password)
         {
             var response = await GetAuthenticationTokenAsync(username, password);
@@ -23,11 +29,12 @@ namespace RoverController.Mobile.Services.APIs
 
                 // Get the current user
                 var userResponse = await GetUserInfoAsync();
-                var userDTO = userResponse.Item1;
+                var userDTO = userResponse?.Item1;
 
-                if (userResponse != null && userDTO != null)
+                if (userDTO != null)
                 {
                     Preferences.Set(PrivateSettings.IsLoggedIn, true);
+                    Properties.CurrentUser = userDTO;
 
                     return userResponse;
                 }
@@ -37,6 +44,23 @@ namespace RoverController.Mobile.Services.APIs
 
             // If we couldn't even get the token, return a null User and the error message
             return Tuple.Create<UserDTO, string>(null, response?.Item2);
+        }
+
+        /// <summary>
+        /// Logs the user out
+        /// </summary>
+        /// <returns></returns>
+        public async Task SignOut()
+        {
+            if (Helper.IsInternetAvailable())
+            {
+                var result = await ApiWrapper<string>.Post(Api.Account.LogOut, null);
+            }
+
+            // Reset some properties
+            SecureStorage.Remove(SecureStorageProperties.AccessToken);
+            Preferences.Remove(PrivateSettings.AccessTokenExpiryDate);
+            Preferences.Set(PrivateSettings.IsLoggedIn, false);
         }
 
         private async Task<Tuple<SignInResponseDTO, string>> GetAuthenticationTokenAsync(string username, string password)

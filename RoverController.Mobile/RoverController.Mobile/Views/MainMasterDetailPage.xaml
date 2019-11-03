@@ -3,15 +3,56 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:prism="http://prismlibrary.com"
                   prism:ViewModelLocator.AutowireViewModel="True"
-                  x:Class="RoverController.Mobile.Views.MainMasterDetailPage">
+                  x:Class="RoverController.Mobile.Views.MainMasterDetailPage"
+                  Title="Rover Controller"
+                  NavigationPage.HasNavigationBar="False"
+                  Padding="{StaticResource contentPagePadding}"
+                  xmlns:misc="clr-namespace:RoverController.Mobile.Misc"
+                  xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                  xmlns:ffimageloadingTrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
 
     <MasterDetailPage.Master>
-        <ContentPage Title="Menu">
-            <StackLayout Padding="20">
-                <!-- TODO: // Update the Layout and add some real menu items  -->
-                <Button Text="ViewA" Command="{Binding NavigateCommand}" CommandParameter="ViewA" />
-            </StackLayout>
+        <ContentPage Title="Menu" BackgroundColor="#454d58" Padding="{StaticResource contentPagePadding}">
+            <ContentPage.Content>
+                <ScrollView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid BackgroundColor="#313a4b" Padding="5,30,5,10" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <ffimageloadingsvg:SvgCachedImage Source="resource://RoverController.Mobile.Resources.ic_user.svg" HeightRequest="80" WidthRequest="80"
+                                                              HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0">
+                                <ffimageloadingsvg:SvgCachedImage.Transformations>
+                                    <ffimageloadingTrans:TintTransformation HexColor="#ffffff" EnableSolidColor="true"/>
+                                </ffimageloadingsvg:SvgCachedImage.Transformations>
+                            </ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{x:Static misc:Properties.CurrentUsername }" FontSize="20" TextColor="White" VerticalOptions="Center" Grid.Column="1"></Label>
+                            
+                        </Grid>
+
+                        <StackLayout Spacing="10" Padding="{StaticResource pagePadding}" VerticalOptions="End" Grid.Row="1">
+                            <Button Text="SIGN OUT" Style="{StaticResource btn-danger}" Command="{Binding SignOutCommand}" HorizontalOptions="FillAndExpand"></Button>
+
+                            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
+                                <Label Text="{x:Static misc:Properties.AppName}" TextColor="White" FontAttributes="Bold" FontSize="Micro"></Label>
+                                <Label Text="{x:Static misc:Properties.AppVersion}" TextColor="White" FontSize="Micro"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </ScrollView>
+            </ContentPage.Content>
         </ContentPage>
     </MasterDetailPage.Master>
-    
+
 </MasterDetailPage>

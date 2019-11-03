@@ -10,6 +10,7 @@
         <!-- Application resource dictionary -->
         <ResourceDictionary>
             <!--Colors-->
+            <Color x:Key="backgroundColor">#eeeeee</Color>
             <Color x:Key="primaryColor">#143876</Color>
             <Color x:Key="textColor">#333333</Color>
             <Color x:Key="placeholderColor">LightGray</Color>
@@ -31,12 +32,27 @@
             <x:Double x:Key="entryHeightRequest">40</x:Double>
             <x:Double x:Key="defaultFontSize">14</x:Double>
 
+            <!-- ******************** Elements Styles ******************** -->
+
+            <!--Content Page-->
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource backgroundColor}" />
+            </Style>
             <!--Primary Buttons-->
             <Style TargetType="Button" x:Key="btn-primary">
                 <Setter Property="BackgroundColor" Value="{StaticResource primaryColor}" />
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="BorderColor" Value="#a40e14"></Setter>
                 <Setter Property="WidthRequest" Value="200"></Setter>
+                <Setter Property="Padding" Value="5,10,5,10" />
+            </Style>
+
+            <!--Danger Buttons-->
+            <Style TargetType="Button" x:Key="btn-danger">
+                <Setter Property="TextColor" Value="#f00000" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Padding" Value="5,10,5,10" />
+                <Setter Property="BorderColor" Value="DarkRed"></Setter>
             </Style>
 
             <!--Labels-->
@@ -47,7 +63,7 @@
             </Style>
 
             <Style TargetType="Label" x:Key="label-title">
-                <Setter Property="TextColor" Value="{StaticResource primaryColor}" />
+                <Setter Property="TextColor" Value="{StaticResource textColor}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="25" />
             </Style>
@@ -60,6 +76,7 @@
             <!--Text Boxes-->
             <Style TargetType="Entry">
                 <Setter Property="TextColor" Value="{StaticResource textColor}" />
+                <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="FontSize" Value="{StaticResource defaultFontSize}" />
                 <Setter Property="HeightRequest" Value="{StaticResource entryHeightRequest}" />
                 <!--<Setter Property="BackgroundColor" Value="{StaticResource entryBackgroundColor}" />-->

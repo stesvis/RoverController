@@ -8,6 +8,7 @@
              NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="False"
              Padding="{StaticResource contentPagePadding}"
+             xmlns:misc="clr-namespace:RoverController.Mobile.Misc"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
 
@@ -16,11 +17,11 @@
             <StackLayout VerticalOptions="FillAndExpand" Padding="{StaticResource pagePadding}">
 
                 <StackLayout HorizontalOptions="Center" Spacing="20">
-                    <ffimageloadingsvg:SvgCachedImage Source="resource://RoverController.Mobile.Resources.logo.svg" WidthRequest="110" HeightRequest="110" HorizontalOptions="Center" VerticalOptions="Start" />
+                    <ffimageloading:CachedImage Source="resource://RoverController.Mobile.Resources.logo.png" WidthRequest="110" HeightRequest="110" HorizontalOptions="Center" VerticalOptions="Start" />
                     <Label Text="Rover Remote Controller" Style="{StaticResource label-title}" HorizontalOptions="Center"></Label>
                 </StackLayout>
 
-                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="20" Spacing="20">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="20" Spacing="20">
                     <StackLayout>
                         <Label Text="Username" Style="{StaticResource label-header}"></Label>
                         <Entry Text="{Binding Username, Mode=TwoWay}" Keyboard="Text" Placeholder="Enter your username" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
@@ -34,8 +35,8 @@
                     <Button Text="SIGN IN" Command="{Binding SignInCommand}" Style="{StaticResource btn-primary}" HorizontalOptions="Center"></Button>
 
                     <StackLayout HorizontalOptions="Center">
-                        <Label Text="{Binding AppName}" FontSize="Micro" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding AppVersion}" FontSize="Micro" HorizontalOptions="Center"></Label>
+                        <Label Text="{x:Static misc:Properties.AppName}" Style="{StaticResource label-header}" FontSize="Micro" HorizontalOptions="Center"></Label>
+                        <Label Text="{x:Static misc:Properties.AppVersion}" FontSize="Micro" HorizontalOptions="Center"></Label>
                     </StackLayout>
 
                 </StackLayout>
