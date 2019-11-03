@@ -24,8 +24,8 @@ namespace RoverController.Mobile.ViewModels
                 IsBusy = true;
 
                 if (VersionTracking.IsFirstLaunchForCurrentVersion ||
-                    Preferences.Get(Misc.Settings.GridMaxX, null).IsEmpty() ||
-                    Preferences.Get(Misc.Settings.GridMaxY, null).IsEmpty())
+                    Preferences.Get(Misc.Settings.GridMaxX, 0) == 0 ||
+                    Preferences.Get(Misc.Settings.GridMaxY, 0) == 0)
                 {
                     using (Helper.Loading("Redirecting to Settings"))
                     {

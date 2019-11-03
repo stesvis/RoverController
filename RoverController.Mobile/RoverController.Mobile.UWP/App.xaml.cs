@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Syncfusion.SfNumericUpDown.XForms.UWP;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -40,8 +43,16 @@ namespace RoverController.Mobile.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Xamarin.Forms.Forms.Init(e);
                 FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+
+                // you'll need to add `using System.Reflection;`
+                List<Assembly> assembliesToInclude = new List<Assembly>();
+
+                //Now, add all the assemblies your app uses
+                assembliesToInclude.Add(typeof(SfNumericUpDownRenderer).GetTypeInfo().Assembly);
+
+                // replaces Xamarin.Forms.Forms.Init(e);
+                Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
@@ -58,8 +69,6 @@ namespace RoverController.Mobile.UWP
                 // the new page by passing required information as a navigation parameter
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
-
-            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
             // Ensure the current window is active
             Window.Current.Activate();

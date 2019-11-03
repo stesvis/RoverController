@@ -44,14 +44,14 @@
                         </Grid>
 
                         <StackLayout Padding="0,20,0,20" Grid.Row="1">
-                            <StackLayout Padding="5,0,5,0">
+                            <StackLayout Padding="5,0,5,0" Spacing="10">
                                 <customViews:Separator></customViews:Separator>
-                                <Label Text="Settings" TextColor="White">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{prismNavigation:NavigateTo 'Navigation/Settings', UseModalNavigation=True}"></TapGestureRecognizer>
-                                    </Label.GestureRecognizers>
-                                </Label>
+                                <Label Text="Settings" TextColor="White" Padding="5,0,5,0"></Label>
                                 <customViews:Separator></customViews:Separator>
+                                
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Command="{prismNavigation:NavigateTo 'Navigation/Settings', UseModalNavigation=True}"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </StackLayout>
 

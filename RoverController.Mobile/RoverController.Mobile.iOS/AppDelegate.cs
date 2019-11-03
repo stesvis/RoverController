@@ -23,6 +23,9 @@ namespace RoverController.Mobile.iOS
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
+            // Syncfusion components
+            Syncfusion.SfNumericUpDown.XForms.iOS.SfNumericUpDownRenderer.Init();
+
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

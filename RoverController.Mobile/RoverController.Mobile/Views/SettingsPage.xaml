@@ -4,12 +4,70 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoverController.Mobile.Views.SettingsPage"
-             Title="Settings">
+             Title="Settings"
+             xmlns:customViews="clr-namespace:RoverController.Mobile.CustomViews"
+             xmlns:converters="clr-namespace:RoverController.Mobile.Converters"
+             xmlns:behaviors="clr-namespace:RoverController.Mobile.Behaviors"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Order="Primary" Text="CANCEL" Command="{Binding PopModalCommand}" />
-        <ToolbarItem Order="Primary" Text="SAVE" Command="{Binding SubmitCommand}" />
+        <!--<ToolbarItem Order="Primary" Text="SAVE" Command="{Binding SaveCommand}" />-->
     </ContentPage.ToolbarItems>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverterConverter x:Key="inverter"></converters:InverterConverter>
+            <converters:LowerThanConverter x:Key="lowerThan"></converters:LowerThanConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Padding="{StaticResource pagePadding}" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!--Max X-->
+                <Label Text="Grid Max Size (X)" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"></Label>
+                <numeric:SfNumericUpDown x:Name="maxX" Value="{Binding MaxX}" Minimum="0" MaximumDecimalDigits="0" VerticalOptions="Center" Grid.Row="0" Grid.Column="1">
+                    <numeric:SfNumericUpDown.Behaviors>
+                        <behaviors:RequiredNumericValidationBehavior x:Name="maxXValidator"></behaviors:RequiredNumericValidationBehavior>
+                    </numeric:SfNumericUpDown.Behaviors>
+                </numeric:SfNumericUpDown>
+                <customViews:RequiredFieldValidator Text="Must be > 0" IsVisible="{Binding Source={x:Reference maxXValidator}, Path=IsValid, Converter={StaticResource inverter}}" Grid.Row="1" Grid.Column="1"></customViews:RequiredFieldValidator>
+
+                <!--Max Y-->
+                <Label Text="Grid Max Size (Y)" Grid.Row="3" Grid.Column="0"></Label>
+                <numeric:SfNumericUpDown Value="{Binding MaxY}" Minimum="0" MaximumDecimalDigits="0" Grid.Row="3" Grid.Column="1">
+                    <numeric:SfNumericUpDown.Behaviors>
+                        <behaviors:RequiredNumericValidationBehavior x:Name="maxYValidator"></behaviors:RequiredNumericValidationBehavior>
+                    </numeric:SfNumericUpDown.Behaviors>
+                </numeric:SfNumericUpDown>
+                <customViews:RequiredFieldValidator Text="Must be > 0" IsVisible="{Binding Source={x:Reference maxYValidator}, Path=IsValid, Converter={StaticResource inverter}}" Grid.Row="4" Grid.Column="1"></customViews:RequiredFieldValidator>
+
+            </Grid>
+
+            <StackLayout BackgroundColor="White" Padding="{StaticResource pagePadding}" Grid.Row="1">
+                <Button Text="SAVE" Command="{Binding SaveCommand}" Style="{StaticResource btn-primary}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </Grid>
+
+    </ContentPage.Content>
 
 </ContentPage>

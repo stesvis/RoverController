@@ -32,6 +32,8 @@ namespace RoverController.Mobile
 
         protected override async void OnInitialized()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTY1NzMyQDMxMzcyZTMzMmUzMFBxeFR6WXhVUHlqYTZkMmtQNlJtVVlMWThzSHNvNCtNNUdEbXFoV1cyeEU9"); // Community edition license key
+
             InitializeComponent();
 
             await NavigationService.NavigateAsync("Navigation/Login");
