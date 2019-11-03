@@ -25,8 +25,14 @@ namespace RoverController.Mobile.iOS
 
             // Syncfusion components
             Syncfusion.SfNumericUpDown.XForms.iOS.SfNumericUpDownRenderer.Init();
+            Syncfusion.XForms.iOS.Border.SfBorderRenderer.Init();
+            Syncfusion.XForms.iOS.Buttons.SfButtonRenderer.Init();
 
             LoadApplication(new App(new iOSInitializer()));
+
+#if DEBUG
+            XAMLator.Server.PreviewServer.Run();
+#endif
 
             return base.FinishedLaunching(app, options);
         }

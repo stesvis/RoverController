@@ -5,7 +5,6 @@ using RoverController.Mobile.Misc;
 using RoverController.Mobile.Services;
 using RoverController.Mobile.Services.Navigation;
 using System;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace RoverController.Mobile.ViewModels
@@ -18,34 +17,6 @@ namespace RoverController.Mobile.ViewModels
             .ObservesProperty(() => IsBusy)
             .ObservesProperty(() => MaxX)
             .ObservesProperty(() => MaxY));
-
-        private async void ExecuteSaveCommand()
-        {
-            try
-            {
-                IsBusy = true;
-
-                Preferences.Set(Settings.GridMaxX, MaxX.Value);
-                Preferences.Set(Settings.GridMaxY, MaxY.Value);
-
-                await ModalNavigationService.PopModalAsync(true);
-            }
-            catch (Exception ex)
-            {
-                base.DisplayExceptionMessage(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        private bool CanExecuteSaveCommand()
-        {
-            return IsNotBusy &&
-                MaxX.HasValue && MaxX.Value > 0 &&
-                MaxY.HasValue && MaxY.Value > 0;
-        }
 
         #region Properties
 
@@ -92,5 +63,37 @@ namespace RoverController.Mobile.ViewModels
                 base.Initialize(parameters);
             }
         }
+
+        #region Save Command
+
+        private async void ExecuteSaveCommand()
+        {
+            try
+            {
+                IsBusy = true;
+
+                Preferences.Set(Settings.GridMaxX, MaxX.Value);
+                Preferences.Set(Settings.GridMaxY, MaxY.Value);
+
+                await ModalNavigationService.PopModalAsync(true);
+            }
+            catch (Exception ex)
+            {
+                base.DisplayExceptionMessage(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private bool CanExecuteSaveCommand()
+        {
+            return IsNotBusy &&
+                MaxX.HasValue && MaxX.Value > 0 &&
+                MaxY.HasValue && MaxY.Value > 0;
+        }
+
+        #endregion Save Command
     }
 }

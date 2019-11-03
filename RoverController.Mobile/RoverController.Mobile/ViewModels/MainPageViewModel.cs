@@ -18,7 +18,10 @@ namespace RoverController.Mobile.ViewModels
 
         private async void ExecuteNewMissionCommand()
         {
-            await CheckBasicSettings();
+            if (await CheckBasicSettings() == true)
+            {
+                await NavigationService.NavigateAsync("NewMission");
+            }
         }
 
         private bool CanExecuteNewMissionCommand()
@@ -49,7 +52,7 @@ namespace RoverController.Mobile.ViewModels
             }
         }
 
-        private async Task CheckBasicSettings()
+        private async Task<bool> CheckBasicSettings()
         {
             if (Preferences.Get(Misc.Settings.GridMaxX, 0) == 0 ||
                 Preferences.Get(Misc.Settings.GridMaxY, 0) == 0)
@@ -59,8 +62,12 @@ namespace RoverController.Mobile.ViewModels
                 {
                     await Task.Delay(2000);
                     await NavigationService.NavigateAsync("Navigation/Settings", null, true);
+
+                    return false;
                 }
             }
+
+            return true;
         }
     }
 }

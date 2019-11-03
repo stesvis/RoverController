@@ -1,5 +1,4 @@
-﻿using RoverController.Web.Models;
-using RoverController.Repositories;
+﻿using RoverController.Repositories;
 using RoverController.Web.Models;
 using System.Data.Entity;
 using System.Linq;
@@ -29,6 +28,7 @@ namespace RoverController.Web.Repositories.Missions
         {
             return ApplicationContext.Missions
                 .Include(x => x.CreatedByUser)
+                .Include(x => x.PinPoints)
                 .FirstOrDefault(x => x.Id == (int)id);
         }
     }

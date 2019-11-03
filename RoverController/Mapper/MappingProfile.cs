@@ -2,6 +2,7 @@
 using RoverController.Web.Models;
 using RoverController.Web.DTOs;
 using RoverController.Web.Mapper.Users;
+
 using RoverController.Web.Models;
 
 namespace RoverController.Web.Mapper
@@ -31,9 +32,11 @@ namespace RoverController.Web.Mapper
                     .ForMember(
                         dest => dest.CreatedByName,
                         opt => opt.MapFrom(src => src.CreatedByUser.UserName))
+                    .ForMember(
+                        dest => dest.CreatedDateFormatted,
+                        opt => opt.MapFrom(src => src.CreatedDate.Value.ToString("MMM dd, yyyy @ HH:mm")))
                     .Ignore(m => m.Input)
-                    .Ignore(m => m.Output)
-                    .Ignore(m => m.CreatedDateFormatted);
+                    .Ignore(m => m.Output);
                 cfg.CreateMap<MissionDTO, Mission>().MaxDepth(1)
                     .Ignore(m => m.Id)
                     .Ignore(m => m.CreatedByUser)
@@ -42,8 +45,12 @@ namespace RoverController.Web.Mapper
 
                 //----------------------- PinPoints
                 cfg.CreateMap<PinPoint, PinPointDTO>().MaxDepth(1)
-                    .Ignore(m => m.CreatedByName)
-                    .Ignore(m => m.CreatedDateFormatted);
+                    .ForMember(
+                        dest => dest.CreatedByName,
+                        opt => opt.MapFrom(src => src.CreatedByUser.UserName))
+                    .ForMember(
+                        dest => dest.CreatedDateFormatted,
+                        opt => opt.MapFrom(src => src.CreatedDate.Value.ToString("MMM dd, yyyy @ HH:mm")));
                 cfg.CreateMap<PinPointDTO, PinPoint>().MaxDepth(1)
                     .Ignore(m => m.Id)
                     .Ignore(m => m.CreatedByUser)

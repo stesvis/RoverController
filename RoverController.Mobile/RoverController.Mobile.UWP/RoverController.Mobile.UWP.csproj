@@ -104,6 +104,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ic_delete.png" />
+    <Content Include="ic_rotate_left.png" />
+    <Content Include="ic_rotate_right.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -128,6 +131,9 @@
       <Version>7.0.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.9" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons">
+      <Version>17.3.0.21</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown">
       <Version>17.3.0.21</Version>
     </PackageReference>
@@ -151,6 +157,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1367" />
+    <PackageReference Include="XAMLator">
+      <Version>2019.3.24.12</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RoverController.Mobile\RoverController.Mobile.csproj">

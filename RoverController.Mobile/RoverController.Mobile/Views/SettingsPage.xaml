@@ -38,14 +38,14 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <!--Max X-->
                 <Label Text="Grid Max Size (X)" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"></Label>
-                <numeric:SfNumericUpDown x:Name="maxX" Value="{Binding MaxX}" Minimum="0" MaximumDecimalDigits="0" VerticalOptions="Center" Grid.Row="0" Grid.Column="1">
+                <numeric:SfNumericUpDown x:Name="maxX" Value="{Binding MaxX, Mode=TwoWay}" Minimum="0" MaximumDecimalDigits="0" VerticalOptions="Center" Grid.Row="0" Grid.Column="1">
                     <numeric:SfNumericUpDown.Behaviors>
                         <behaviors:RequiredNumericValidationBehavior x:Name="maxXValidator"></behaviors:RequiredNumericValidationBehavior>
                     </numeric:SfNumericUpDown.Behaviors>
@@ -54,7 +54,7 @@
 
                 <!--Max Y-->
                 <Label Text="Grid Max Size (Y)" Grid.Row="3" Grid.Column="0"></Label>
-                <numeric:SfNumericUpDown Value="{Binding MaxY}" Minimum="0" MaximumDecimalDigits="0" Grid.Row="3" Grid.Column="1">
+                <numeric:SfNumericUpDown Value="{Binding MaxY, Mode=TwoWay}" Minimum="0" MaximumDecimalDigits="0" Grid.Row="3" Grid.Column="1">
                     <numeric:SfNumericUpDown.Behaviors>
                         <behaviors:RequiredNumericValidationBehavior x:Name="maxYValidator"></behaviors:RequiredNumericValidationBehavior>
                     </numeric:SfNumericUpDown.Behaviors>

@@ -51,7 +51,7 @@ namespace RoverController.Web.DTOs
             get { return $"{FinalX} {FinalY} {FinalDirection}"; }
         }
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public virtual ICollection<PinPointDTO> PinPoints { get; set; }
 
         #endregion Custom Properties

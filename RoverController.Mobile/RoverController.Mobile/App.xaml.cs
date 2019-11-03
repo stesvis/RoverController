@@ -51,6 +51,7 @@ namespace RoverController.Mobile
             containerRegistry.RegisterForNavigation<MainMasterDetailPage, MainMasterDetailPageViewModel>("MasterDetail");
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>("Login");
             containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>("Settings");
+            containerRegistry.RegisterForNavigation<NewMissionPage, NewMissionPageViewModel>("NewMission");
         }
     }
 }

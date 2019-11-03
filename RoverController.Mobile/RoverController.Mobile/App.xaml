@@ -4,7 +4,8 @@
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
                         x:Class="RoverController.Mobile.App"
                         xmlns:misc="clr-namespace:RoverController.Mobile.Misc"
-                        xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms">
+                        xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+                        xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
     
     <Application.Resources>
 
@@ -16,6 +17,8 @@
             <Color x:Key="textColor">#333333</Color>
             <Color x:Key="placeholderColor">LightGray</Color>
             <Color x:Key="separatorColor">LightGray</Color>
+            <Color x:Key="customGreenColor">#1eb04e</Color>
+            <Color x:Key="customOrangeColor">#de9536</Color>
 
 
             <OnPlatform x:Key="contentPagePadding" x:TypeArguments="Thickness" 
@@ -50,6 +53,14 @@
             </Style>
             
             <!--Primary Buttons-->
+            <Style TargetType="Button">
+                <Setter Property="CornerRadius" Value="2"></Setter>
+            </Style>
+            
+            <Style TargetType="buttons:SfButton">
+                <Setter Property="CornerRadius" Value="2"></Setter>
+            </Style>
+            
             <Style TargetType="Button" x:Key="btn-primary">
                 <Setter Property="BackgroundColor" Value="{StaticResource primaryColor}" />
                 <Setter Property="TextColor" Value="White"></Setter>
@@ -97,6 +108,14 @@
                 <Setter Property="HeightRequest" Value="{StaticResource entryHeightRequest}" />
                 <!--<Setter Property="BackgroundColor" Value="{StaticResource entryBackgroundColor}" />-->
                 <Setter Property="PlaceholderColor" Value="{StaticResource placeholderColor}" />
+            </Style>
+
+            <!--Pickers-->
+            <Style TargetType="Picker">
+                <Setter Property="TextColor" Value="{StaticResource textColor}" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="FontSize" Value="{StaticResource defaultFontSize}" />
+                <Setter Property="HeightRequest" Value="{StaticResource entryHeightRequest}" />
             </Style>
 
 

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="RoverController.Mobile.Views.NewMissionPage"
+             Title="New Mission"
+             xmlns:customViews="clr-namespace:RoverController.Mobile.CustomViews"
+             xmlns:converters="clr-namespace:RoverController.Mobile.Converters"
+             xmlns:behaviors="clr-namespace:RoverController.Mobile.Behaviors"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverterConverter x:Key="inverter"></converters:InverterConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Padding="{StaticResource pagePadding}" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!--Initial X-->
+                <Label Text="Initial Position (X)" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"></Label>
+                <numeric:SfNumericUpDown Value="{Binding Model.InitialX, Mode=TwoWay}" Minimum="0" Maximum="{Binding MaxX}" MaximumDecimalDigits="0" VerticalOptions="Center" Grid.Row="0" Grid.Column="1"></numeric:SfNumericUpDown>
+
+                <!--Initial Y-->
+                <Label Text="Initial Position (Y)" VerticalOptions="Center" Grid.Row="2" Grid.Column="0"></Label>
+                <numeric:SfNumericUpDown Value="{Binding Model.InitialY, Mode=TwoWay}" Minimum="0" Maximum="{Binding MaxY}" MaximumDecimalDigits="0" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"></numeric:SfNumericUpDown>
+
+                <!--Initial Direction-->
+                <Label Text="Initial Direction" VerticalOptions="Center" Grid.Row="4" Grid.Column="0"></Label>
+                <Picker SelectedItem="{Binding Model.InitialDirection, Mode=TwoWay}" Grid.Row="4" Grid.Column="1">
+                    <Picker.Items>
+                        <x:String>N</x:String>
+                        <x:String>E</x:String>
+                        <x:String>W</x:String>
+                        <x:String>S</x:String>
+                    </Picker.Items>
+                    <Picker.Behaviors>
+                        <behaviors:RequiredPickerValidationBehavior x:Name="initialDirectionValidator"></behaviors:RequiredPickerValidationBehavior>
+                    </Picker.Behaviors>
+                </Picker>
+                <customViews:RequiredFieldValidator Text="Required" IsVisible="{Binding Source={x:Reference initialDirectionValidator}, Path=IsValid, Converter={StaticResource inverter}}" Grid.Row="5" Grid.Column="1"></customViews:RequiredFieldValidator>
+
+                <!--Instructions-->
+                <Label Text="Instructions" VerticalOptions="Center" Grid.Row="7" Grid.Column="0"></Label>
+                
+                <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Entry Text="{Binding Model.Instructions, Mode=TwoWay}" Placeholder="Use the buttons" IsReadOnly="True" HeightRequest="60" FontSize="25" Grid.Column="0">
+                        <Entry.Behaviors>
+                            <behaviors:RequiredEntryValidationBehavior x:Name="instructionsValidator"></behaviors:RequiredEntryValidationBehavior>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <buttons:SfButton ImageSource="ic_delete.png" ShowIcon="True" BackgroundColor="LightGray" 
+                                      Command="{Binding InstructionCommand}" CommandParameter="" Grid.Column="1"></buttons:SfButton>
+                </Grid>
+                <customViews:RequiredFieldValidator Text="Required" IsVisible="{Binding Source={x:Reference instructionsValidator}, Path=IsValid, Converter={StaticResource inverter}}" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"></customViews:RequiredFieldValidator>
+
+                <Grid Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".3*"></ColumnDefinition>
+                        <ColumnDefinition Width=".4*"></ColumnDefinition>
+                        <ColumnDefinition Width=".3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <buttons:SfButton Text="LEFT" ImageSource="ic_rotate_left.png" ShowIcon="True" BackgroundColor="{StaticResource customGreenColor}"
+                                      Command="{Binding InstructionCommand}" CommandParameter="L" Grid.Column="0"></buttons:SfButton>
+                    <Button Text="MOVE" TextColor="White" BackgroundColor="{StaticResource customOrangeColor}" 
+                            Command="{Binding InstructionCommand}" CommandParameter="M" Grid.Column="1"></Button>
+                    <buttons:SfButton Text="RIGHT" ImageSource="ic_rotate_right.png" ShowIcon="True" ImageAlignment="Right" BackgroundColor="{StaticResource customGreenColor}" 
+                                      Command="{Binding InstructionCommand}" CommandParameter="R" Grid.Column="2"></buttons:SfButton>
+                </Grid>
+            </Grid>
+
+            <StackLayout BackgroundColor="White" Padding="{StaticResource pagePadding}" Grid.Row="1">
+                <Button Text="SUBMIT" Command="{Binding SubmitCommand}" Style="{StaticResource btn-primary}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

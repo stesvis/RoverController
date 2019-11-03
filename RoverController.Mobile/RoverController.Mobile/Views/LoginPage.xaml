@@ -21,7 +21,7 @@
                     <Label Text="Rover Remote Controller" Style="{StaticResource label-title}" HorizontalOptions="Center"></Label>
                 </StackLayout>
 
-                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="20" Spacing="20">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="20" Spacing="20">
                     <StackLayout>
                         <Label Text="Username" Style="{StaticResource label-header}"></Label>
                         <Entry Text="{Binding Username, Mode=TwoWay}" Keyboard="Text" Placeholder="Enter your username" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>

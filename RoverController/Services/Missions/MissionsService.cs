@@ -39,7 +39,7 @@ namespace RoverController.Web.Services.Missions
             var mission = new Mission();
             using (var unitOfWork = new UnitOfWork())
             {
-                mission = unitOfWork.Missions.Get(id);
+                mission = unitOfWork.Missions.GetFull(id);
             }
             var missionDTO = AutoMapper.Mapper.Map<MissionDTO>(mission);
 
