@@ -2,6 +2,7 @@
 using Prism.Ioc;
 using RoverController.Mobile.Services;
 using RoverController.Mobile.Services.APIs;
+using RoverController.Mobile.Services.APIs.Missions;
 using RoverController.Mobile.Services.Navigation;
 using RoverController.Mobile.ViewModels;
 using RoverController.Mobile.Views;
@@ -44,6 +45,7 @@ namespace RoverController.Mobile
             // Services Api
             containerRegistry.RegisterSingleton<IAppService, AppService>();
             containerRegistry.RegisterSingleton<IApiService, ApiService>();
+            containerRegistry.RegisterSingleton<IMissionsApiService, MissionsApiService>();
             containerRegistry.RegisterSingleton<IModalNavigationService, ModalNavigationService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>("Navigation");

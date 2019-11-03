@@ -1,20 +1,91 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using RoverController.Mobile.DTOs;
 using RoverController.Mobile.Misc;
 using RoverController.Mobile.Services;
 using RoverController.Mobile.Services.Navigation;
 using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace RoverController.Mobile.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        #region Commands
+
         private DelegateCommand _newMissionCommand;
         public DelegateCommand NewMissionCommand =>
             _newMissionCommand ?? (_newMissionCommand = new DelegateCommand(ExecuteNewMissionCommand, CanExecuteNewMissionCommand));
+
+        #endregion Commands
+
+        #region Properties
+
+        private ObservableCollection<MissionDTO> _missions;
+        public ObservableCollection<MissionDTO> Missions
+        {
+            get { return _missions; }
+            set { SetProperty(ref _missions, value); }
+        }
+
+        #endregion Properties
+
+        public MainPageViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService, IPageDialogService dialogService, IAppService appService)
+            : base(navigationService, modalNavigationService, dialogService, appService)
+        {
+            Missions = new ObservableCollection<MissionDTO>();
+
+            // Reload the list if a new mission was created
+            MessagingCenter.Subscribe<NewMissionPageViewModel, MissionDTO>(this, MessagingCenterMessages.NewMission, async (sender, mission) =>
+            {
+                try
+                {
+                    IsBusy = true;
+                    await ReloadPage();
+                }
+                catch (Exception ex)
+                {
+                    base.DisplayExceptionMessage(ex);
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
+            });
+        }
+
+        public override async void Initialize(INavigationParameters parameters)
+        {
+            try
+            {
+                IsBusy = true;
+
+                if (await CheckBasicSettings() == false)
+                {
+                    return;
+                }
+
+                using (Helper.Loading())
+                {
+                    await ReloadPage();
+                }
+            }
+            catch (Exception ex)
+            {
+                base.DisplayExceptionMessage(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+                base.Initialize(parameters);
+            }
+        }
+
+        #region NewMission Command
 
         private async void ExecuteNewMissionCommand()
         {
@@ -29,26 +100,26 @@ namespace RoverController.Mobile.ViewModels
             return true;
         }
 
-        public MainPageViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService, IPageDialogService dialogService, IAppService appService)
-            : base(navigationService, modalNavigationService, dialogService, appService)
-        {
-        }
+        #endregion NewMission Command
 
-        public override async void Initialize(INavigationParameters parameters)
+        private async Task ReloadPage()
         {
-            try
+            var apiResponse = await AppService.Api.Missions.All();
+            if (apiResponse == null)
             {
-                IsBusy = true;
-                await CheckBasicSettings();
+                base.DisplayNoConnectionMessage();
+                return;
             }
-            catch (Exception ex)
+
+            if (apiResponse.Item2 != null)
             {
-                base.DisplayExceptionMessage(ex);
+                base.DisplayErrorMessage(apiResponse.Item2);
+                return;
             }
-            finally
+
+            if (apiResponse.Item1 != null)
             {
-                IsBusy = false;
-                base.Initialize(parameters);
+                Missions = new ObservableCollection<MissionDTO>(apiResponse.Item1);
             }
         }
 

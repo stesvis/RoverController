@@ -13,6 +13,8 @@ namespace RoverController.Mobile.ViewModels
 {
     public class NewMissionPageViewModel : ViewModelBase
     {
+        #region Commands
+
         private DelegateCommand _submitCommand;
         public DelegateCommand SubmitCommand =>
             _submitCommand ?? (_submitCommand = new DelegateCommand(ExecuteSubmitCommand, CanExecuteSubmitCommand)
@@ -26,6 +28,8 @@ namespace RoverController.Mobile.ViewModels
         public DelegateCommand<string> InstructionCommand =>
             _instructionCommand ?? (_instructionCommand = new DelegateCommand<string>(ExecuteInstructionCommand, CanExecuteInstructionCommand)
             .ObservesProperty(() => Model.Instructions));
+
+        #endregion Commands
 
         #region Properties
 
@@ -109,11 +113,33 @@ namespace RoverController.Mobile.ViewModels
 
         #region Submit Command
 
-        private void ExecuteSubmitCommand()
+        private async void ExecuteSubmitCommand()
         {
             try
             {
                 IsBusy = true;
+
+                using (Helper.Loading())
+                {
+                    var apiResponse = await AppService.Api.Missions.Create(Model);
+                    if (apiResponse == null)
+                    {
+                        base.DisplayNoConnectionMessage();
+                        return;
+                    }
+
+                    if (apiResponse.Item2 != null)
+                    {
+                        base.DisplayErrorMessage(apiResponse.Item2);
+                        return;
+                    }
+
+                    if (apiResponse.Item1 != null)
+                    {
+                        Helper.Toast("Success!", ToastType.Success);
+                        await NavigationService.GoBackAsync();
+                    }
+                }
             }
             catch (Exception ex)
             {

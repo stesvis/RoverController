@@ -15,6 +15,7 @@
             <Color x:Key="backgroundColor">#eeeeee</Color>
             <Color x:Key="primaryColor">#143876</Color>
             <Color x:Key="textColor">#333333</Color>
+            <Color x:Key="detailsColor">#777777</Color>
             <Color x:Key="placeholderColor">LightGray</Color>
             <Color x:Key="separatorColor">LightGray</Color>
             <Color x:Key="customGreenColor">#1eb04e</Color>
@@ -88,6 +89,11 @@
                 <Setter Property="TextColor" Value="{StaticResource textColor}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="25" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="label-details">
+                <Setter Property="TextColor" Value="{StaticResource detailsColor}" />
+                <Setter Property="FontSize" Value="{StaticResource smallFontSize}" />
             </Style>
 
             <Style TargetType="Label" x:Key="label-header">

@@ -14,6 +14,7 @@
         public struct Missions
         {
             public const string All = "/api/Missions";
+            public const string Get = "/api/Missions/{id}";
             public const string Create = "/api/Missions";
         }
 

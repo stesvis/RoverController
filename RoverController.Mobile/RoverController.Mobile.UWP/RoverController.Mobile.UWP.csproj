@@ -157,9 +157,6 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1367" />
-    <PackageReference Include="XAMLator">
-      <Version>2019.3.24.12</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RoverController.Mobile\RoverController.Mobile.csproj">

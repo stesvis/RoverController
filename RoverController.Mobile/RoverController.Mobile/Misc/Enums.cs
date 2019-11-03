@@ -8,6 +8,11 @@
         Info
     }
 
+    public static class MessagingCenterMessages
+    {
+        public const string NewMission = "NewMission";
+    }
+
     public static class Settings
     {
         public const string GridMaxX = "GridMaxX";

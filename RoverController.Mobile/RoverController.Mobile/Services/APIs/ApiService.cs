@@ -1,6 +1,7 @@
 ﻿using RoverController.Lib;
 using RoverController.Mobile.DTOs;
 using RoverController.Mobile.Misc;
+using RoverController.Mobile.Services.APIs.Missions;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -9,6 +10,13 @@ namespace RoverController.Mobile.Services.APIs
 {
     public class ApiService : IApiService
     {
+        public IMissionsApiService Missions { get; }
+
+        public ApiService(IMissionsApiService missionsApiService)
+        {
+            Missions = missionsApiService;
+        }
+
         /// <summary>
         /// Authenticates the user
         /// </summary>

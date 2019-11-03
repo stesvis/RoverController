@@ -11,9 +11,25 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="0">
-                <Label Text="Welcome to Xamarin Forms and Prism!" />
-            </StackLayout>
+            <ListView ItemsSource="{Binding Missions}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="5,10,5,10">
+                                <Label Text="{Binding Id, StringFormat='Mission #{0}'}" FontAttributes="Bold"></Label>
+                                <Label Text="{Binding CreatedDateFormatted}" Style="{StaticResource label-details}"></Label>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Input}"></Label>
+                                    <Label Text="->"></Label>
+                                    <Label Text="{Binding Instructions}" FontAttributes="Bold"></Label>
+                                    <Label Text="->"></Label>
+                                    <Label Text="{Binding Output}" HorizontalOptions="End"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <StackLayout BackgroundColor="White" Padding="{StaticResource pagePadding}" Grid.Row="1">
                 <Button Text="NEW MISSION" Command="{Binding NewMissionCommand}" Style="{StaticResource btn-primary}" HorizontalOptions="FillAndExpand"></Button>
