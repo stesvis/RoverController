@@ -3,6 +3,7 @@ using Prism.Navigation;
 using Prism.Services;
 using RoverController.Mobile.Misc;
 using RoverController.Mobile.Services;
+using RoverController.Mobile.Services.Navigation;
 using System;
 
 namespace RoverController.Mobile.ViewModels
@@ -13,8 +14,8 @@ namespace RoverController.Mobile.ViewModels
         public DelegateCommand SignOutCommand =>
             _signOutCommand ?? (_signOutCommand = new DelegateCommand(ExecuteSignOutCommand, CanExecuteSignOutCommand));
 
-        public MainMasterDetailPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAppService appService)
-            : base(navigationService, dialogService, appService)
+        public MainMasterDetailPageViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService, IPageDialogService dialogService, IAppService appService)
+            : base(navigationService, modalNavigationService, dialogService, appService)
         {
         }
 

@@ -2,6 +2,7 @@
 using Prism.Ioc;
 using RoverController.Mobile.Services;
 using RoverController.Mobile.Services.APIs;
+using RoverController.Mobile.Services.Navigation;
 using RoverController.Mobile.ViewModels;
 using RoverController.Mobile.Views;
 using Xamarin.Forms;
@@ -41,11 +42,13 @@ namespace RoverController.Mobile
             // Services Api
             containerRegistry.RegisterSingleton<IAppService, AppService>();
             containerRegistry.RegisterSingleton<IApiService, ApiService>();
+            containerRegistry.RegisterSingleton<IModalNavigationService, ModalNavigationService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>("Navigation");
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>("Main");
             containerRegistry.RegisterForNavigation<MainMasterDetailPage, MainMasterDetailPageViewModel>("MasterDetail");
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>("Login");
+            containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>("Settings");
         }
     }
 }

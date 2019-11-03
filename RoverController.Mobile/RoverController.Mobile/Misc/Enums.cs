@@ -8,6 +8,12 @@
         Info
     }
 
+    public static class Settings
+    {
+        public const string GridMaxX = "GridMaxX";
+        public const string GridMaxY = "GridMaxY";
+    }
+
     public static class PrivateSettings
     {
         public const string IsLoggedIn = "is_logged_in";

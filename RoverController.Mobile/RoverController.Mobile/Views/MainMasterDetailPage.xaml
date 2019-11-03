@@ -8,6 +8,8 @@
                   NavigationPage.HasNavigationBar="False"
                   Padding="{StaticResource contentPagePadding}"
                   xmlns:misc="clr-namespace:RoverController.Mobile.Misc"
+                  xmlns:customViews="clr-namespace:RoverController.Mobile.CustomViews"
+                  xmlns:prismNavigation="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
                   xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
                   xmlns:ffimageloadingTrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
 
@@ -19,6 +21,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
 
                         <Grid BackgroundColor="#313a4b" Padding="5,30,5,10" Grid.Row="0">
@@ -27,7 +30,6 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
@@ -38,10 +40,22 @@
                                 </ffimageloadingsvg:SvgCachedImage.Transformations>
                             </ffimageloadingsvg:SvgCachedImage>
                             <Label Text="{x:Static misc:Properties.CurrentUsername }" FontSize="20" TextColor="White" VerticalOptions="Center" Grid.Column="1"></Label>
-                            
+
                         </Grid>
 
-                        <StackLayout Spacing="10" Padding="{StaticResource pagePadding}" VerticalOptions="End" Grid.Row="1">
+                        <StackLayout Padding="0,20,0,20" Grid.Row="1">
+                            <StackLayout Padding="5,0,5,0">
+                                <customViews:Separator></customViews:Separator>
+                                <Label Text="Settings" TextColor="White">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{prismNavigation:NavigateTo 'Navigation/Settings', UseModalNavigation=True}"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <customViews:Separator></customViews:Separator>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout Spacing="10" Padding="{StaticResource pagePadding}" VerticalOptions="End" Grid.Row="2">
                             <Button Text="SIGN OUT" Style="{StaticResource btn-danger}" Command="{Binding SignOutCommand}" HorizontalOptions="FillAndExpand"></Button>
 
                             <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">

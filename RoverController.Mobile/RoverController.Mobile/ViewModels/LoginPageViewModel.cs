@@ -3,6 +3,7 @@ using Prism.Navigation;
 using Prism.Services;
 using RoverController.Mobile.Misc;
 using RoverController.Mobile.Services;
+using RoverController.Mobile.Services.Navigation;
 using System;
 
 namespace RoverController.Mobile.ViewModels
@@ -13,7 +14,8 @@ namespace RoverController.Mobile.ViewModels
 
         private DelegateCommand _signInCommand;
         public DelegateCommand SignInCommand =>
-            _signInCommand ?? (_signInCommand = new DelegateCommand(ExecuteSignInCommand, CanExecuteSignInCommand));
+            _signInCommand ?? (_signInCommand = new DelegateCommand(ExecuteSignInCommand, CanExecuteSignInCommand)
+            .ObservesProperty(() => IsBusy));
 
         #endregion Commands
 
@@ -35,8 +37,8 @@ namespace RoverController.Mobile.ViewModels
 
         #endregion Properties
 
-        public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAppService appService)
-            : base(navigationService, dialogService, appService)
+        public LoginPageViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService, IPageDialogService dialogService, IAppService appService)
+            : base(navigationService, modalNavigationService, dialogService, appService)
         {
             Username = "admin";
             Password = "Abc123!!!";
@@ -89,7 +91,7 @@ namespace RoverController.Mobile.ViewModels
 
         private bool CanExecuteSignInCommand()
         {
-            return true;
+            return IsNotBusy;
         }
 
         #endregion SignIn Command
