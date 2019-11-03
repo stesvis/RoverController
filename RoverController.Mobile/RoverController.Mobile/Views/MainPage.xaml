@@ -4,8 +4,20 @@
              x:Class="RoverController.Mobile.Views.MainPage"
              Title="Rover Controller">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
-    </StackLayout>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
 
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="0">
+                <Label Text="Welcome to Xamarin Forms and Prism!" />
+            </StackLayout>
+
+            <StackLayout BackgroundColor="White" Padding="{StaticResource pagePadding}" Grid.Row="1">
+                <Button Text="NEW MISSION" Command="{Binding NewMissionCommand}" Style="{StaticResource btn-primary}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>
