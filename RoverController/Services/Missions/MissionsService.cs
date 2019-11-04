@@ -75,6 +75,11 @@ namespace RoverController.Web.Services.Missions
             // if we get here it means that all the pin-points in the route are valid we can persist
             using (var unitOfWork = new UnitOfWork())
             {
+                var roversOnTheSameSpot = unitOfWork.Missions.Find(x => x.FinalX == mission.FinalX && x.FinalY == mission.FinalY);
+                if (roversOnTheSameSpot != null && roversOnTheSameSpot.Count() > 0)
+                {
+                    throw new Exception($"Houston we have a problem!{Environment.NewLine}This rover would collide with another rover in the same final spot!{Environment.NewLine}Mission aborted!");
+                }
                 unitOfWork.Missions.Add(mission);
                 unitOfWork.SaveChanges();
                 mission = unitOfWork.Missions.GetFull(mission.Id);
@@ -282,7 +287,7 @@ namespace RoverController.Web.Services.Missions
                     pinPoint.Y < 0 ||
                     pinPoint.Y > mission.MaxY)
                 {
-                    throw new ArgumentException("These instructions lead the rover outside of the perimeter.");
+                    throw new ArgumentException($"Houston we have a problem!{Environment.NewLine}These instructions lead the rover outside of the perimeter.{Environment.NewLine}Mission aborted!");
                 }
             }
         }
