@@ -14,7 +14,7 @@
                   xmlns:ffimageloadingTrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
 
     <MasterDetailPage.Master>
-        <ContentPage Title="Menu" IconImageSource="ic_menu.png" BackgroundColor="#454d58" Padding="{StaticResource contentPagePadding}">
+        <ContentPage Title="Menu" IconImageSource="ic_menu.png" BackgroundColor="#586270" Padding="{StaticResource contentPagePadding}">
             <ContentPage.Content>
                 <ScrollView>
                     <Grid>
@@ -24,7 +24,7 @@
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <Grid BackgroundColor="#313a4b" Padding="5,30,5,10" Grid.Row="0">
+                        <Grid BackgroundColor="#313a4b" Padding="5,30,5,30" Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="110"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>

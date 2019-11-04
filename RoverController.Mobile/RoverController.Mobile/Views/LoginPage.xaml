@@ -7,21 +7,21 @@
              Title="Log In"
              NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="False"
-             Padding="{StaticResource contentPagePadding}"
+             Padding="10,20,10,10"
              xmlns:misc="clr-namespace:RoverController.Mobile.Misc"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
 
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
-            <StackLayout VerticalOptions="FillAndExpand" Padding="{StaticResource pagePadding}">
+            <StackLayout VerticalOptions="FillAndExpand" Spacing="30">
 
                 <StackLayout HorizontalOptions="Center" Spacing="20">
                     <ffimageloading:CachedImage Source="resource://RoverController.Mobile.Resources.logo.png" WidthRequest="110" HeightRequest="110" HorizontalOptions="Center" VerticalOptions="Start" />
                     <Label Text="Rover Remote Controller" Style="{StaticResource label-title}" HorizontalOptions="Center"></Label>
                 </StackLayout>
 
-                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="20" Spacing="20">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="20" Spacing="20">
                     <StackLayout>
                         <Label Text="Username" Style="{StaticResource label-header}"></Label>
                         <Entry Text="{Binding Username, Mode=TwoWay}" Keyboard="Text" Placeholder="Enter your username" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
