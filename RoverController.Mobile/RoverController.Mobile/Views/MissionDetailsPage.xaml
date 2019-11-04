@@ -17,7 +17,7 @@
             <converters:PinPointToColorConverter x:Key="pinPointToColorConverter"></converters:PinPointToColorConverter>
 
             <DataTemplate x:Key="datamarker">
-                <StackLayout BackgroundColor="{Binding Type, Converter={StaticResource pinPointToColorConverter}}" Padding="2">
+                <StackLayout BackgroundColor="{Binding Type, Converter={StaticResource pinPointToColorConverter}}" IsVisible="{Binding IsVisible}" Padding="2">
                     <Label LineBreakMode="WordWrap" TextColor="White" FontSize="Micro">
                         <Label.FormattedText>
                             <FormattedString>
@@ -71,9 +71,9 @@
                                     <chart:ChartDataMarker.LabelStyle>
                                         <chart:DataMarkerLabelStyle TextColor="White" BorderThickness="1" BackgroundColor="{StaticResource primaryColor}" Margin="5" LabelPosition="Auto"/>
                                     </chart:ChartDataMarker.LabelStyle>
-                                    <chart:ChartDataMarker.ConnectorLineStyle>
+                                    <!--<chart:ChartDataMarker.ConnectorLineStyle>
                                         <chart:ConnectorLineStyle ConnectorHeight="50" ConnectorRotationAngle="135" StrokeColor="{StaticResource textColor}" StrokeWidth="3"/>
-                                    </chart:ChartDataMarker.ConnectorLineStyle>
+                                    </chart:ChartDataMarker.ConnectorLineStyle>-->
                                 </chart:ChartDataMarker>
                             </chart:StepLineSeries.DataMarker>
                         </chart:StepLineSeries>

@@ -17,7 +17,17 @@ namespace RoverController.Mobile.DTOs
         [JsonProperty("direction")]
         public string Direction { get; set; }
 
+        #region Custom
+
         [JsonIgnore]
         public PinPointType Type { get; set; }
+
+        [JsonIgnore]
+        public bool IsVisible
+        {
+            get { return Type != PinPointType.Intermediate; }
+        }
+
+        #endregion Custom
     }
 }

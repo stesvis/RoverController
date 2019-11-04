@@ -36,7 +36,7 @@
                                         </Grid.ColumnDefinitions>
                                         <Label Text="{Binding Input}" Grid.Column="0"></Label>
                                         <!--<Label Text="=>"></Label>-->
-                                        <Label Text="{Binding Instructions}" FontAttributes="Bold" Grid.Column="1"></Label>
+                                        <Label Text="{Binding Instructions}" FontAttributes="Bold" HorizontalOptions="Center" Grid.Column="1"></Label>
                                         <!--<Label Text="=>"></Label>-->
                                         <Label Text="{Binding Output}" HorizontalOptions="End" Grid.Column="2"></Label>
                                     </Grid>
