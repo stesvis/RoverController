@@ -167,7 +167,13 @@ namespace RoverController.Mobile.ViewModels
 
                 using (Helper.Loading())
                 {
-                    var apiResponse = await AppService.Api.Missions.Create(Model);
+                    if (Mission?.Id > 0)
+                    {
+                        // this will trigger the "Update" rather than "Create"
+                        Model.Id = Mission.Id;
+                    }
+
+                    var apiResponse = await AppService.Api.Missions.Save(Model);
                     if (apiResponse == null)
                     {
                         base.DisplayNoConnectionMessage();
@@ -185,6 +191,8 @@ namespace RoverController.Mobile.ViewModels
                         var missionDTO = apiResponse.Item1;
                         MessagingCenter.Send(this, MessagingCenterMessages.NewMission, missionDTO);
                         Helper.Toast("Success!", ToastType.Success);
+
+                        base.ExecutePopModalCommand();
                         await NavigationService.NavigateAsync($"MissionDetails?id={missionDTO.Id}");
                     }
                 }
@@ -257,11 +265,11 @@ namespace RoverController.Mobile.ViewModels
                     finalPinPoint.Type = PinPointType.Finish;
                 }
 
-                Title = $"Continue Mission #{Mission.Id}";
+                Title = $"Mission #{Mission.Id}";
 
                 Model.InitialX = Mission.FinalX;
                 Model.InitialY = Mission.FinalY;
-                Model.InitialDirection = Mission.InitialDirection;
+                Model.InitialDirection = Mission.FinalDirection;
 
                 MaxX = Mission.MaxX;
                 MaxY = Mission.MaxY;

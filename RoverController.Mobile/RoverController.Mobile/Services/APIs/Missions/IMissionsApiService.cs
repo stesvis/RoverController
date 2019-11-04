@@ -11,7 +11,7 @@ namespace RoverController.Mobile.Services.APIs.Missions
 
         Task<Tuple<MissionDTO, string>> Get(int id);
 
-        Task<Tuple<MissionDTO, string>> Create(MissionRequestDTO missionRequestDTO);
+        Task<Tuple<MissionDTO, string>> Save(MissionRequestDTO missionRequestDTO);
 
         Task<Tuple<MissionAttachmentDTO, string>> Upload(int id, byte[] ImageData);
     }

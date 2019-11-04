@@ -57,7 +57,7 @@
             </ListView>
 
             <StackLayout BackgroundColor="White" Padding="{StaticResource pagePadding}" Grid.Row="1">
-                <Button Text="NEW MISSION" Command="{Binding NewMissionCommand}" Style="{StaticResource btn-primary}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="NEW ROVER" Command="{Binding NewMissionCommand}" Style="{StaticResource btn-primary}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

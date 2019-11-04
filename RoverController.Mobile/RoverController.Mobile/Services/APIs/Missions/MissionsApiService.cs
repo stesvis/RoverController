@@ -87,7 +87,7 @@ namespace RoverController.Mobile.Services.APIs.Missions
                 return null;
             }
 
-            var result = await ApiWrapper<MissionDTO>.Post(Api.Missions.Move.Replace("{id}", id.ToString()), missionRequestDTO);
+            var result = await ApiWrapper<MissionDTO>.Put(Api.Missions.Move.Replace("{id}", id.ToString()), missionRequestDTO);
 
             return result;
         }

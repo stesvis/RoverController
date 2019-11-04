@@ -166,7 +166,7 @@ namespace RoverController.Mobile.ViewModels
 
                 if (await CheckBasicSettings() == true)
                 {
-                    await NavigationService.NavigateAsync("NewMission");
+                    await NavigationService.NavigateAsync("Navigation/NewMission", null, true);
                 }
             }
             catch (Exception ex)

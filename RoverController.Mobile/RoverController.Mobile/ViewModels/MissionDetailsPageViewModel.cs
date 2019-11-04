@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace RoverController.Mobile.ViewModels
 {
@@ -84,6 +85,27 @@ namespace RoverController.Mobile.ViewModels
         {
             Mission = new MissionDTO();
             Title = "Mission";
+
+            // Reload the page if the mission was edited
+            MessagingCenter.Subscribe<NewMissionPageViewModel, MissionDTO>(this, MessagingCenterMessages.NewMission, async (sender, mission) =>
+            {
+                try
+                {
+                    IsBusy = true;
+                    if (Mission?.Id == mission.Id)
+                    {
+                        await ReloadPage(mission.Id);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    base.DisplayExceptionMessage(ex);
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
+            });
         }
 
         public override async void Initialize(INavigationParameters parameters)
@@ -122,7 +144,7 @@ namespace RoverController.Mobile.ViewModels
             {
                 IsBusy = true;
 
-                var choice = await DialogService.DisplayActionSheetAsync("Menu", "Cancel", null, "Continue", "Upload Screenshot");
+                var choice = await DialogService.DisplayActionSheetAsync("Menu", "Cancel", null, "Move", "Upload Screenshot");
 
                 switch (choice)
                 {
@@ -160,8 +182,8 @@ namespace RoverController.Mobile.ViewModels
                         }
                         break;
 
-                    case "Continue":
-                        await NavigationService.NavigateAsync($"NewMission?id={Mission.Id}");
+                    case "Move":
+                        await NavigationService.NavigateAsync($"Navigation/NewMission?id={Mission.Id}", null, true);
                         break;
 
                     default:

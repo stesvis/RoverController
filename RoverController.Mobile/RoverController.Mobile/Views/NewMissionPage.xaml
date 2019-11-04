@@ -11,6 +11,10 @@
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" Text="CANCEL" Command="{Binding PopModalCommand}" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:LowerThanConverter x:Key="lowerThanConverter"></converters:LowerThanConverter>
