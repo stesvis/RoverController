@@ -115,6 +115,7 @@
                 <Setter Property="HeightRequest" Value="{StaticResource entryHeightRequest}" />
                 <!--<Setter Property="BackgroundColor" Value="{StaticResource entryBackgroundColor}" />-->
                 <Setter Property="PlaceholderColor" Value="{StaticResource placeholderColor}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource placeholderColor}" />
             </Style>
 
             <!--Pickers-->

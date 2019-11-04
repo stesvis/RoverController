@@ -36,10 +36,6 @@ namespace RoverController.Mobile.iOS
 
             LoadApplication(new App(new iOSInitializer()));
 
-#if DEBUG
-            XAMLator.Server.PreviewServer.Run();
-#endif
-
             return base.FinishedLaunching(app, options);
         }
 

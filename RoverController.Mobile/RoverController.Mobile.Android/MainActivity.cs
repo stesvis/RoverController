@@ -34,10 +34,6 @@ namespace RoverController.Mobile.Droid
             UserDialogs.Init(this);
 
             LoadApplication(new App(new AndroidInitializer()));
-
-#if DEBUG
-            XAMLator.Server.PreviewServer.Run();
-#endif
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
