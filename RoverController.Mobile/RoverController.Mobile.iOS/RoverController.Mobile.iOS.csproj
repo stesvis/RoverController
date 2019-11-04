@@ -246,5 +246,8 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_menu_more.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
