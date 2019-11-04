@@ -25,32 +25,6 @@ namespace RoverController.Mobile.ViewModels
         public DelegateCommand<object> MissionTappedCommand =>
             _missionTappedCommand ?? (_missionTappedCommand = new DelegateCommand<object>(ExecuteMissionTappedCommand, CanExecuteMissionTappedCommand));
 
-        private async void ExecuteMissionTappedCommand(object parameter)
-        {
-            try
-            {
-                IsBusy = true;
-
-                if (parameter is MissionDTO missionDTO)
-                {
-                    await NavigationService.NavigateAsync($"MissionDetails?id={missionDTO.Id}");
-                }
-            }
-            catch (Exception ex)
-            {
-                base.DisplayExceptionMessage(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        private bool CanExecuteMissionTappedCommand(object parameter)
-        {
-            return true;
-        }
-
         #endregion Commands
 
         #region Properties
@@ -94,15 +68,12 @@ namespace RoverController.Mobile.ViewModels
             {
                 IsBusy = true;
 
-                if (await CheckBasicSettings() == false)
-                {
-                    return;
-                }
-
                 using (Helper.Loading())
                 {
                     await ReloadPage();
                 }
+
+                await CheckBasicSettings();
             }
             catch (Exception ex)
             {
@@ -114,6 +85,36 @@ namespace RoverController.Mobile.ViewModels
                 base.Initialize(parameters);
             }
         }
+
+        #region MissionTapped Command
+
+        private async void ExecuteMissionTappedCommand(object parameter)
+        {
+            try
+            {
+                IsBusy = true;
+
+                if (parameter is MissionDTO missionDTO)
+                {
+                    await NavigationService.NavigateAsync($"MissionDetails?id={missionDTO.Id}");
+                }
+            }
+            catch (Exception ex)
+            {
+                base.DisplayExceptionMessage(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private bool CanExecuteMissionTappedCommand(object parameter)
+        {
+            return true;
+        }
+
+        #endregion MissionTapped Command
 
         #region NewMission Command
 

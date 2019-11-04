@@ -14,6 +14,7 @@
             <!--Colors-->
             <Color x:Key="backgroundColor">#eeeeee</Color>
             <Color x:Key="primaryColor">#143876</Color>
+            <Color x:Key="primaryColorDark">#0f2b5c</Color>
             <Color x:Key="textColor">#333333</Color>
             <Color x:Key="detailsColor">#777777</Color>
             <Color x:Key="placeholderColor">LightGray</Color>
