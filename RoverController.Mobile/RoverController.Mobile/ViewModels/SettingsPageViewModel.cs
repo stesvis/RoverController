@@ -39,29 +39,8 @@ namespace RoverController.Mobile.ViewModels
         public SettingsPageViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService, IPageDialogService dialogService, IAppService appService)
             : base(navigationService, modalNavigationService, dialogService, appService)
         {
-        }
-
-        public override async void Initialize(INavigationParameters parameters)
-        {
-            try
-            {
-                IsBusy = true;
-                using (Helper.Loading())
-                {
-                    //await Task.Delay(200);
-                    MaxX = Preferences.Get(Settings.GridMaxX, 0);
-                    MaxY = Preferences.Get(Settings.GridMaxY, 0);
-                }
-            }
-            catch (Exception ex)
-            {
-                base.DisplayExceptionMessage(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-                base.Initialize(parameters);
-            }
+            MaxX = Preferences.Get(Settings.GridMaxX, 0);
+            MaxY = Preferences.Get(Settings.GridMaxY, 0);
         }
 
         #region Save Command
