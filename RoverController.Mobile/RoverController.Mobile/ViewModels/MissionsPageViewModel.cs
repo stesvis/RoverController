@@ -25,6 +25,12 @@ namespace RoverController.Mobile.ViewModels
         public DelegateCommand<object> MissionTappedCommand =>
             _missionTappedCommand ?? (_missionTappedCommand = new DelegateCommand<object>(ExecuteMissionTappedCommand, CanExecuteMissionTappedCommand));
 
+        private DelegateCommand _refreshCommand;
+        public DelegateCommand RefreshCommand =>
+            _refreshCommand ?? (_refreshCommand = new DelegateCommand(ExecuteRefreshCommand, CanExecuteRefreshCommand)
+            .ObservesProperty(() => IsBusy)
+            .ObservesProperty(() => IsRefreshing));
+
         #endregion Commands
 
         #region Properties
@@ -34,6 +40,13 @@ namespace RoverController.Mobile.ViewModels
         {
             get { return _missions; }
             set { SetProperty(ref _missions, value); }
+        }
+
+        private bool _isRefreshing;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set { SetProperty(ref _isRefreshing, value); }
         }
 
         #endregion Properties
@@ -115,6 +128,33 @@ namespace RoverController.Mobile.ViewModels
         }
 
         #endregion MissionTapped Command
+
+        #region Refresh Command
+
+        private async void ExecuteRefreshCommand()
+        {
+            try
+            {
+                IsRefreshing = true;
+
+                await ReloadPage();
+            }
+            catch (Exception ex)
+            {
+                base.DisplayExceptionMessage(ex);
+            }
+            finally
+            {
+                IsRefreshing = false;
+            }
+        }
+
+        private bool CanExecuteRefreshCommand()
+        {
+            return IsNotBusy && !IsRefreshing;
+        }
+
+        #endregion Refresh Command
 
         #region NewMission Command
 
