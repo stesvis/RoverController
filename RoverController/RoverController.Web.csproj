@@ -2210,7 +2210,6 @@
     <Content Include="Content\vendor\bootstrap\typeahead\bootstrap3-typeahead.min.js" />
     <Content Include="Content\vendor\bootstrap\typeahead\typeaheadjs.css" />
     <Content Include="Content\vendor\pacejs\pace.min.js" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Themes\Porto\ajax\ajax-datatables-sample.json" />
@@ -2572,6 +2571,7 @@
     <Content Include="Content\Themes\Porto\vendor\summernote\font\summernote.eot" />
     <Content Include="Content\Themes\Porto\vendor\summernote\font\summernote.ttf" />
     <Content Include="Content\Themes\Porto\vendor\summernote\font\summernote.woff" />
+    <Content Include="favicon.ico" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

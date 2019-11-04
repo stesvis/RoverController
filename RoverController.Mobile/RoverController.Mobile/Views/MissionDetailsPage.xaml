@@ -11,6 +11,24 @@
         <ToolbarItem Name="moreMenuItem" Order="Primary" Text="MORE" Icon="ic_menu_more" Priority="0" Command="{Binding MoreCommand}" />
     </ContentPage.ToolbarItems>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="datamarker">
+                <StackLayout BackgroundColor="{StaticResource textColor}" Padding="2">
+                    <Label LineBreakMode="WordWrap" TextColor="White" FontSize="Micro">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding X}"></Span>
+                                <Span Text=","></Span>
+                                <Span Text="{Binding Y}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <Grid>
 
@@ -45,12 +63,13 @@
                     <chart:SfChart.Series>
                         <chart:StepLineSeries ItemsSource="{Binding Mission.PinPoints}" XBindingPath="X" YBindingPath="Y" StrokeWidth="5">
                             <chart:StepLineSeries.DataMarker>
-                                <chart:ChartDataMarker ShowMarker="True" ShowLabel="True" MarkerType="Ellipse" MarkerWidth="10" MarkerHeight="10" MarkerColor="{StaticResource primaryColor}">
+                                <chart:ChartDataMarker ShowMarker="True" ShowLabel="True" MarkerType="Ellipse" MarkerWidth="10" MarkerHeight="10" MarkerColor="{StaticResource primaryColor}"
+                                                       LabelTemplate="{StaticResource datamarker}">
                                     <chart:ChartDataMarker.LabelStyle>
                                         <chart:DataMarkerLabelStyle TextColor="White" BorderThickness="1" BackgroundColor="{StaticResource primaryColor}" Margin="5" LabelPosition="Auto"/>
                                     </chart:ChartDataMarker.LabelStyle>
                                     <chart:ChartDataMarker.ConnectorLineStyle>
-                                        <chart:ConnectorLineStyle ConnectorHeight="50" ConnectorRotationAngle="135" StrokeColor="Red" StrokeWidth="3"/>
+                                        <chart:ConnectorLineStyle ConnectorHeight="50" ConnectorRotationAngle="135" StrokeColor="{StaticResource textColor}" StrokeWidth="3"/>
                                     </chart:ChartDataMarker.ConnectorLineStyle>
                                 </chart:ChartDataMarker>
                             </chart:StepLineSeries.DataMarker>
