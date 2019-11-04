@@ -30,6 +30,10 @@ namespace RoverController.Mobile.ViewModels
             _instructionCommand ?? (_instructionCommand = new DelegateCommand<string>(ExecuteInstructionCommand, CanExecuteInstructionCommand)
             .ObservesProperty(() => Model.Instructions));
 
+        private DelegateCommand _instructionsLabelCommand;
+        public DelegateCommand InstructionsLabelCommand =>
+            _instructionsLabelCommand ?? (_instructionsLabelCommand = new DelegateCommand(ExecuteInstructionsLabelCommand));
+
         #endregion Commands
 
         #region Properties
@@ -111,6 +115,21 @@ namespace RoverController.Mobile.ViewModels
         }
 
         #endregion Instruction Command
+
+        private void ExecuteInstructionsLabelCommand()
+        {
+            try
+            {
+                Helper.Toast("Use the buttons below", ToastType.Info);
+            }
+            catch (Exception ex)
+            {
+                base.DisplayExceptionMessage(ex);
+            }
+            finally
+            {
+            }
+        }
 
         #region Submit Command
 

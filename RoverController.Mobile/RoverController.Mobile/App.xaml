@@ -89,7 +89,7 @@
             <Style TargetType="Label" x:Key="label-title">
                 <Setter Property="TextColor" Value="{StaticResource textColor}" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontSize" Value="25" />
+                <Setter Property="FontSize" Value="20" />
             </Style>
 
             <Style TargetType="Label" x:Key="label-details">

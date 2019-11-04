@@ -69,7 +69,7 @@
                 <customViews:RequiredFieldValidator Text="Required" IsVisible="{Binding Source={x:Reference initialDirectionValidator}, Path=IsValid, Converter={StaticResource inverter}}" Grid.Row="5" Grid.Column="1"></customViews:RequiredFieldValidator>
 
                 <!--Instructions-->
-                <Label Text="Commands" FontAttributes="Bold" VerticalOptions="Center" Grid.Row="7" Grid.Column="0"></Label>
+                    <Label Text="Commands" FontAttributes="Bold" VerticalOptions="Center" Grid.Row="7" Grid.Column="0"></Label>
                 
                 <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
@@ -77,12 +77,20 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <Grid BackgroundColor="White" Padding="{StaticResource pagePadding}" Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Label Text="{Binding Model.Instructions, Mode=TwoWay}" FontSize="30" VerticalOptions="Center"></Label>
-                    </Grid>
+                    <StackLayout Grid.Column="0">
+                        <Label Text="Use the buttons below to command the rover" Style="{StaticResource label-details}"></Label>
+                        <Grid BackgroundColor="White" Padding="{StaticResource pagePadding}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Text="{Binding Model.Instructions, Mode=TwoWay}" FontSize="30" MinimumHeightRequest="45" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding InstructionsLabelCommand}"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        
+                    </StackLayout>
                     <!--<Entry Text="{Binding Model.Instructions, Mode=TwoWay}" Placeholder="Use the buttons" IsReadOnly="True" HeightRequest="60" FontSize="25">
                         <Entry.Behaviors>
                             <behaviors:RequiredEntryValidationBehavior x:Name="instructionsValidator"></behaviors:RequiredEntryValidationBehavior>
