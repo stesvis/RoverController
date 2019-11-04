@@ -2,6 +2,7 @@
 using RoverController.Web.DTOs;
 using RoverController.Web.Mapper.Users;
 using RoverController.Web.Models;
+using System.Linq;
 
 namespace RoverController.Web.Mapper
 {
@@ -33,6 +34,9 @@ namespace RoverController.Web.Mapper
                     .ForMember(
                         dest => dest.CreatedDateFormatted,
                         opt => opt.MapFrom(src => src.CreatedDate.Value.ToString("MMM dd, yyyy @ HH:mm")))
+                    .ForMember(
+                        dest => dest.Attachment,
+                        opt => opt.MapFrom(src => src.Attachments.Count > 0 ? src.Attachments.FirstOrDefault().AWSPublicUrl : null))
                     .Ignore(m => m.Input)
                     .Ignore(m => m.Output);
                 cfg.CreateMap<MissionDTO, Mission>().MaxDepth(1)

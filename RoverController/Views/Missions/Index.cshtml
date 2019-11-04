@@ -74,7 +74,7 @@
                                     <td>
                                         @if (missionDTO.Attachments.Count > 0)
                                         {
-                                            <a href="@missionDTO.Attachments.FirstOrDefault().FileName" target="_blank">View</a>
+                                            <a href="@missionDTO.Attachments.FirstOrDefault().AWSPublicUrl" target="_blank">View</a>
                                         }
                                     </td>
                                 </tr>

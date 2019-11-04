@@ -138,32 +138,11 @@ namespace RoverController.Web.API.Controllers
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
 
-            string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            string root = HttpContext.Current.Server.MapPath("~/Uploads");
             var provider = new CustomMultipartFormDataStreamProvider(root);
 
             try
             {
-#if false
-                HttpResponseMessage result = null;
-                var httpRequest = HttpContext.Current.Request;
-                if (httpRequest.Files.Count > 0)
-                {
-                    var docfiles = new List<string>();
-                    foreach (string file in httpRequest.Files)
-                    {
-                        var postedFile = httpRequest.Files[file];
-                        var filePath = HttpContext.Current.Server.MapPath("~/" + postedFile.FileName);
-                        postedFile.SaveAs(filePath);
-                        docfiles.Add(filePath);
-                    }
-                    result = Request.CreateResponse(HttpStatusCode.Created, docfiles);
-                }
-                else
-                {
-                    result = Request.CreateResponse(HttpStatusCode.BadRequest);
-                }
-                return result;
-#endif
                 // Read the form data.
                 await Request.Content.ReadAsMultipartAsync(provider);
 
@@ -187,7 +166,7 @@ namespace RoverController.Web.API.Controllers
                     OriginalFilename = Path.GetFileName(file.LocalFileName),
                     FileType = Path.GetExtension(file.LocalFileName),
                     FileName = Path.Combine(root, file.LocalFileName),
-                    AWSPublicUrl = Path.Combine(Api.ApiBaseUrl, $@"App_Data/{Path.GetFileName(file.LocalFileName)}")
+                    AWSPublicUrl = $@"{Api.ApiBaseUrl}/Uploads/{Path.GetFileName(file.LocalFileName)}"
                 };
 
                 attachmentDTO = AppService.Missions.Attach(id, attachmentDTO, userId);
@@ -197,6 +176,7 @@ namespace RoverController.Web.API.Controllers
             catch (Exception ex)
             {
                 AppLogger.Logger.Error(ex);
+
                 return InternalServerError(ex);
             }
         }

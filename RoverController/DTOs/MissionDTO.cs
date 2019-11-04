@@ -54,6 +54,9 @@ namespace RoverController.Web.DTOs
         //[JsonIgnore]
         public virtual ICollection<PinPointDTO> PinPoints { get; set; }
 
+        public string Attachment { get; set; }
+
+        [JsonIgnore]
         public virtual ICollection<MissionAttachmentDTO> Attachments { get; set; }
 
         #endregion Custom Properties

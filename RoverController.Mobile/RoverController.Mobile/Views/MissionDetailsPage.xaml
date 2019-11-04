@@ -69,6 +69,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <Label Text="Initial Position:" FontAttributes="Bold" Grid.Column="0"></Label>
@@ -77,6 +78,12 @@
                 <Label Text="{Binding Mission.Instructions}" Grid.Row="1" Grid.Column="1"></Label>
                 <Label Text="Final Position:" FontAttributes="Bold" Grid.Row="2" Grid.Column="0"></Label>
                 <Label Text="{Binding Mission.Output}" Grid.Row="2" Grid.Column="1"></Label>
+                <Label Text="Screenshot:" FontAttributes="Bold" Grid.Row="3" Grid.Column="0"></Label>
+                <Label Text="{Binding Mission.AttachmentLink}" Grid.Row="3" Grid.Column="1">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AttachmentCommand}" CommandParameter="{Binding Mission.Attachment}"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
             </Grid>
 
         </Grid>

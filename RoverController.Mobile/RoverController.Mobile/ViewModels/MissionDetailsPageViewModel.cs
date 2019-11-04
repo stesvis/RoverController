@@ -21,6 +21,35 @@ namespace RoverController.Mobile.ViewModels
         public DelegateCommand MoreCommand =>
             _moreCommand ?? (_moreCommand = new DelegateCommand(ExecuteMoreCommand));
 
+        private DelegateCommand<string> _attachmentCommand;
+        public DelegateCommand<string> AttachmentCommand =>
+            _attachmentCommand ?? (_attachmentCommand = new DelegateCommand<string>(ExecuteAttachmentCommand, CanExecuteAttachmentCommand)
+            .ObservesProperty(() => IsBusy)
+            .ObservesProperty(() => Mission.Attachment));
+
+        private async void ExecuteAttachmentCommand(string parameter)
+        {
+            try
+            {
+                IsBusy = true;
+
+                await Browser.OpenAsync(new Uri(parameter), BrowserLaunchMode.SystemPreferred);
+            }
+            catch (Exception ex)
+            {
+                base.DisplayExceptionMessage(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private bool CanExecuteAttachmentCommand(string parameter)
+        {
+            return IsNotBusy && !Mission.Attachment.IsEmpty();
+        }
+
         #endregion Commands
 
         #region Properties
@@ -86,9 +115,9 @@ namespace RoverController.Mobile.ViewModels
 
                 if (await DialogService.DisplayActionSheetAsync("Menu", "Cancel", null, "Upload Screenshot") == "Upload Screenshot")
                 {
-                    using (Helper.Loading("Taking Screenshot"))
+                    using (Helper.Loading("Uploading Screenshot"))
                     {
-                        await Task.Delay(1000);
+                        //await Task.Delay(1000);
                         Screenshot = Xamarin.Forms.DependencyService.Get<IScreenshotService>().Capture();
 
                         if (Screenshot != null)
@@ -98,6 +127,23 @@ namespace RoverController.Mobile.ViewModels
                             var token = await SecureStorage.GetAsync(SecureStorageProperties.AccessToken);
 
                             var uploadResponse = await AppService.Api.Missions.Upload(Mission.Id, Screenshot);
+                            if (uploadResponse == null)
+                            {
+                                base.DisplayNoConnectionMessage();
+                                return;
+                            }
+
+                            if (uploadResponse.Item2 != null)
+                            {
+                                base.DisplayErrorMessage(uploadResponse.Item2);
+                                return;
+                            }
+
+                            if (uploadResponse.Item1 != null)
+                            {
+                                Mission.Attachment = uploadResponse.Item1.AwsPublicUrl;
+                                Helper.Toast("Screenshot uploaded!", ToastType.Success);
+                            }
                         }
                     }
                 }

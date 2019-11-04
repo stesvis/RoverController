@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
-using System;
+using RoverController.Lib;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
 namespace RoverController.Mobile.DTOs
 {
-    public class MissionDTO
+    public class MissionDTO : BaseDTO
     {
         [JsonProperty("maxX")]
         public int MaxX { get; set; }
@@ -41,21 +41,25 @@ namespace RoverController.Mobile.DTOs
         public string Output { get; set; }
 
         [JsonProperty("pinPoints")]
-        public List<PinPointDTO> PinPoints { get; set; }
+        public ICollection<PinPointDTO> PinPoints { get; set; }
 
-        [JsonProperty("id")]
-        public int Id { get; set; }
+        private string _attachment;
+        [JsonProperty("attachment")]
+        public string Attachment
+        {
+            get { return _attachment; }
+            set { SetProperty(ref _attachment, value); }
+        }
 
-        [JsonProperty("createdDate")]
-        public DateTime CreatedDate { get; set; }
+        [JsonIgnore]
+        public string AttachmentLink
+        {
+            get { return Attachment.IsEmpty() ? null : Path.GetFileName(Attachment); }
+        }
 
-        [JsonProperty("createdDateFormatted")]
-        public string CreatedDateFormatted { get; set; }
-
-        [JsonProperty("createdByUserId")]
-        public string CreatedByUserId { get; set; }
-
-        [JsonProperty("createdByName")]
-        public string CreatedByName { get; set; }
+        public MissionDTO()
+        {
+            PinPoints = new HashSet<PinPointDTO>();
+        }
     }
 }

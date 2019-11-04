@@ -1,9 +1,8 @@
 ﻿using Newtonsoft.Json;
-using System;
 
 namespace RoverController.Mobile.DTOs
 {
-    public class PinPointDTO
+    public class PinPointDTO : BaseDTO
     {
         [JsonProperty("missionId")]
         public int MissionId { get; set; }
@@ -16,20 +15,5 @@ namespace RoverController.Mobile.DTOs
 
         [JsonProperty("direction")]
         public string Direction { get; set; }
-
-        [JsonProperty("id")]
-        public int Id { get; set; }
-
-        [JsonProperty("createdDate")]
-        public DateTime CreatedDate { get; set; }
-
-        [JsonProperty("createdDateFormatted")]
-        public string CreatedDateFormatted { get; set; }
-
-        [JsonProperty("createdByUserId")]
-        public string CreatedByUserId { get; set; }
-
-        [JsonProperty("createdByName")]
-        public string CreatedByName { get; set; }
     }
 }

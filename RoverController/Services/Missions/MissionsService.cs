@@ -17,6 +17,10 @@ namespace RoverController.Web.Services.Missions
         {
         }
 
+        /// <summary>
+        /// Returns all missions
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<MissionDTO> All()
         {
             using (var unitOfWork = new UnitOfWork())
@@ -80,6 +84,13 @@ namespace RoverController.Web.Services.Missions
             return missionDTO;
         }
 
+        /// <summary>
+        /// Attaches a file to a mission
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="attachmentDTO"></param>
+        /// <param name="currentUserId"></param>
+        /// <returns></returns>
         public MissionAttachmentDTO Attach(int id, MissionAttachmentDTO attachmentDTO, string currentUserId)
         {
             if (attachmentDTO.MissionId != id)
@@ -97,6 +108,12 @@ namespace RoverController.Web.Services.Missions
 
             using (var unitOfWork = new UnitOfWork())
             {
+                // hard-delete any existing attachments for this mission
+                var existingAttachments = unitOfWork.MissionAttachments.Find(x => x.MissionId == id);
+                if (existingAttachments != null)
+                {
+                    unitOfWork.MissionAttachments.HardDeleteRange(existingAttachments);
+                }
                 unitOfWork.MissionAttachments.Add(attachment);
                 unitOfWork.SaveChanges();
                 attachment = unitOfWork.MissionAttachments.GetFull(attachment.Id);
