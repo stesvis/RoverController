@@ -7,6 +7,8 @@ using RoverController.Mobile.Misc;
 using RoverController.Mobile.Services;
 using RoverController.Mobile.Services.Navigation;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -43,6 +45,13 @@ namespace RoverController.Mobile.ViewModels
         {
             get { return _model; }
             set { SetProperty(ref _model, value); }
+        }
+
+        private MissionDTO _mission;
+        public MissionDTO Mission
+        {
+            get { return _mission; }
+            set { SetProperty(ref _mission, value); }
         }
 
         private int _maxX;
@@ -82,6 +91,38 @@ namespace RoverController.Mobile.ViewModels
             }
         }
 
+        public override async void Initialize(INavigationParameters parameters)
+        {
+            try
+            {
+                IsBusy = true;
+
+                if (parameters.ContainsKey("id"))
+                {
+                    if (int.TryParse(parameters["id"].ToString(), out int missionId))
+                    {
+                        using (Helper.Loading())
+                        {
+                            await ReloadPage(missionId);
+                        }
+                    }
+                }
+                else
+                {
+                    Title = "New Mission";
+                }
+            }
+            catch (Exception ex)
+            {
+                base.DisplayExceptionMessage(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+            base.Initialize(parameters);
+        }
+
         #region Instruction Command
 
         private void ExecuteInstructionCommand(string parameter)
@@ -115,21 +156,6 @@ namespace RoverController.Mobile.ViewModels
         }
 
         #endregion Instruction Command
-
-        private void ExecuteInstructionsLabelCommand()
-        {
-            try
-            {
-                Helper.Toast("Use the buttons below", ToastType.Info);
-            }
-            catch (Exception ex)
-            {
-                base.DisplayExceptionMessage(ex);
-            }
-            finally
-            {
-            }
-        }
 
         #region Submit Command
 
@@ -184,5 +210,62 @@ namespace RoverController.Mobile.ViewModels
         }
 
         #endregion Submit Command
+
+        private void ExecuteInstructionsLabelCommand()
+        {
+            try
+            {
+                Helper.Toast("Use the buttons below", ToastType.Info);
+            }
+            catch (Exception ex)
+            {
+                base.DisplayExceptionMessage(ex);
+            }
+            finally
+            {
+            }
+        }
+
+        private async Task ReloadPage(int missionId)
+        {
+            var apiResponse = await AppService.Api.Missions.Get(missionId);
+            if (apiResponse == null)
+            {
+                base.DisplayNoConnectionMessage();
+                return;
+            }
+
+            if (apiResponse.Item2 != null)
+            {
+                base.DisplayErrorMessage(apiResponse.Item2);
+                return;
+            }
+
+            if (apiResponse.Item1 != null)
+            {
+                Mission = apiResponse.Item1;
+
+                var firstPinPoint = Mission.PinPoints.FirstOrDefault();
+                if (firstPinPoint != null)
+                {
+                    firstPinPoint.Type = PinPointType.Start;
+                }
+
+                var finalPinPoint = Mission.PinPoints.LastOrDefault();
+                if (finalPinPoint != null)
+                {
+                    finalPinPoint.Type = PinPointType.Finish;
+                }
+
+                Title = $"Continue Mission #{Mission.Id}";
+
+                Model.InitialX = Mission.FinalX;
+                Model.InitialY = Mission.FinalY;
+                Model.InitialDirection = Mission.InitialDirection;
+
+                MaxX = Mission.MaxX;
+                MaxY = Mission.MaxY;
+            }
+        }
     }
 }

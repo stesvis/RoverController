@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RoverController.Web.Models
 {
@@ -45,6 +46,10 @@ namespace RoverController.Web.Models
 
         [JsonIgnore]
         public virtual ICollection<MissionAttachment> Attachments { get; set; }
+
+        [JsonIgnore]
+        [NotMapped]
+        public string MoveInstructions { get; set; }
 
         public Mission()
         {

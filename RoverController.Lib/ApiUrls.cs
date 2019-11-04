@@ -19,6 +19,7 @@
             public const string Get = "/api/Missions/{id}";
             public const string Create = "/api/Missions";
             public const string Upload = "/api/Missions/{id}/upload";
+            public const string Move = "/api/Missions/{id}/move";
         }
 
         public struct PinPoints

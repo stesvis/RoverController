@@ -125,6 +125,43 @@ namespace RoverController.Web.API.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("{id}/move")]
+        public IHttpActionResult Move(int id, [FromBody]MissionDTO missionDTO)
+        {
+            try
+            {
+                var identity = RequestContext.Principal.Identity;
+                var userId = identity.GetUserId();
+
+                // invalid user
+                if (userId.IsEmpty())
+                {
+                    return Unauthorized();
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    var errors = string.Join($"{Environment.NewLine} - ", ModelState.GetErrors().ToArray());
+                    AppLogger.Logger.Debug($"Move: Validation Error on Mission #{id} by User {userId}{Environment.NewLine}{errors}");
+
+                    return BadRequest(errors);
+                }
+
+                missionDTO.CreatedByUserId = userId;
+                missionDTO.CreatedDate = DateTime.Now;
+
+                missionDTO = AppService.Missions.Move(id, missionDTO, userId);
+
+                return Created(new Uri($"{Request.RequestUri}/{missionDTO.Id}"), missionDTO);
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Logger.Error(ex);
+                return InternalServerError(ex);
+            }
+        }
+
         [HttpPost]
         [Route("{id}/upload")]
         public async Task<IHttpActionResult> Upload(int id)

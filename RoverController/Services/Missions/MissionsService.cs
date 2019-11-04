@@ -70,7 +70,9 @@ namespace RoverController.Web.Services.Missions
             ValidateMissionInput(mission);
 
             // if we get here it means that the mission is valid now let's calculate the route
-            CreateRoute(ref mission); // this will also validate the pin-points
+            var pinPointsRoute = CreateRoute(ref mission); // this will also validate the pin-points
+
+            mission.PinPoints = pinPointsRoute;
 
             ValidateMissionOutput(mission);
 
@@ -83,6 +85,43 @@ namespace RoverController.Web.Services.Missions
                     throw new Exception($"Houston we have a problem!{Environment.NewLine}This rover would collide with another rover in the same final spot!{Environment.NewLine}Mission aborted!");
                 }
                 unitOfWork.Missions.Add(mission);
+                unitOfWork.SaveChanges();
+                mission = unitOfWork.Missions.GetFull(mission.Id);
+                missionDTO = AutoMapper.Mapper.Map<MissionDTO>(mission);
+            }
+
+            return missionDTO;
+        }
+
+        public MissionDTO Move(int id, MissionDTO missionDTO, string currentUserId)
+        {
+            using (var unitOfWork = new UnitOfWork())
+            {
+                var mission = unitOfWork.Missions.GetFull(id);
+                mission.MoveInstructions = missionDTO.Instructions;
+
+                // STEP 1: validate the minimum requirements
+                ValidateMissionInput(mission);
+
+                // if we get here it means that the mission is valid now let's calculate the route
+                var pinPointsRoute = CreateRoute(ref mission); // this will also validate the pin-points
+                mission.Instructions += missionDTO.Instructions; // add the new instructions
+
+                ValidateMissionOutput(mission);
+
+                // if we get here it means that all the pin-points in the route are valid we can persist
+                var roversOnTheSameSpot = unitOfWork.Missions
+                    .Find(x =>
+                        x.Id != id &&
+                        x.FinalX == mission.FinalX &&
+                        x.FinalY == mission.FinalY);
+                if (roversOnTheSameSpot != null && roversOnTheSameSpot.Count() > 0)
+                {
+                    throw new Exception($"Houston we have a problem!{Environment.NewLine}This rover would collide with another rover in the same final spot!{Environment.NewLine}Mission aborted!");
+                }
+
+                unitOfWork.Missions.Update(mission);
+                unitOfWork.PinPoints.AddRange(pinPointsRoute);
                 unitOfWork.SaveChanges();
                 mission = unitOfWork.Missions.GetFull(mission.Id);
                 missionDTO = AutoMapper.Mapper.Map<MissionDTO>(mission);
@@ -130,23 +169,39 @@ namespace RoverController.Web.Services.Missions
             return attachmentDTO;
         }
 
-        private void CreateRoute(ref Mission mission)
+        private List<PinPoint> CreateRoute(ref Mission mission)
         {
-            var pinPoint = new PinPoint
+            var pinPointsRoute = new List<PinPoint>();
+            var pinPoint = new PinPoint();
+
+            if (mission.Id == 0)
             {
-                X = mission.InitialX,
-                Y = mission.InitialY,
-                Direction = mission.InitialDirection,
-                CreatedDate = DateTime.Now,
-                CreatedByUserId = mission.CreatedByUserId
-            };
-            mission.PinPoints.Add(pinPoint); // always store the initial pin-point too
+                // do this only the first time. Next times the initial position will be the previous
+                // final position already
+                pinPoint = new PinPoint
+                {
+                    MissionId = mission.Id,
+                    X = mission.InitialX,
+                    Y = mission.InitialY,
+                    Direction = mission.InitialDirection,
+                    CreatedDate = DateTime.Now,
+                    CreatedByUserId = mission.CreatedByUserId
+                };
+                pinPointsRoute.Add(pinPoint); // always store the initial pin-point too
+            }
+            else
+            {
+                pinPoint = mission.PinPoints.LastOrDefault();
+            }
 
             int currentIndex;
             int newIndex;
 
+            // if we are just moving an existing rover we have to use the "MoveInstructions"
+            var instructions = mission.Id > 0 ? mission.MoveInstructions : mission.Instructions;
+
             // loop thru each single instructions
-            foreach (var c in mission.Instructions)
+            foreach (var c in instructions)
             {
                 switch (c)
                 {
@@ -188,18 +243,21 @@ namespace RoverController.Web.Services.Missions
                         break;
                 }
 
+                pinPoint.MissionId = mission.Id;
                 pinPoint.CreatedDate = DateTime.Now;
                 pinPoint.CreatedByUserId = mission.CreatedByUserId;
 
-                mission.PinPoints.Add(pinPoint);
+                pinPointsRoute.Add(pinPoint);
             }
 
-            ValidatePinPoints(mission);
+            ValidatePinPoints(mission, pinPointsRoute);
 
             // set the final output for this mission
-            mission.FinalX = mission.PinPoints.LastOrDefault().X;
-            mission.FinalY = mission.PinPoints.LastOrDefault().Y;
-            mission.FinalDirection = mission.PinPoints.LastOrDefault().Direction;
+            mission.FinalX = pinPointsRoute.LastOrDefault().X;
+            mission.FinalY = pinPointsRoute.LastOrDefault().Y;
+            mission.FinalDirection = pinPointsRoute.LastOrDefault().Direction;
+
+            return pinPointsRoute;
         }
 
         private PinPoint MoveForward(PinPoint currentPinPoint)
@@ -280,9 +338,9 @@ namespace RoverController.Web.Services.Missions
         /// Loops thru all the pin-points and checks if they are all within the mission perimeter
         /// </summary>
         /// <param name="mission"></param>
-        private void ValidatePinPoints(Mission mission)
+        private void ValidatePinPoints(Mission mission, List<PinPoint> pinPoints)
         {
-            foreach (var pinPoint in mission.PinPoints)
+            foreach (var pinPoint in pinPoints)
             {
                 if (pinPoint.X < 0 ||
                     pinPoint.X > mission.MaxX ||

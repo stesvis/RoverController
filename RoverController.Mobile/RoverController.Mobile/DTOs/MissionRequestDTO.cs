@@ -5,6 +5,9 @@ namespace RoverController.Mobile.DTOs
 {
     public class MissionRequestDTO : BindableBase
     {
+        [JsonIgnore]
+        public int Id { get; set; }
+
         [JsonProperty("maxX")]
         public int MaxX { get; set; }
 

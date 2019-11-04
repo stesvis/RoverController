@@ -43,6 +43,7 @@ namespace RoverController.Web.Mapper
                     .Ignore(m => m.Id)
                     .Ignore(m => m.CreatedByUser)
                     .Ignore(m => m.CreatedByUserId)
+                    .Ignore(m => m.MoveInstructions)
                     .Ignore(m => m.PinPoints);
 
                 //----------------------- Mission Attachments

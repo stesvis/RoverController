@@ -43,7 +43,22 @@ namespace RoverController.Mobile.Services.APIs.Missions
         }
 
         /// <summary>
-        /// Creates a new mission
+        /// Creates or updates a mission
+        /// </summary>
+        /// <param name="missionRequestDTO"></param>
+        /// <returns></returns>
+        public async Task<Tuple<MissionDTO, string>> Save(MissionRequestDTO missionRequestDTO)
+        {
+            if (missionRequestDTO.Id == 0)
+            {
+                return await Create(missionRequestDTO);
+            }
+
+            return await Update(missionRequestDTO.Id, missionRequestDTO);
+        }
+
+        /// <summary>
+        /// Creates a new mission (deploys a new rover)
         /// </summary>
         /// <param name="missionDTO"></param>
         /// <returns></returns>
@@ -55,6 +70,24 @@ namespace RoverController.Mobile.Services.APIs.Missions
             }
 
             var result = await ApiWrapper<MissionDTO>.Post(Api.Missions.Create, missionRequestDTO);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Updates a mission (moves an existing rover)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="missionRequestDTO"></param>
+        /// <returns></returns>
+        public async Task<Tuple<MissionDTO, string>> Update(int id, MissionRequestDTO missionRequestDTO)
+        {
+            if (!Helper.IsInternetAvailable())
+            {
+                return null;
+            }
+
+            var result = await ApiWrapper<MissionDTO>.Post(Api.Missions.Move.Replace("{id}", id.ToString()), missionRequestDTO);
 
             return result;
         }

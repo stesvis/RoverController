@@ -11,6 +11,8 @@ namespace RoverController.Web.Services.Missions
 
         MissionDTO Create(MissionDTO missionDTO, string currentUserId);
 
+        MissionDTO Move(int id, MissionDTO missionDTO, string currentUserId);
+
         MissionAttachmentDTO Attach(int id, MissionAttachmentDTO attachmentDTO, string currentUserId);
     }
 }

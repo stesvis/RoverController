@@ -122,39 +122,50 @@ namespace RoverController.Mobile.ViewModels
             {
                 IsBusy = true;
 
-                if (await DialogService.DisplayActionSheetAsync("Menu", "Cancel", null, "Upload Screenshot") == "Upload Screenshot")
+                var choice = await DialogService.DisplayActionSheetAsync("Menu", "Cancel", null, "Continue", "Upload Screenshot");
+
+                switch (choice)
                 {
-                    Screenshot = Xamarin.Forms.DependencyService.Get<IScreenshotService>().Capture();
+                    case "Upload Screenshot":
+                        Screenshot = Xamarin.Forms.DependencyService.Get<IScreenshotService>().Capture();
 
-                    if (Screenshot != null)
-                    {
-                        using (Helper.Loading("Uploading Screenshot"))
+                        if (Screenshot != null)
                         {
-                            var uploadUrl = $"{Api.ApiBaseUrl}{Api.Missions.Upload.Replace("{id}", Mission.Id.ToString())}";
-                            var filename = $"mission-{Mission.Id}-screenshot-{Guid.NewGuid()}";
-                            var token = await SecureStorage.GetAsync(SecureStorageProperties.AccessToken);
-
-                            var uploadResponse = await AppService.Api.Missions.Upload(Mission.Id, Screenshot);
-                            if (uploadResponse == null)
+                            using (Helper.Loading("Uploading Screenshot"))
                             {
-                                base.DisplayNoConnectionMessage();
-                                return;
-                            }
+                                var uploadUrl = $"{Api.ApiBaseUrl}{Api.Missions.Upload.Replace("{id}", Mission.Id.ToString())}";
+                                var filename = $"mission-{Mission.Id}-screenshot-{Guid.NewGuid()}";
+                                var token = await SecureStorage.GetAsync(SecureStorageProperties.AccessToken);
 
-                            if (uploadResponse.Item2 != null)
-                            {
-                                base.DisplayErrorMessage(uploadResponse.Item2);
-                                return;
-                            }
+                                var uploadResponse = await AppService.Api.Missions.Upload(Mission.Id, Screenshot);
+                                if (uploadResponse == null)
+                                {
+                                    base.DisplayNoConnectionMessage();
+                                    return;
+                                }
 
-                            if (uploadResponse.Item1 != null)
-                            {
-                                Mission.Attachment = uploadResponse.Item1.AwsPublicUrl;
-                                AttachmentLink = Path.GetFileName(Mission.Attachment);
-                                Helper.Toast("Screenshot uploaded!", ToastType.Success);
+                                if (uploadResponse.Item2 != null)
+                                {
+                                    base.DisplayErrorMessage(uploadResponse.Item2);
+                                    return;
+                                }
+
+                                if (uploadResponse.Item1 != null)
+                                {
+                                    Mission.Attachment = uploadResponse.Item1.AwsPublicUrl;
+                                    AttachmentLink = Path.GetFileName(Mission.Attachment);
+                                    Helper.Toast("Screenshot uploaded!", ToastType.Success);
+                                }
                             }
                         }
-                    }
+                        break;
+
+                    case "Continue":
+                        await NavigationService.NavigateAsync($"NewMission?id={Mission.Id}");
+                        break;
+
+                    default:
+                        break;
                 }
             }
             catch (Exception ex)

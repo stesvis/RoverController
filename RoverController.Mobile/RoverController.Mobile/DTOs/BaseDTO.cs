@@ -6,8 +6,13 @@ namespace RoverController.Mobile.DTOs
 {
     public class BaseDTO : BindableBase
     {
+        private int _id;
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int Id
+        {
+            get { return _id; }
+            set { SetProperty(ref _id, value); }
+        }
 
         [JsonProperty("createdDate")]
         public DateTime CreatedDate { get; set; }
