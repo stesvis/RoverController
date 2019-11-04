@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ic_delete.png" />
+    <Content Include="ic_menu_more.png" />
     <Content Include="ic_rotate_left.png" />
     <Content Include="ic_rotate_right.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -132,6 +133,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.9" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons">
+      <Version>17.3.0.21</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfChart">
       <Version>17.3.0.21</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown">

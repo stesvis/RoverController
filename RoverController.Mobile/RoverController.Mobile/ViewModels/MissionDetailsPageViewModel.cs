@@ -1,4 +1,5 @@
-﻿using Prism.Navigation;
+﻿using Prism.Commands;
+using Prism.Navigation;
 using Prism.Services;
 using RoverController.Mobile.DTOs;
 using RoverController.Mobile.Misc;
@@ -11,12 +12,45 @@ namespace RoverController.Mobile.ViewModels
 {
     public class MissionDetailsPageViewModel : ViewModelBase
     {
+        #region Commands
+
+        private DelegateCommand _moreCommand;
+        public DelegateCommand MoreCommand =>
+            _moreCommand ?? (_moreCommand = new DelegateCommand(ExecuteMoreCommand));
+
+        private async void ExecuteMoreCommand()
+        {
+            try
+            {
+                IsBusy = true;
+
+                if (await DialogService.DisplayActionSheetAsync("Menu", "Cancel", null, "Upload Screenshot") == "Upload Screenshot")
+                {
+                    await DialogService.DisplayAlertAsync("Screenshot", "Taking screenhot", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                base.DisplayExceptionMessage(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        #endregion Commands
+
+        #region Properties
+
         private MissionDTO _mission;
         public MissionDTO Mission
         {
             get { return _mission; }
             set { SetProperty(ref _mission, value); }
         }
+
+        #endregion Properties
 
         public MissionDetailsPageViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService, IPageDialogService dialogService, IAppService appService)
             : base(navigationService, modalNavigationService, dialogService, appService)

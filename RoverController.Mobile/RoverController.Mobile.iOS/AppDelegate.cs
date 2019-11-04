@@ -27,6 +27,7 @@ namespace RoverController.Mobile.iOS
             Syncfusion.SfNumericUpDown.XForms.iOS.SfNumericUpDownRenderer.Init();
             Syncfusion.XForms.iOS.Border.SfBorderRenderer.Init();
             Syncfusion.XForms.iOS.Buttons.SfButtonRenderer.Init();
+            Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer.Init();
 
             LoadApplication(new App(new iOSInitializer()));
 

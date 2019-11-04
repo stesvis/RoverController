@@ -4,12 +4,82 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoverController.Mobile.Views.MissionDetailsPage"
-             Title="{Binding Title}">
-    
+             Title="{Binding Title}"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="moreMenuItem" Order="Primary" Text="MORE" Icon="ic_menu_more" Priority="0" Command="{Binding MoreCommand}" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
-            
-        </StackLayout>    
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".8*"></RowDefinition>
+                <RowDefinition Height=".5*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackLayout BackgroundColor="White" Padding="{StaticResource pagePadding}" Grid.Row="0">
+                <chart:SfChart HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                    <chart:SfChart.Title>
+                        <chart:ChartTitle Text="{Binding Mission.CreatedDateFormatted}" FontAttributes="Bold"/>
+                    </chart:SfChart.Title>
+
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:NumericalAxis Minimum="0" Maximum="{Binding Mission.MaxX}" EdgeLabelsDrawingMode="Center" EdgeLabelsVisibilityMode="AlwaysVisible" Interval="1" ShowTrackballInfo="True">
+                            <!--<chart:NumericalAxis.Title>
+                            <chart:ChartAxisTitle Text="x"></chart:ChartAxisTitle>
+                        </chart:NumericalAxis.Title>-->
+                        </chart:NumericalAxis>
+                    </chart:SfChart.PrimaryAxis>
+
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis Minimum="0" Maximum="{Binding Mission.MaxY}" EdgeLabelsDrawingMode="Center" EdgeLabelsVisibilityMode="AlwaysVisible" Interval="1">
+                            <!--<chart:NumericalAxis.Title>
+                            <chart:ChartAxisTitle Text="y"></chart:ChartAxisTitle>
+                        </chart:NumericalAxis.Title>-->
+                        </chart:NumericalAxis>
+                    </chart:SfChart.SecondaryAxis>
+
+                    <chart:SfChart.Series>
+                        <chart:StepLineSeries ItemsSource="{Binding Mission.PinPoints}" XBindingPath="X" YBindingPath="Y" StrokeWidth="5">
+                            <chart:StepLineSeries.DataMarker>
+                                <chart:ChartDataMarker ShowMarker="True" ShowLabel="True" MarkerType="Ellipse" MarkerWidth="10" MarkerHeight="10" MarkerColor="{StaticResource primaryColor}">
+                                    <chart:ChartDataMarker.LabelStyle>
+                                        <chart:DataMarkerLabelStyle TextColor="White" BorderThickness="1" BackgroundColor="{StaticResource primaryColor}" Margin="5" LabelPosition="Auto"/>
+                                    </chart:ChartDataMarker.LabelStyle>
+                                    <chart:ChartDataMarker.ConnectorLineStyle>
+                                        <chart:ConnectorLineStyle ConnectorHeight="50" ConnectorRotationAngle="135" StrokeColor="Red" StrokeWidth="3"/>
+                                    </chart:ChartDataMarker.ConnectorLineStyle>
+                                </chart:ChartDataMarker>
+                            </chart:StepLineSeries.DataMarker>
+                        </chart:StepLineSeries>
+                    </chart:SfChart.Series>
+
+                </chart:SfChart>
+            </StackLayout>
+
+            <Grid BackgroundColor="White" Padding="{StaticResource pagePadding}" VerticalOptions="Start" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Text="Initial Position:" FontAttributes="Bold" Grid.Column="0"></Label>
+                <Label Text="{Binding Mission.Input}" Grid.Column="1"></Label>
+                <Label Text="Commands:" FontAttributes="Bold" Grid.Row="1" Grid.Column="0"></Label>
+                <Label Text="{Binding Mission.Instructions}" Grid.Row="1" Grid.Column="1"></Label>
+                <Label Text="Final Position:" FontAttributes="Bold" Grid.Row="2" Grid.Column="0"></Label>
+                <Label Text="{Binding Mission.Output}" Grid.Row="2" Grid.Column="1"></Label>
+            </Grid>
+
+        </Grid>
     </ContentPage.Content>
-  
+
 </ContentPage>

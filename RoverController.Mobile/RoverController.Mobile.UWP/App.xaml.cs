@@ -1,7 +1,4 @@
-﻿using Syncfusion.SfNumericUpDown.XForms.UWP;
-using Syncfusion.XForms.UWP.Border;
-using Syncfusion.XForms.UWP.Buttons;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Windows.ApplicationModel;
@@ -51,9 +48,10 @@ namespace RoverController.Mobile.UWP
                 List<Assembly> assembliesToInclude = new List<Assembly>();
 
                 //Now, add all the assemblies your app uses
-                assembliesToInclude.Add(typeof(SfNumericUpDownRenderer).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(SfButtonRenderer).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(SfBorderRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(Syncfusion.SfNumericUpDown.XForms.UWP.SfNumericUpDownRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.Buttons.SfButtonRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.Border.SfBorderRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(Syncfusion.SfChart.XForms.UWP.SfChartRenderer).GetTypeInfo().Assembly);
 
                 // replaces Xamarin.Forms.Forms.Init(e);
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);

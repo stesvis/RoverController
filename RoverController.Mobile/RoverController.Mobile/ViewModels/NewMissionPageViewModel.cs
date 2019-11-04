@@ -137,9 +137,10 @@ namespace RoverController.Mobile.ViewModels
 
                     if (apiResponse.Item1 != null)
                     {
-                        MessagingCenter.Send(this, MessagingCenterMessages.NewMission, apiResponse.Item1);
+                        var missionDTO = apiResponse.Item1;
+                        MessagingCenter.Send(this, MessagingCenterMessages.NewMission, missionDTO);
                         Helper.Toast("Success!", ToastType.Success);
-                        await NavigationService.GoBackAsync();
+                        await NavigationService.NavigateAsync($"MissionDetails?id={missionDTO.Id}");
                     }
                 }
             }
