@@ -123,12 +123,11 @@ namespace RoverController.Mobile.ViewModels
 
                 if (await DialogService.DisplayActionSheetAsync("Menu", "Cancel", null, "Upload Screenshot") == "Upload Screenshot")
                 {
-                    using (Helper.Loading("Uploading Screenshot"))
-                    {
-                        //await Task.Delay(1000);
-                        Screenshot = Xamarin.Forms.DependencyService.Get<IScreenshotService>().Capture();
+                    Screenshot = Xamarin.Forms.DependencyService.Get<IScreenshotService>().Capture();
 
-                        if (Screenshot != null)
+                    if (Screenshot != null)
+                    {
+                        using (Helper.Loading("Uploading Screenshot"))
                         {
                             var uploadUrl = $"{Api.ApiBaseUrl}{Api.Missions.Upload.Replace("{id}", Mission.Id.ToString())}";
                             var filename = $"mission-{Mission.Id}-screenshot-{Guid.NewGuid()}";
