@@ -14,7 +14,7 @@
                   xmlns:ffimageloadingTrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
 
     <MasterDetailPage.Master>
-        <ContentPage Title="Menu" BackgroundColor="#454d58" Padding="{StaticResource contentPagePadding}">
+        <ContentPage Title="Menu" IconImageSource="ic_menu.png" BackgroundColor="#454d58" Padding="{StaticResource contentPagePadding}">
             <ContentPage.Content>
                 <ScrollView>
                     <Grid>
