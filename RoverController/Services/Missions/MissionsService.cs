@@ -264,11 +264,11 @@ namespace RoverController.Web.Services.Missions
         /// <param name="mission"></param>
         private void ValidateMissionOutput(Mission mission)
         {
-            if (mission.FinalX == 0)
-                throw new ArgumentNullException(nameof(mission.FinalX));
+            if (mission.FinalX < 0)
+                throw new ArgumentException("Argument cannot be negative.", nameof(mission.FinalX));
 
-            if (mission.FinalY == 0)
-                throw new ArgumentNullException(nameof(mission.FinalY));
+            if (mission.FinalY < 0)
+                throw new ArgumentException("Argument cannot be negative.", nameof(mission.FinalY));
 
             if (mission.FinalDirection.IsEmpty())
                 throw new ArgumentNullException(nameof(mission.FinalDirection));
