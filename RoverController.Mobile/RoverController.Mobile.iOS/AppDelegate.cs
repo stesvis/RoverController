@@ -2,8 +2,11 @@
 using Prism;
 using Prism.Ioc;
 using RoverController.Mobile.iOS.DependencyServices;
+using System;
 using UIKit;
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 namespace RoverController.Mobile.iOS
 {
@@ -38,6 +41,47 @@ namespace RoverController.Mobile.iOS
 #endif
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override void OnActivated(UIApplication app)
+        {
+            try
+            {
+                #region StatusBar
+
+                if (double.TryParse(DeviceInfo.VersionString, out double version))
+                {
+                    if (version >= 13)
+                    {
+                        UIView statusBar = new UIView(UIApplication.SharedApplication.Delegate.GetWindow().WindowScene.StatusBarManager.StatusBarFrame)
+                        {
+                            BackgroundColor = ((Color)Xamarin.Forms.Application.Current.Resources["primaryColorDark"]).ToUIColor(),
+                            TintColor = UIColor.White
+                        };
+                        UIApplication.SharedApplication.KeyWindow.AddSubview(statusBar);
+                    }
+                    else
+                    {
+                        UIView statusBar = UIApplication.SharedApplication.ValueForKey(new NSString("statusBar")) as UIView;
+                        if (statusBar.RespondsToSelector(new ObjCRuntime.Selector("setBackgroundColor:")))
+                        {
+                            statusBar.BackgroundColor = ((Color)Xamarin.Forms.Application.Current.Resources["primaryColorDark"]).ToUIColor();
+                            statusBar.TintColor = UIColor.White;
+                        }
+                    }
+                }
+                //app.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
+
+                #endregion StatusBar
+            }
+            catch (Exception)
+            {
+                // Do nothing
+            }
+            finally
+            {
+                base.OnActivated(app);
+            }
         }
     }
 
