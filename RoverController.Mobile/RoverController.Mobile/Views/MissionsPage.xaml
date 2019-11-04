@@ -19,7 +19,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <ListView x:Name="missionsListView" ItemsSource="{Binding Missions}" HasUnevenRows="True" 
+            <ListView x:Name="missionsListView" ItemsSource="{Binding Missions}" HasUnevenRows="True" BackgroundColor="Transparent"
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

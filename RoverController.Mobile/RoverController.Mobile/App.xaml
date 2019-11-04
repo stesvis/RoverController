@@ -47,6 +47,12 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource backgroundColor}" />
             </Style>
 
+            <!--Navigation Page-->
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource primaryColor}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
             <Style TargetType="numeric:SfNumericUpDown">
                 <Setter Property="HeightRequest" Value="{StaticResource entryHeightRequest}" />
                 <Setter Property="TextColor" Value="{StaticResource textColor}" />
