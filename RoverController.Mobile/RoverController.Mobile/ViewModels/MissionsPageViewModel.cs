@@ -13,13 +13,43 @@ using Xamarin.Forms;
 
 namespace RoverController.Mobile.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MissionsPageViewModel : ViewModelBase
     {
         #region Commands
 
         private DelegateCommand _newMissionCommand;
         public DelegateCommand NewMissionCommand =>
             _newMissionCommand ?? (_newMissionCommand = new DelegateCommand(ExecuteNewMissionCommand, CanExecuteNewMissionCommand));
+
+        private DelegateCommand<object> _missionTappedCommand;
+        public DelegateCommand<object> MissionTappedCommand =>
+            _missionTappedCommand ?? (_missionTappedCommand = new DelegateCommand<object>(ExecuteMissionTappedCommand, CanExecuteMissionTappedCommand));
+
+        private async void ExecuteMissionTappedCommand(object parameter)
+        {
+            try
+            {
+                IsBusy = true;
+
+                if (parameter is MissionDTO missionDTO)
+                {
+                    await NavigationService.NavigateAsync($"MissionDetails?id={missionDTO.Id}");
+                }
+            }
+            catch (Exception ex)
+            {
+                base.DisplayExceptionMessage(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private bool CanExecuteMissionTappedCommand(object parameter)
+        {
+            return true;
+        }
 
         #endregion Commands
 
@@ -34,7 +64,7 @@ namespace RoverController.Mobile.ViewModels
 
         #endregion Properties
 
-        public MainPageViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService, IPageDialogService dialogService, IAppService appService)
+        public MissionsPageViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService, IPageDialogService dialogService, IAppService appService)
             : base(navigationService, modalNavigationService, dialogService, appService)
         {
             Missions = new ObservableCollection<MissionDTO>();

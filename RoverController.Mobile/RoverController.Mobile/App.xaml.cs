@@ -49,7 +49,7 @@ namespace RoverController.Mobile
             containerRegistry.RegisterSingleton<IModalNavigationService, ModalNavigationService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>("Navigation");
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>("Main");
+            containerRegistry.RegisterForNavigation<MissionsPage, MissionsPageViewModel>("Missions");
             containerRegistry.RegisterForNavigation<MainMasterDetailPage, MainMasterDetailPageViewModel>("MasterDetail");
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>("Login");
             containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>("Settings");

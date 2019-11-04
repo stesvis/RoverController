@@ -76,7 +76,7 @@ namespace RoverController.Mobile.ViewModels
                     }
 
                     // SUCCESS!
-                    await NavigationService.NavigateAsync("MasterDetail/Navigation/Main");
+                    await NavigationService.NavigateAsync("MasterDetail/Navigation/Missions");
                 }
             }
             catch (Exception ex)

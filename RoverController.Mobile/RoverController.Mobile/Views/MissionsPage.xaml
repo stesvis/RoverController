@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoverController.Mobile.Views.MissionsPage"
+             Title="Rover Missions"
+             xmlns:converters="clr-namespace:RoverController.Mobile.Converters"
+             xmlns:prismBehaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ItemTappedEventArgsConverter x:Key="itemTappedEventArgsConverter"></converters:ItemTappedEventArgsConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <ListView x:Name="missionsListView" ItemsSource="{Binding Missions}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Padding="5,10,5,10" BackgroundColor="White">
+                                    <Label Text="{Binding Id, StringFormat='Mission #{0}'}" Style="{StaticResource label-header}"></Label>
+                                    <Label Text="{Binding CreatedDateFormatted}" Style="{StaticResource label-details}"></Label>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width=".3*"></ColumnDefinition>
+                                            <ColumnDefinition Width=".4*"></ColumnDefinition>
+                                            <ColumnDefinition Width=".3*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding Input}" Grid.Column="0"></Label>
+                                        <!--<Label Text="=>"></Label>-->
+                                        <Label Text="{Binding Instructions}" FontAttributes="Bold" Grid.Column="1"></Label>
+                                        <!--<Label Text="=>"></Label>-->
+                                        <Label Text="{Binding Output}" HorizontalOptions="End" Grid.Column="2"></Label>
+                                    </Grid>
+
+                                    <!--This was supposed to highlight the item tapped but it prevents the tapped command from firing-->
+                                    <!--<StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>-->
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                <ListView.Behaviors>
+                    <prismBehaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding MissionTappedCommand}" EventArgsConverter="{StaticResource itemTappedEventArgsConverter}"></prismBehaviors:EventToCommandBehavior>
+                </ListView.Behaviors>
+            </ListView>
+
+            <StackLayout BackgroundColor="White" Padding="{StaticResource pagePadding}" Grid.Row="1">
+                <Button Text="NEW MISSION" Command="{Binding NewMissionCommand}" Style="{StaticResource btn-primary}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
