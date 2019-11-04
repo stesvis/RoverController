@@ -1,12 +1,18 @@
-﻿using Prism.Commands;
+﻿using Plugin.FileUploader;
+using Plugin.FileUploader.Abstractions;
+using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using RoverController.Lib;
 using RoverController.Mobile.DTOs;
 using RoverController.Mobile.Misc;
 using RoverController.Mobile.Services;
+using RoverController.Mobile.Services.DependencyServices;
 using RoverController.Mobile.Services.Navigation;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace RoverController.Mobile.ViewModels
 {
@@ -18,27 +24,6 @@ namespace RoverController.Mobile.ViewModels
         public DelegateCommand MoreCommand =>
             _moreCommand ?? (_moreCommand = new DelegateCommand(ExecuteMoreCommand));
 
-        private async void ExecuteMoreCommand()
-        {
-            try
-            {
-                IsBusy = true;
-
-                if (await DialogService.DisplayActionSheetAsync("Menu", "Cancel", null, "Upload Screenshot") == "Upload Screenshot")
-                {
-                    await DialogService.DisplayAlertAsync("Screenshot", "Taking screenhot", "OK");
-                }
-            }
-            catch (Exception ex)
-            {
-                base.DisplayExceptionMessage(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
         #endregion Commands
 
         #region Properties
@@ -48,6 +33,13 @@ namespace RoverController.Mobile.ViewModels
         {
             get { return _mission; }
             set { SetProperty(ref _mission, value); }
+        }
+
+        private byte[] _screenshot;
+        public byte[] Screenshot
+        {
+            get { return _screenshot; }
+            set { SetProperty(ref _screenshot, value); }
         }
 
         #endregion Properties
@@ -86,6 +78,53 @@ namespace RoverController.Mobile.ViewModels
                 base.Initialize(parameters);
             }
         }
+
+        #region More Command
+
+        private async void ExecuteMoreCommand()
+        {
+            try
+            {
+                IsBusy = true;
+
+                if (await DialogService.DisplayActionSheetAsync("Menu", "Cancel", null, "Upload Screenshot") == "Upload Screenshot")
+                {
+                    using (Helper.Loading("Taking Screenshot"))
+                    {
+                        await Task.Delay(1000);
+                        Screenshot = Xamarin.Forms.DependencyService.Get<IScreenshotService>().Capture();
+
+                        if (Screenshot != null)
+                        {
+                            var uploadUrl = $"{Api.ApiBaseUrl}{Api.Missions.Upload.Replace("{id}", Mission.Id.ToString())}";
+                            var filename = $"mission-{Mission.Id}-screenshot-{Guid.NewGuid()}";
+                            var token = await SecureStorage.GetAsync(SecureStorageProperties.AccessToken);
+
+                            var uploadResponse = await AppService.Api.Missions.Upload(Mission.Id, Screenshot);
+
+                            //var uploadResponse = await CrossFileUploader.Current.UploadFileAsync(
+                            //    uploadUrl,
+                            //    new FileBytesItem("file", Screenshot, filename),
+                            //    new Dictionary<string, string>()
+                            //    {
+                            //        {"Authorization", $"Bearer {token}"},
+                            //        {"Content-Type", "application/json"},
+                            //    });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                base.DisplayExceptionMessage(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        #endregion More Command
 
         private async Task ReloadPage(int missionId)
         {

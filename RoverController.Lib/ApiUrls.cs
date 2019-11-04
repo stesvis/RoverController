@@ -2,6 +2,8 @@
 {
     public static class Api
     {
+        public static string ApiBaseUrl = @"https://rovercontroller.levitica.ca";
+
         public struct Account
         {
             public static readonly string Token = "/token";
@@ -16,6 +18,7 @@
             public const string All = "/api/Missions";
             public const string Get = "/api/Missions/{id}";
             public const string Create = "/api/Missions";
+            public const string Upload = "/api/Missions/{id}/upload";
         }
 
         public struct PinPoints

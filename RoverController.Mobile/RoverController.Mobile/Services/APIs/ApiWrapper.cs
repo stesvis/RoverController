@@ -1,5 +1,4 @@
-﻿using ModernHttpClient;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RoverController.Lib;
 using RoverController.Mobile.DTOs;
@@ -20,7 +19,6 @@ namespace RoverController.Mobile.Services.APIs
     {
         private static HttpClient WebApiClient = null;
         private static readonly object threadlock = new object();
-        private static string ApiBaseUrl = @"https://rovercontroller.levitica.ca";
 
         public static string Headers { get; set; }
 
@@ -32,16 +30,10 @@ namespace RoverController.Mobile.Services.APIs
                 {
                     if (WebApiClient == null)
                     {
-                        WebApiClient = new HttpClient(new NativeMessageHandler(false, new TLSConfig()
-                        {
-                            DangerousAcceptAnyServerCertificateValidator = true,
-                        })
+                        WebApiClient = new HttpClient()
                         {
                             Timeout = new TimeSpan(0, 0, 30),
-                            DisableCaching = true,
-                        })
-                        {
-                            BaseAddress = new Uri(ApiBaseUrl)
+                            BaseAddress = new Uri(Api.ApiBaseUrl)
                         };
                     }
                 }
@@ -136,16 +128,10 @@ namespace RoverController.Mobile.Services.APIs
                 {
                     if (WebApiClient == null)
                     {
-                        WebApiClient = new HttpClient(new NativeMessageHandler(false, new TLSConfig()
-                        {
-                            DangerousAcceptAnyServerCertificateValidator = true,
-                        })
+                        WebApiClient = new HttpClient()
                         {
                             Timeout = new TimeSpan(0, 0, 30),
-                            DisableCaching = true,
-                        })
-                        {
-                            BaseAddress = new Uri(ApiBaseUrl)
+                            BaseAddress = new Uri(Api.ApiBaseUrl)
                         };
                     }
                 }
@@ -271,16 +257,10 @@ namespace RoverController.Mobile.Services.APIs
                 {
                     if (WebApiClient == null)
                     {
-                        WebApiClient = new HttpClient(new NativeMessageHandler(false, new TLSConfig()
-                        {
-                            DangerousAcceptAnyServerCertificateValidator = true,
-                        })
+                        WebApiClient = new HttpClient()
                         {
                             Timeout = new TimeSpan(0, 0, 30),
-                            DisableCaching = true,
-                        })
-                        {
-                            BaseAddress = new Uri(ApiBaseUrl)
+                            BaseAddress = new Uri(Api.ApiBaseUrl)
                         };
                     }
                 }
@@ -419,6 +399,37 @@ namespace RoverController.Mobile.Services.APIs
             }
 
             return await PostOrPut(url, query, HttpMethod.Put, requiresToken, encode);
+        }
+
+        public static async Task<HttpResponseMessage> UploadImage(string url, byte[] ImageData, bool requiresToken = true)
+        {
+            lock (threadlock)
+            {
+                if (WebApiClient == null)
+                {
+                    WebApiClient = new HttpClient()
+                    {
+                        Timeout = new TimeSpan(0, 0, 30),
+                        BaseAddress = new Uri(Api.ApiBaseUrl)
+                    };
+                }
+            }
+
+            if (requiresToken)
+            {
+                var token = await SecureStorage.GetAsync(SecureStorageProperties.AccessToken);
+                WebApiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            }
+
+            var requestContent = new MultipartFormDataContent();
+
+            // here you can specify boundary if you need---^
+            var imageContent = new ByteArrayContent(ImageData);
+            imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+
+            requestContent.Add(imageContent, "file", "image.jpg");
+
+            return await WebApiClient.PostAsync(url, requestContent);
         }
     }
 }

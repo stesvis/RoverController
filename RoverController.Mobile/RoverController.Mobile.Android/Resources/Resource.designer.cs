@@ -63,8 +63,7 @@ namespace RoverController.Mobile.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::RoverController.Mobile.Droid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::RoverController.Mobile.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::RoverController.Mobile.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
-			global::ModernHttpClient.Resource.String.app_name = global::RoverController.Mobile.Droid.Resource.String.app_name;
-			global::ModernHttpClient.Resource.String.hello = global::RoverController.Mobile.Droid.Resource.String.hello;
+			global::ModernHttpClient.Resource.String.library_name = global::RoverController.Mobile.Droid.Resource.String.library_name;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_indeterminate_to_checked_box_inner_merged_animation = global::RoverController.Mobile.Droid.Resource.Animation.btn_checkbox_indeterminate_to_checked_box_inner_merged_animation;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_indeterminate_to_checked_icon_null_animation = global::RoverController.Mobile.Droid.Resource.Animation.btn_checkbox_indeterminate_to_checked_icon_null_animation;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_checked_box_inner_merged_animation = global::RoverController.Mobile.Droid.Resource.Animation.btn_checkbox_to_checked_box_inner_merged_animation;

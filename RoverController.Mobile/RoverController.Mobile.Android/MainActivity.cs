@@ -5,14 +5,20 @@ using Android.OS;
 using Android.Runtime;
 using Prism;
 using Prism.Ioc;
+using RoverController.Mobile.Droid.DependencyServices;
+using Xamarin.Forms;
 
 namespace RoverController.Mobile.Droid
 {
     [Activity(Label = "@string/app_name", Icon = "@mipmap/ic_launcher", Theme = "@style/MyTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        internal static MainActivity Instance { get; private set; }
+
         protected override void OnCreate(Bundle bundle)
         {
+            Instance = this;
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
@@ -47,6 +53,7 @@ namespace RoverController.Mobile.Droid
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
+            DependencyService.Register<ScreenshotService>();
         }
     }
 }

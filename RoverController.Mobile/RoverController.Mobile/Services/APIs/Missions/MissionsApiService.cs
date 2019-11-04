@@ -3,6 +3,7 @@ using RoverController.Mobile.DTOs;
 using RoverController.Mobile.Misc;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace RoverController.Mobile.Services.APIs.Missions
@@ -54,7 +55,19 @@ namespace RoverController.Mobile.Services.APIs.Missions
                 return null;
             }
 
-            var result = await ApiWrapper<MissionDTO>.Post(Api.Missions.Create, missionRequestDTO, true);
+            var result = await ApiWrapper<MissionDTO>.Post(Api.Missions.Create, missionRequestDTO);
+
+            return result;
+        }
+
+        public async Task<HttpResponseMessage> Upload(int id, byte[] ImageData)
+        {
+            if (!Helper.IsInternetAvailable())
+            {
+                return null;
+            }
+
+            var result = await ApiWrapper<HttpResponseMessage>.UploadImage(Api.Missions.Upload.Replace("{id}", id.ToString()), ImageData);
 
             return result;
         }
