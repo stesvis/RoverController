@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RoverController.Mobile.Misc;
 
 namespace RoverController.Mobile.DTOs
 {
@@ -15,5 +16,8 @@ namespace RoverController.Mobile.DTOs
 
         [JsonProperty("direction")]
         public string Direction { get; set; }
+
+        [JsonIgnore]
+        public PinPointType Type { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using RoverController.Mobile.Services.DependencyServices;
 using RoverController.Mobile.Services.Navigation;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
@@ -186,6 +187,19 @@ namespace RoverController.Mobile.ViewModels
             if (apiResponse.Item1 != null)
             {
                 Mission = apiResponse.Item1;
+
+                var firstPinPoint = Mission.PinPoints.FirstOrDefault();
+                if (firstPinPoint != null)
+                {
+                    firstPinPoint.Type = PinPointType.Start;
+                }
+
+                var finalPinPoint = Mission.PinPoints.LastOrDefault();
+                if (finalPinPoint != null)
+                {
+                    finalPinPoint.Type = PinPointType.Finish;
+                }
+
                 AttachmentLink = Mission.Attachment.IsEmpty() ? null : Path.GetFileName(Mission.Attachment);
                 Title = $"Mission #{Mission.Id}";
             }

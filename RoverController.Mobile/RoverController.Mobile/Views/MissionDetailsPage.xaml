@@ -5,6 +5,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoverController.Mobile.Views.MissionDetailsPage"
              Title="{Binding Title}"
+             xmlns:converters="clr-namespace:RoverController.Mobile.Converters"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms">
 
     <ContentPage.ToolbarItems>
@@ -13,8 +14,10 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <converters:PinPointToColorConverter x:Key="pinPointToColorConverter"></converters:PinPointToColorConverter>
+
             <DataTemplate x:Key="datamarker">
-                <StackLayout BackgroundColor="{StaticResource textColor}" Padding="2">
+                <StackLayout BackgroundColor="{Binding Type, Converter={StaticResource pinPointToColorConverter}}" Padding="2">
                     <Label LineBreakMode="WordWrap" TextColor="White" FontSize="Micro">
                         <Label.FormattedText>
                             <FormattedString>
@@ -97,8 +100,8 @@
                 <Label Text="{Binding Mission.Instructions}" Grid.Row="1" Grid.Column="1"></Label>
                 <Label Text="Final Position:" FontAttributes="Bold" Grid.Row="2" Grid.Column="0"></Label>
                 <Label Text="{Binding Mission.Output}" Grid.Row="2" Grid.Column="1"></Label>
-                <Label Text="Screenshot:" FontAttributes="Bold" Grid.Row="3" Grid.Column="0"></Label>
-                <Label Text="{Binding AttachmentLink}" TextColor="#0083c1" Grid.Row="3" Grid.Column="1">
+                <Label Text="Screenshot:" FontAttributes="Bold" VerticalOptions="Start" Grid.Row="3" Grid.Column="0"></Label>
+                <Label Text="{Binding AttachmentLink}" TextColor="#0083c1" VerticalOptions="Start" Grid.Row="3" Grid.Column="1">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding AttachmentCommand}" CommandParameter="{Binding Mission.Attachment}"></TapGestureRecognizer>
                     </Label.GestureRecognizers>

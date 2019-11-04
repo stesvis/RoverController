@@ -8,6 +8,13 @@
         Info
     }
 
+    public enum PinPointType
+    {
+        Intermediate,
+        Start,
+        Finish
+    }
+
     public static class MessagingCenterMessages
     {
         public const string NewMission = "NewMission";

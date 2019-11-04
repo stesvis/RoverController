@@ -46,6 +46,8 @@ namespace RoverController.Web.Services.Missions
                 mission = unitOfWork.Missions.GetFull(id);
             }
             var missionDTO = AutoMapper.Mapper.Map<MissionDTO>(mission);
+            // make sure the pinpoints are ordered by DESC
+            missionDTO.PinPoints = missionDTO.PinPoints.OrderByDescending(x => x.Id).ToList();
 
             return missionDTO;
         }
