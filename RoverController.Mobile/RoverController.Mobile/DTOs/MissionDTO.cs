@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
-using RoverController.Lib;
 using System.Collections.Generic;
-using System.IO;
 
 namespace RoverController.Mobile.DTOs
 {
@@ -49,12 +47,6 @@ namespace RoverController.Mobile.DTOs
         {
             get { return _attachment; }
             set { SetProperty(ref _attachment, value); }
-        }
-
-        [JsonIgnore]
-        public string AttachmentLink
-        {
-            get { return Attachment.IsEmpty() ? null : Path.GetFileName(Attachment); }
         }
 
         public MissionDTO()

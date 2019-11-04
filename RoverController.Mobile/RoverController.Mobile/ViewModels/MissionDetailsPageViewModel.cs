@@ -8,6 +8,7 @@ using RoverController.Mobile.Services;
 using RoverController.Mobile.Services.DependencyServices;
 using RoverController.Mobile.Services.Navigation;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
@@ -66,6 +67,13 @@ namespace RoverController.Mobile.ViewModels
         {
             get { return _screenshot; }
             set { SetProperty(ref _screenshot, value); }
+        }
+
+        private string _attachmentLink;
+        public string AttachmentLink
+        {
+            get { return _attachmentLink; }
+            set { SetProperty(ref _attachmentLink, value); }
         }
 
         #endregion Properties
@@ -142,6 +150,7 @@ namespace RoverController.Mobile.ViewModels
                             if (uploadResponse.Item1 != null)
                             {
                                 Mission.Attachment = uploadResponse.Item1.AwsPublicUrl;
+                                AttachmentLink = Path.GetFileName(Mission.Attachment);
                                 Helper.Toast("Screenshot uploaded!", ToastType.Success);
                             }
                         }
@@ -178,6 +187,7 @@ namespace RoverController.Mobile.ViewModels
             if (apiResponse.Item1 != null)
             {
                 Mission = apiResponse.Item1;
+                AttachmentLink = Mission.Attachment.IsEmpty() ? null : Path.GetFileName(Mission.Attachment);
                 Title = $"Mission #{Mission.Id}";
             }
         }
