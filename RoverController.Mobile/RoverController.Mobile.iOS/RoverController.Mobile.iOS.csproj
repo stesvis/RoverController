@@ -26,6 +26,8 @@
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -230,7 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RoverController.Mobile\RoverController.Mobile.csproj">
-      <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
+      <Project>{1A3016FF-BA29-422F-A9A0-F65A3B191402}</Project>
       <Name>RoverController.Mobile</Name>
     </ProjectReference>
   </ItemGroup>

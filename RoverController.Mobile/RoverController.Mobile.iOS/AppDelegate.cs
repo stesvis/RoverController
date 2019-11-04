@@ -74,7 +74,7 @@ namespace RoverController.Mobile.iOS
 
                 #endregion StatusBar
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // Do nothing
             }
