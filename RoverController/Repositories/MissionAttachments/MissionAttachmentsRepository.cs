@@ -27,6 +27,7 @@ namespace RoverController.Web.Repositories.MissionAttachments
         public override MissionAttachment GetFull(object id)
         {
             return ApplicationContext.MissionAttachments
+                .AsNoTracking()
                 .Include(x => x.CreatedByUser)
                 .FirstOrDefault(x => x.Id == (int)id);
         }

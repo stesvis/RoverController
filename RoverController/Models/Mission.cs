@@ -43,9 +43,13 @@ namespace RoverController.Web.Models
         [JsonIgnore]
         public virtual ICollection<PinPoint> PinPoints { get; set; }
 
+        [JsonIgnore]
+        public virtual ICollection<MissionAttachment> Attachments { get; set; }
+
         public Mission()
         {
             PinPoints = new HashSet<PinPoint>();
+            Attachments = new HashSet<MissionAttachment>();
         }
     }
 }

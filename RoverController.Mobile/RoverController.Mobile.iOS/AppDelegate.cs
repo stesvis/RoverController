@@ -1,11 +1,7 @@
 ﻿using Foundation;
-using iAd;
-using ObjCRuntime;
-using Plugin.FileUploader;
 using Prism;
 using Prism.Ioc;
 using RoverController.Mobile.iOS.DependencyServices;
-using System;
 using UIKit;
 using Xamarin.Forms;
 
@@ -42,18 +38,6 @@ namespace RoverController.Mobile.iOS
 #endif
 
             return base.FinishedLaunching(app, options);
-        }
-
-        /// <summary>
-        /// Save the completion-handler we get when the app opens from the background. This method
-        /// informs iOS that the app has finished all internal processing and can sleep again.
-        /// </summary>
-        /// <param name="application"></param>
-        /// <param name="sessionIdentifier"></param>
-        /// <param name="completionHandler"></param>
-        public override void HandleEventsForBackgroundUrl(UIApplication application, string sessionIdentifier, [BlockProxy(typeof(AdAction))] Action completionHandler)
-        {
-            FileUploadManager.UrlSessionCompletion = completionHandler;
         }
     }
 

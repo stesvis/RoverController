@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using RoverController.Lib;
 using RoverController.Logger;
 using RoverController.Web.DTOs;
 using RoverController.Web.Helper;
@@ -12,7 +13,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.WebPages;
 
 namespace RoverController.Web.API.Controllers
 {
@@ -129,6 +129,9 @@ namespace RoverController.Web.API.Controllers
         [Route("{id}/upload")]
         public async Task<IHttpActionResult> Upload(int id)
         {
+            var identity = RequestContext.Principal.Identity;
+            var userId = identity.GetUserId();
+
             // Check if the request contains multipart/form-data.
             if (!Request.Content.IsMimeMultipartContent())
             {
@@ -137,7 +140,6 @@ namespace RoverController.Web.API.Controllers
 
             string root = HttpContext.Current.Server.MapPath("~/App_Data");
             var provider = new CustomMultipartFormDataStreamProvider(root);
-            var files = new List<string>();
 
             try
             {
@@ -165,21 +167,32 @@ namespace RoverController.Web.API.Controllers
                 // Read the form data.
                 await Request.Content.ReadAsMultipartAsync(provider);
 
-                // This illustrates how to get the file names.
-                foreach (MultipartFileData file in provider.FileData)
+                var file = provider.FileData.FirstOrDefault();
+                if (file == null)
                 {
-                    files.Add(System.IO.Path.GetFileName(file.LocalFileName));
-                    System.Diagnostics.Debug.WriteLine(file.Headers.ContentDisposition.FileName);
-                    System.Diagnostics.Debug.WriteLine("Server file path: " + file.LocalFileName);
-
-                    var attachmentDTO = new MissionAttachmentDTO
-                    {
-                        MissionId = id,
-                        OriginalFilename = Path.GetFileName(file.LocalFileName),
-                        FileName = Path.Combine(root, file.LocalFileName),
-                    };
+                    return BadRequest("Cannot fetch the uploaded file.");
                 }
-                return Ok(files);
+
+                // This illustrates how to get the file names.
+                var files = new List<string>
+                {
+                    Path.GetFileName(file.LocalFileName)
+                };
+                System.Diagnostics.Debug.WriteLine(file.Headers.ContentDisposition.FileName);
+                System.Diagnostics.Debug.WriteLine("Server file path: " + file.LocalFileName);
+
+                var attachmentDTO = new MissionAttachmentDTO
+                {
+                    MissionId = id,
+                    OriginalFilename = Path.GetFileName(file.LocalFileName),
+                    FileType = Path.GetExtension(file.LocalFileName),
+                    FileName = Path.Combine(root, file.LocalFileName),
+                    AWSPublicUrl = Path.Combine(Api.ApiBaseUrl, $@"App_Data/{Path.GetFileName(file.LocalFileName)}")
+                };
+
+                attachmentDTO = AppService.Missions.Attach(id, attachmentDTO, userId);
+
+                return Ok(attachmentDTO);
             }
             catch (Exception ex)
             {

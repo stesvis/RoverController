@@ -80,6 +80,32 @@ namespace RoverController.Web.Services.Missions
             return missionDTO;
         }
 
+        public MissionAttachmentDTO Attach(int id, MissionAttachmentDTO attachmentDTO, string currentUserId)
+        {
+            if (attachmentDTO.MissionId != id)
+            {
+                throw new ArgumentException("Trying to attach a file to a different mission.", nameof(attachmentDTO.Mission));
+            }
+
+            var attachment = AutoMapper.Mapper.Map<MissionAttachment>(attachmentDTO);
+
+            // Mission
+            attachment.CreatedByUserId = currentUserId;
+            attachment.CreatedDate = DateTime.Now;
+
+            ValidateAttachment(attachment);
+
+            using (var unitOfWork = new UnitOfWork())
+            {
+                unitOfWork.MissionAttachments.Add(attachment);
+                unitOfWork.SaveChanges();
+                attachment = unitOfWork.MissionAttachments.GetFull(attachment.Id);
+                attachmentDTO = AutoMapper.Mapper.Map<MissionAttachmentDTO>(attachment);
+            }
+
+            return attachmentDTO;
+        }
+
         private void CreateRoute(ref Mission mission)
         {
             var pinPoint = new PinPoint
@@ -242,6 +268,21 @@ namespace RoverController.Web.Services.Missions
                     throw new ArgumentException("These instructions lead the rover outside of the perimeter.");
                 }
             }
+        }
+
+        private void ValidateAttachment(MissionAttachment attachment)
+        {
+            if (attachment.MissionId == 0)
+                throw new ArgumentNullException(nameof(attachment.MissionId));
+
+            if (attachment.FileType.IsEmpty())
+                throw new ArgumentNullException(nameof(attachment.FileType));
+
+            if (attachment.FileName.IsEmpty())
+                throw new ArgumentNullException(nameof(attachment.FileName));
+
+            if (attachment.OriginalFilename.IsEmpty())
+                throw new ArgumentNullException(nameof(attachment.OriginalFilename));
         }
     }
 }

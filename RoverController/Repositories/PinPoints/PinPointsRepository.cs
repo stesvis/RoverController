@@ -27,6 +27,7 @@ namespace RoverController.Web.Repositories.PinPoints
         public override PinPoint GetFull(object id)
         {
             return ApplicationContext.PinPoints
+                .AsNoTracking()
                 .Include(x => x.CreatedByUser)
                 .FirstOrDefault(x => x.Id == (int)id);
         }

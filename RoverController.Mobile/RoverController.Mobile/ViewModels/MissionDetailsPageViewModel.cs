@@ -1,6 +1,4 @@
-﻿using Plugin.FileUploader;
-using Plugin.FileUploader.Abstractions;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using RoverController.Lib;
@@ -10,7 +8,6 @@ using RoverController.Mobile.Services;
 using RoverController.Mobile.Services.DependencyServices;
 using RoverController.Mobile.Services.Navigation;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
@@ -101,15 +98,6 @@ namespace RoverController.Mobile.ViewModels
                             var token = await SecureStorage.GetAsync(SecureStorageProperties.AccessToken);
 
                             var uploadResponse = await AppService.Api.Missions.Upload(Mission.Id, Screenshot);
-
-                            //var uploadResponse = await CrossFileUploader.Current.UploadFileAsync(
-                            //    uploadUrl,
-                            //    new FileBytesItem("file", Screenshot, filename),
-                            //    new Dictionary<string, string>()
-                            //    {
-                            //        {"Authorization", $"Bearer {token}"},
-                            //        {"Content-Type", "application/json"},
-                            //    });
                         }
                     }
                 }

@@ -401,35 +401,103 @@ namespace RoverController.Mobile.Services.APIs
             return await PostOrPut(url, query, HttpMethod.Put, requiresToken, encode);
         }
 
-        public static async Task<HttpResponseMessage> UploadImage(string url, byte[] ImageData, bool requiresToken = true)
+        public static async Task<Tuple<T, string>> UploadImage(string url, byte[] ImageData, bool requiresToken = true)
         {
-            lock (threadlock)
+            try
             {
-                if (WebApiClient == null)
+                lock (threadlock)
                 {
-                    WebApiClient = new HttpClient()
+                    if (WebApiClient == null)
                     {
-                        Timeout = new TimeSpan(0, 0, 30),
-                        BaseAddress = new Uri(Api.ApiBaseUrl)
-                    };
+                        WebApiClient = new HttpClient()
+                        {
+                            Timeout = new TimeSpan(0, 0, 30),
+                            BaseAddress = new Uri(Api.ApiBaseUrl)
+                        };
+                    }
+                }
+
+                if (requiresToken)
+                {
+                    var token = await SecureStorage.GetAsync(SecureStorageProperties.AccessToken);
+                    WebApiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                }
+
+                var requestContent = new MultipartFormDataContent();
+
+                // here you can specify boundary if you need---^
+                var imageContent = new ByteArrayContent(ImageData);
+                imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+
+                requestContent.Add(imageContent, "file", "image.jpg");
+
+                var response = await WebApiClient.PostAsync(url, requestContent);
+                var responseJson = await response.Content.ReadAsStringAsync();
+
+                try
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        if (responseJson.IsEmpty())
+                        {
+                            return default(Tuple<T, string>);
+                        }
+
+                        var apiResult = JsonConvert.DeserializeObject<T>(responseJson);
+                        var retval = Tuple.Create<T, string>(apiResult, null);
+
+                        return retval;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            var apiError = JsonConvert.DeserializeObject<string>(responseJson);
+                            return Tuple.Create<T, string>(null, apiError);
+                        }
+                        catch (Exception)
+                        {
+                            try
+                            {
+                                var errorResponse = JsonConvert.DeserializeObject<ErrorResponseDTO>(responseJson);
+                                var errorMessageResponse = JsonConvert.DeserializeObject<ErrorMessageResponseDTO>(responseJson);
+                                var errorMessage = string.Empty;
+
+                                if (!errorResponse.Error.IsEmpty())
+                                {
+                                    errorMessage = errorResponse.Error;
+                                    if (!errorResponse.ExceptionMessage.IsEmpty())
+                                        errorMessage = errorResponse.ExceptionMessage;
+                                }
+                                else if (!errorMessageResponse.Message.IsEmpty())
+                                {
+                                    errorMessage = errorMessageResponse.Message;
+                                    if (!errorMessageResponse.ExceptionMessage.IsEmpty())
+                                        errorMessage = errorMessageResponse.ExceptionMessage;
+                                }
+                                else
+                                {
+                                    errorMessage = "Oops! An error has occurred.";
+                                }
+
+                                return Tuple.Create<T, string>(null, errorMessage);
+                            }
+                            catch (Exception)
+                            {
+                                return Tuple.Create<T, string>(null, "Oops! An error has occurred.");
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw;
                 }
             }
-
-            if (requiresToken)
+            catch (Exception)
             {
-                var token = await SecureStorage.GetAsync(SecureStorageProperties.AccessToken);
-                WebApiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                throw;
             }
-
-            var requestContent = new MultipartFormDataContent();
-
-            // here you can specify boundary if you need---^
-            var imageContent = new ByteArrayContent(ImageData);
-            imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
-
-            requestContent.Add(imageContent, "file", "image.jpg");
-
-            return await WebApiClient.PostAsync(url, requestContent);
         }
     }
 }

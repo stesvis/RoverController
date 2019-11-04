@@ -56,6 +56,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.CreatedDate)
                                 </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Attachments)
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,6 +71,12 @@
                                     <td>@missionDTO.Output</td>
                                     <td>@missionDTO.CreatedByName</td>
                                     <td>@missionDTO.CreatedDate</td>
+                                    <td>
+                                        @if (missionDTO.Attachments.Count > 0)
+                                        {
+                                            <a href="@missionDTO.Attachments.FirstOrDefault().FileName" target="_blank">View</a>
+                                        }
+                                    </td>
                                 </tr>
                             }
                         </tbody>
