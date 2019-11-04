@@ -73,7 +73,7 @@ namespace RoverController.Mobile.ViewModels
                     await ReloadPage();
                 }
 
-                await CheckBasicSettings();
+                //await CheckBasicSettings();
             }
             catch (Exception ex)
             {
@@ -120,9 +120,22 @@ namespace RoverController.Mobile.ViewModels
 
         private async void ExecuteNewMissionCommand()
         {
-            if (await CheckBasicSettings() == true)
+            try
             {
-                await NavigationService.NavigateAsync("NewMission");
+                IsBusy = true;
+
+                if (await CheckBasicSettings() == true)
+                {
+                    await NavigationService.NavigateAsync("NewMission");
+                }
+            }
+            catch (Exception ex)
+            {
+                base.DisplayExceptionMessage(ex);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
 
