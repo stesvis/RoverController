@@ -103,7 +103,7 @@
 
                     <buttons:SfButton Text="LEFT" ImageSource="ic_rotate_left.png" ShowIcon="True" BackgroundColor="{StaticResource customGreenColor}"
                                       Command="{Binding InstructionCommand}" CommandParameter="L" Grid.Column="0"></buttons:SfButton>
-                    <Button Text="MOVE" TextColor="White" BackgroundColor="LightGray" 
+                    <Button Text="MOVE" TextColor="White" BackgroundColor="#2b3e50" 
                             Command="{Binding InstructionCommand}" CommandParameter="M" Grid.Column="1"></Button>
                     <buttons:SfButton Text="RIGHT" ImageSource="ic_rotate_right.png" ShowIcon="True" ImageAlignment="Right" BackgroundColor="{StaticResource customGreenColor}" 
                                       Command="{Binding InstructionCommand}" CommandParameter="R" Grid.Column="2"></buttons:SfButton>
