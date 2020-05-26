@@ -2,10 +2,10 @@
 
 Fork this project to start a new one.
 
-Mobile: Xamarin Forms app (iOS and Android), MVVM (Prism), Syncfusion controls
-Web: MVC5, Entity Framework, APIs, Repository patterns
+**Mobile**: Xamarin Forms app (iOS and Android), MVVM (Prism), Syncfusion controls
+**Web**: MVC5, Entity Framework, APIs, Repository patterns
 
-Website/Admin: https://rovercontroller.levitica.ca/
+**Website/Admin**: https://rovercontroller.levitica.ca/
 
 Username: admin
 Password: Abc123!!!
