@@ -7,8 +7,8 @@ Fork this project to start a new one.
 
 **Website/Admin**: https://rovercontroller.levitica.ca/
 
-Username: admin
-Password: Abc123!!!
+- **Username**: admin
+- **Password**: Abc123!!!
 
-Credentials are the same for web and mobile app.
+*Credentials are the same for web and mobile app.*
 
